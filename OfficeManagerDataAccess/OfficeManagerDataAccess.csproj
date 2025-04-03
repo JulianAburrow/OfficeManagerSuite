@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="AssetManager\AssetManagerConfiguration\" />
+    <Folder Include="AssetManager\AssetManagerModels\" />
+    <Folder Include="AssetManager\AssetManagerData\" />
+    <Folder Include="CustomerRelationManager\CustomerRelationManagerInterfaces\" />
+    <Folder Include="AssetManager\AssetManagerInterfaces\" />
+    <Folder Include="AssetManager\AssetManagerHandlers\" />
+    <Folder Include="CustomerRelationManager\CustomerRelationManagerHandlers\" />
+    <Folder Include="CustomerRelationManager\CustomerRelationManagerModels\" />
+    <Folder Include="CustomerRelationManager\CustomerRelationManagerConfiguration\" />
+    <Folder Include="CustomerRelationManager\CustomerRelationManagerData\" />
+    <Folder Include="PersonManager\PersonManagerConfiguration\" />
+    <Folder Include="PersonManager\PersonManagerModels\" />
+    <Folder Include="PersonManager\PersonManagerData\" />
+    <Folder Include="VehicleManager\VehicleManagerConfiguration\" />
+    <Folder Include="VehicleManager\VehicleManagerModels\" />
+    <Folder Include="VehicleManager\VehicleManagerData\" />
+    <Folder Include="VehicleManager\VehicleManagerHandlers\" />
+    <Folder Include="PersonManager\PersonManagerHandlers\" />
+    <Folder Include="VehicleManager\VehicleManagerInterfaces\" />
+    <Folder Include="PersonManager\PersonManagerInterfaces\" />
+  </ItemGroup>
+
+</Project>
