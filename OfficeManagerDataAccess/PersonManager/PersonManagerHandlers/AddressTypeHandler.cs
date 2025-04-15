@@ -13,13 +13,9 @@ public class AddressTypeHandler(PersonManagerDbContext context) : IAddressTypeHa
 
     public async Task DeleteAddressTypeAsync(int addressTypeId)
     {
-        var addressTypeToDelete = _context.AddressTypes.Find(addressTypeId);
-
-        if (addressTypeToDelete is null)
-        {
-            throw new ArgumentNullException(nameof(addressTypeToDelete), "Address type not found");
-        }
-
+        var addressTypeToDelete = await _context.AddressTypes.FindAsync(addressTypeId)
+            ?? throw new ArgumentNullException(nameof(addressTypeId), "Address type not found");
+        
         _context.AddressTypes.Remove(addressTypeToDelete);
         await _context.SaveChangesAsync();
     }
@@ -30,31 +26,17 @@ public class AddressTypeHandler(PersonManagerDbContext context) : IAddressTypeHa
             .AsNoTracking()
             .FirstOrDefaultAsync(a => a.AddressTypeId == addressTypeId);
 
-    public async Task<List<AddressTypeModel>> GetAddressTypesAsync()
-    {
-        try
-        {
-            var addressTypes = await _context.AddressTypes
+    public async Task<List<AddressTypeModel>> GetAddressTypesAsync() =>
+        await _context.AddressTypes
                 .Include(a => a.Addresses)
                 .AsNoTracking()
+                .OrderBy(a => a.TypeName)
                 .ToListAsync();
-            return addressTypes;
-        }
-        catch (Exception ex)
-        {
-            var foo = "bar";
-            return new List<AddressTypeModel>();
-        }
-    }
 
     public async Task UpdateAddressTypeAsync(AddressTypeModel addressType)
     {
-        var addressTypeToUpdate = await _context.AddressTypes.FindAsync(addressType.AddressTypeId);
-
-        if (addressTypeToUpdate is null)
-        {
-            throw new ArgumentNullException(nameof(addressTypeToUpdate), "Address type not found");
-        }
+        var addressTypeToUpdate = await _context.AddressTypes.FindAsync(addressType.AddressTypeId)
+            ?? throw new ArgumentNullException(nameof(addressType.AddressTypeId), "Address type not found");
 
         addressTypeToUpdate.TypeName = addressType.TypeName;
 

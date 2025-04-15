@@ -1,7 +1,4 @@
-﻿
-using Microsoft.EntityFrameworkCore.Storage;
-
-namespace OfficeManagerDataAccess.PersonManager.PersonManagerConfiguration;
+﻿namespace OfficeManagerDataAccess.PersonManager.PersonManagerConfiguration;
 
 public class EmergencyContactConfiguration : IEntityTypeConfiguration<EmergencyContactModel>
 {
@@ -21,7 +18,7 @@ public class EmergencyContactConfiguration : IEntityTypeConfiguration<EmergencyC
             .IsRequired()
             .HasMaxLength(20);
         builder.Property(e => e.Relationship)
-            .IsRequired()
+            .IsRequired(false)
             .HasMaxLength(50);
     }
 }

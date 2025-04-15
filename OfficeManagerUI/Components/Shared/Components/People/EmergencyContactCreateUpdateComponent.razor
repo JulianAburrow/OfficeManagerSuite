@@ -1,0 +1,23 @@
+﻿<DataAnnotationsValidator />
+<ValidationSummary />
+
+<MudGrid>
+    <MudItem sm="7">
+        <MudCard>
+            <MudCardContent>
+                <MudSelect Label="Person" @bind-Value="EmergencyContactDisplayModel.PersonId">
+                    @foreach (var person in People)
+                    {
+                        <MudSelectItem T="int" Value="@person.PersonId">
+                            @person.FirstName @person.LastName
+                        </MudSelectItem>
+                    }
+                </MudSelect>
+                <MudTextField Label="First Name" @bind-Value="EmergencyContactDisplayModel.FirstName" />
+                <MudTextField Label="Last Name" @bind-Value="EmergencyContactDisplayModel.LastName" />
+                <MudTextField Label="Phone Number" @bind-Value="EmergencyContactDisplayModel.PhoneNumber" />
+                <MudTextField Label="Relationship" @bind-Value="EmergencyContactDisplayModel.Relationship" />
+            </MudCardContent>
+        </MudCard>
+    </MudItem>
+</MudGrid>

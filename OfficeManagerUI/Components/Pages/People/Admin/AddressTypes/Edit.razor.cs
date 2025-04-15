@@ -5,13 +5,13 @@ public partial class Edit
     protected override async Task OnInitializedAsync()
     {
         AddressTypeModel = await AddressTypeHandler.GetAddressTypeAsync(AddressTypeId);
-        AddressTypeDisplayModel.TypeName = AddressTypeModel.TypeName;
+        CopyModelToDisplayModel();
         MainLayout.SetHeaderValue("Edit Address Type");
     }
 
     protected override void OnInitialized()
     {
-        MainLayout.SetBreadCrumbs(
+        MainLayout.SetBreadcrumbs(
         [
             GetHomeBreadcrumbItem(),
             GetAddressTypeHomeBreadcrumbItem(),

@@ -10,7 +10,7 @@ public partial class View
 
     protected override void OnInitialized()
     {
-        MainLayout.SetBreadCrumbs(
+        MainLayout.SetBreadcrumbs(
         [
             GetHomeBreadcrumbItem(),
             GetAddressTypeHomeBreadcrumbItem(),

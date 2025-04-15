@@ -23,4 +23,9 @@ public class AddressTypeBasePageClass : BasePageClass
     {
         AddressTypeModel.TypeName = AddressTypeDisplayModel.TypeName;
     }
+
+    protected void CopyModelToDisplayModel()
+    {
+        AddressTypeDisplayModel.TypeName = AddressTypeModel.TypeName;
+    }
 }

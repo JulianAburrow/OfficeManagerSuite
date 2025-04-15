@@ -19,7 +19,7 @@ public partial class MainLayout
         StateHasChanged();
     }
 
-    public void SetBreadCrumbs(List<BreadcrumbItem> breadcrumbs)
+    public void SetBreadcrumbs(List<BreadcrumbItem> breadcrumbs)
     {
         BreadCrumbs.Clear();
         BreadCrumbs.AddRange(breadcrumbs);

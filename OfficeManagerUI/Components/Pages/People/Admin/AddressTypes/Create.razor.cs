@@ -4,7 +4,7 @@ public partial class Create
 {
     protected override void OnInitialized()
     {
-        MainLayout.SetBreadCrumbs(
+        MainLayout.SetBreadcrumbs(
         [
             GetHomeBreadcrumbItem(),
             GetAddressTypeHomeBreadcrumbItem(),
@@ -12,7 +12,7 @@ public partial class Create
         ]);
     }
 
-    private async Task CreateAddressType()
+    private async void CreateAddressType()
     {
         try
         {

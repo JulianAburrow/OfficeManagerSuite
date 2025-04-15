@@ -1,0 +1,37 @@
+﻿<MudTable Items="EmergencyContacts"
+    Hover
+    FixedHeader="true">
+    <HeaderContent>
+        <MudTh title="Sort by First Name">
+            <MudTableSortLabel SortBy="new Func<EmergencyContactModel, object>(x => x.FirstName)">
+                First Name
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh title="Sort by Last Name">
+            <MudTableSortLabel SortBy="new Func<EmergencyContactModel, object>(x => x.LastName)">
+                Last Name
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh title="Sort by Phone Number">
+            <MudTableSortLabel SortBy="new Func<EmergencyContactModel, object>(x => x.PhoneNumber)">
+                Phone Number
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh></MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd>@context.FirstName</MudTd>
+        <MudTd>@context.LastName</MudTd>
+        <MudTd>@context.PhoneNumber</MudTd>
+        <MudTd>
+            <a href="/emergencycontact/view/@context.EmergencyContactId" class="btn btn-primary">View</a>
+            &nbsp;
+            <a href="/emergencycontact/edit/@context.EmergencyContactId" class="btn btn-primary">Edit</a>
+            &nbsp;
+            <a href="/emergencycontact/delete/@context.EmergencyContactId" class="btn btn-danger">Delete</a>
+        </MudTd>
+    </RowTemplate>
+    <PagerContent>
+        <MudTablePager PageSizeOptions="new int[] { 5, 10, 15, int.MaxValue }" />
+    </PagerContent>
+</MudTable>

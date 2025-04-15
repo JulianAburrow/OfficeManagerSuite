@@ -12,9 +12,9 @@
     <RowTemplate>
         <MudTd>@context.TypeName</MudTd>
         <MudTd>
-            <a href="addresstype/view/@context.AddressTypeId" class="btn btn-primary">View</a>
+            <a href="/addresstype/view/@context.AddressTypeId" class="btn btn-primary">View</a>
             &nbsp;
-            <a href="addresstype/edit/@context.AddressTypeId" class="btn btn-primary">Edit</a>
+            <a href="/addresstype/edit/@context.AddressTypeId" class="btn btn-primary">Edit</a>
             @if (!context.Addresses.Any())
             {
                 @:&nbsp;

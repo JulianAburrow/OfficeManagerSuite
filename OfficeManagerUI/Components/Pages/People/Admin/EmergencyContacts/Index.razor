@@ -1,0 +1,17 @@
+﻿@page "/emergencycontacts/index"
+@inherits EmergencyContactBasePageClass
+
+<PageTitle>Emergency Contacts</PageTitle>
+
+<a href="/emergencycontact/create" class="btn btn-primary">Create Emergency Contact</a>
+
+<br />
+<br />
+
+@if (EmergencyContacts is null || !EmergencyContacts.Any())
+{
+    <LoadingOrNotFoundComponent ValueToShow="@EmergencyContactPlural" />
+    return;
+}
+
+<EmergencyContactGridviewComponent EmergencyContacts="@EmergencyContacts" />

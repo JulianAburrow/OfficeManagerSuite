@@ -6,11 +6,13 @@ public class PersonManagerDbContext(DbContextOptions<PersonManagerDbContext> opt
 
     public DbSet<AddressTypeModel> AddressTypes { get; set; } = null!;
 
+    public DbSet<EmergencyContactModel> EmergencyContacts { get; set; } = null!;
+
     public DbSet<EmploymentStatusModel> EmploymentStatuses { get; set; } = null!;
 
     public DbSet<PersonalPronounsModel> PersonalPronouns { get; set; } = null!;
 
-    public DbSet<PersonModel> Persons { get; set; } = null!;
+    public DbSet<PersonModel> People { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -23,6 +25,7 @@ public class PersonManagerDbContext(DbContextOptions<PersonManagerDbContext> opt
 
         modelBuilder.ApplyConfiguration(new AddressConfiguration());
         modelBuilder.ApplyConfiguration(new AddressTypeConfiguration());
+        modelBuilder.ApplyConfiguration(new EmergencyContactConfiguration());
         modelBuilder.ApplyConfiguration(new EmploymentStatusConfiguration());
         modelBuilder.ApplyConfiguration(new PersonalPronounsConfiguration());
         modelBuilder.ApplyConfiguration(new PersonConfiguration());

@@ -11,7 +11,7 @@ public partial class Delete
 
     protected override void OnInitialized()
     {
-        MainLayout.SetBreadCrumbs(
+        MainLayout.SetBreadcrumbs(
         [
             GetHomeBreadcrumbItem(),
             GetAddressTypeHomeBreadcrumbItem(),

@@ -1,0 +1,24 @@
+﻿@page "/emergencycontact/create"
+@inherits EmergencyContactBasePageClass
+
+<PageTitle>Create Emergency Contact</PageTitle>
+
+<EditForm Model="EmergencyContactDisplayModel" OnValidSubmit="CreateEmergencyContact">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <MudGrid>
+        <MudItem sm="7">
+            <MudCard>
+                <MudCardContent>
+                    <EmergencyContactCreateUpdateComponent EmergencyContactDisplayModel="@EmergencyContactDisplayModel" />
+                </MudCardContent>
+                <MudCardActions>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    &nbsp;
+                    <a class="btn btn-primary" href="/addresstypes/index">Cancel</a>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>
