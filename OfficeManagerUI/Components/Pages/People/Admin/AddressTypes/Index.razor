@@ -1,0 +1,17 @@
+﻿@page "/addresstypes/index"
+@inherits AddressTypeBasePageClass
+
+<PageTitle>Address Types</PageTitle>
+
+<a href="/addresstype/create" class="btn btn-primary">Create Address Type</a>
+
+<br />
+<br />
+
+@if (AddressTypes is null || !AddressTypes.Any())
+{
+    <LoadingOrNotFoundComponent ValueToShow="@AddressTypePlural" />
+    return;
+}
+
+<AddressTypeGridViewComponent AddressTypes="@AddressTypes" />

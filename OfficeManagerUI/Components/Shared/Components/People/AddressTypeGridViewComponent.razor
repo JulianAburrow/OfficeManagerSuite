@@ -1,0 +1,28 @@
+﻿<MudTable Items="AddressTypes"
+    Hover
+    FixedHeader="true">
+    <HeaderContent>
+        <MudTh title="Sort by Address Type">
+            <MudTableSortLabel SortBy="new Func<AddressTypeModel, object>(x => x.TypeName)">
+                Type Name
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh></MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd>@context.TypeName</MudTd>
+        <MudTd>
+            <a href="addresstype/view/@context.AddressTypeId" class="btn btn-primary">View</a>
+            &nbsp;
+            <a href="addresstype/edit/@context.AddressTypeId" class="btn btn-primary">Edit</a>
+            @if (!context.Addresses.Any())
+            {
+                @:&nbsp;
+                <a href="/addresstype/delete/@context.AddressTypeId" class="btn btn-danger">Delete</a>
+            }
+        </MudTd>
+    </RowTemplate>
+    <PagerContent>
+        <MudTablePager PageSizeOptions="new int[] { 5, 10, 15, int.MaxValue }" />
+    </PagerContent>
+</MudTable>

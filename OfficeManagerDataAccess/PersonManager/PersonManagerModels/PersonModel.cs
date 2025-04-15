@@ -1,0 +1,33 @@
+﻿namespace OfficeManagerDataAccess.PersonManager.PersonManagerModels;
+
+public class PersonModel
+{
+    public int PersonId { get; set; }
+
+    public string FirstName { get; set; } = null!;
+
+    public string MiddleNames { get; set; } = null!;
+
+    public string LastName { get; set; } = null!;
+
+    public string? EmailAddress { get; set; } = null!;
+
+    public string? PhoneNumber { get; set; } = null!;
+
+    public int? PersonalPronounsId { get; set; }
+
+    public int? GenderId { get; set; }
+
+    public int EmploymentStatusId { get; set; }
+
+    public byte[]? Picture { get; set; } = null!;
+
+    public byte[] Pronunciation { get; set; } = null!;
+
+    public PersonalPronounsModel PersonalPronoun { get; set; } = null!;
+
+    public EmploymentStatusModel EmploymentStatus { get; set; } = null!;
+
+    public ICollection<AddressModel> Addresses { get; set; } = [];
+
+}

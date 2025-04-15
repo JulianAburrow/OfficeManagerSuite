@@ -1,0 +1,13 @@
+﻿global using Microsoft.AspNetCore.Components;
+global using Microsoft.EntityFrameworkCore;
+global using MudBlazor;
+global using MudBlazor.Services;
+global using OfficeManagerDataAccess.PersonManager.PersonManagerData;
+global using OfficeManagerDataAccess.PersonManager.PersonManagerHandlers;
+global using OfficeManagerDataAccess.PersonManager.PersonManagerInterfaces;
+global using OfficeManagerDataAccess.PersonManager.PersonManagerModels;
+global using OfficeManagerUI.Components.Layout;
+global using OfficeManagerUI.Components.Shared.BasePageClasses;
+global using OfficeManagerUI.Extensions;
+global using OfficeManagerUI.Models.PersonManagerModels;
+global using OfficeManagerUI.Components;

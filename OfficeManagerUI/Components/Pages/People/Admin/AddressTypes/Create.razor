@@ -1,0 +1,24 @@
+﻿@page "/addresstype/create"
+@inherits AddressTypeBasePageClass
+
+<PageTitle>Create Address Type</PageTitle>
+
+<EditForm Model="AddressTypeDisplayModel" OnValidSubmit="CreateAddressType">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <MudGrid>
+        <MudItem sm="7">
+            <MudCard>
+                <MudCardContent>
+                    <AddressTypeCreateUpdateComponent AddressTypeDisplayModel="@AddressTypeDisplayModel" />
+                </MudCardContent>
+                <MudCardActions>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    &nbsp;
+                    <a class="btn btn-primary" href="/addresstypes/index">Cancel</a>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>

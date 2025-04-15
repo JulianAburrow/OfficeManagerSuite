@@ -1,0 +1,3 @@
+﻿global using OfficeManagerDataAccess.PersonManager.PersonManagerModels;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using OfficeManagerDataAccess.PersonManager.PersonManagerData;
