@@ -1,0 +1,30 @@
+﻿@page "/employmentstatus/view/{EmploymentStatusId:int}"
+@inherits EmploymentStatusBasePageClass
+
+<PageTitle>View Address Type</PageTitle>
+
+@if (EmploymentStatusModel is null)
+{
+    <LoadingOrNotFoundComponent ValueToShow="@EmploymentStatusSingular" />
+    return;
+}
+
+<MudGrid>
+    <MudItem sm="7">
+        <MudCard>
+            <MudCardContent>
+                <AddressTypeViewDeleteComponent TypeName="@EmploymentStatusModel.StatusName" />
+            </MudCardContent>
+            <MudCardActions>
+                <a class="btn btn-primary" href="/employmentstatus/edit/@EmploymentStatusModel.EmploymentStatusId">Edit</a>
+                @if (!EmploymentStatusModel.Persons.Any())
+                {
+                    @:&nbsp;
+                    <a class="btn btn-danger" href="/employmentstatus/delete/@EmploymentStatusModel.EmploymentStatusId">Delete</a>
+                }
+                &nbsp;
+                <a class="btn btn-primary" href="/employmentstatuses/index">Cancel</a>"
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+</MudGrid>

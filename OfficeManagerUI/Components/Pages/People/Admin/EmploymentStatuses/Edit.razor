@@ -1,0 +1,29 @@
+﻿@page "/employmentstatus/edit/{EmploymentStatusId:int}"
+@inherits EmploymentStatusBasePageClass
+
+<PageTitle>Edit Address Type</PageTitle>
+
+@if (EmploymentStatusDisplayModel == null)
+{
+    <LoadingOrNotFoundComponent ValueToShow="@EmploymentStatusSingular" />
+    return;
+}
+
+<EditForm Model="@EmploymentStatusDisplayModel" OnValidSubmit="UpdateEmploymentStatus">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <MudGrid>
+        <MudItem sm="7">
+            <MudCard>
+                <EmploymentStatusCreateUpdateComponent EmploymentStatusDisplayModel="@EmploymentStatusDisplayModel" />
+                <MudCardActions>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    &nbsp;
+                    <a class="btn btn-primary" href="/employmentstatuses/index">Cancel</a>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>
+

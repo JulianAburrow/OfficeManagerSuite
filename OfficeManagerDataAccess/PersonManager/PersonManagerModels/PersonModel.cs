@@ -12,7 +12,7 @@ public class PersonModel
 
     public string? EmailAddress { get; set; } = null!;
 
-    public string? PhoneNumber { get; set; } = null!;
+    public string? Phone { get; set; } = null!;
 
     public int? PersonalPronounsId { get; set; }
 
@@ -20,7 +20,7 @@ public class PersonModel
 
     public int EmploymentStatusId { get; set; }
 
-    public byte[]? Picture { get; set; } = null!;
+    public byte[]? Photo { get; set; } = null!;
 
     public byte[] Pronunciation { get; set; } = null!;
 

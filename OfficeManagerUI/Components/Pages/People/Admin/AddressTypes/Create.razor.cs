@@ -4,6 +4,7 @@ public partial class Create
 {
     protected override void OnInitialized()
     {
+        MainLayout.SetHeaderValue("Create Address Type");
         MainLayout.SetBreadcrumbs(
         [
             GetHomeBreadcrumbItem(),

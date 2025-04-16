@@ -1,0 +1,17 @@
+﻿@page "/employmentstatuses/index"
+@inherits EmploymentStatusBasePageClass
+
+<PageTitle>Employment Statuses</PageTitle>
+
+<a href="/employmentstatus/create" class="btn btn-primary">Create Employment Status</a>
+
+<br />
+<br />
+
+@if (EmploymentStatuses is null || !EmploymentStatuses.Any())
+{
+    <LoadingOrNotFoundComponent ValueToShow="@EmploymentStatusPlural" />
+    return;
+}
+
+<EmploymentStatusGridviewComponent EmploymentStatuses="@EmploymentStatuses" />

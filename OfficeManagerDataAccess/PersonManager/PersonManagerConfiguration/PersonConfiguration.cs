@@ -4,7 +4,7 @@ public class PersonConfiguration : IEntityTypeConfiguration<PersonModel>
 {
     public void Configure(EntityTypeBuilder<PersonModel> builder)
     {
-        builder.ToTable("Persons");
+        builder.ToTable("Person");
         builder.HasKey(p => p.PersonId);
         builder.Property(p => p.PersonId)
             .ValueGeneratedOnAdd();
