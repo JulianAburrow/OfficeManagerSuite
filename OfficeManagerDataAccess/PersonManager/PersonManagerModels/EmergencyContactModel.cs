@@ -6,13 +6,13 @@ public class EmergencyContactModel
 
     public int PersonId { get; set; }
 
-    public string FirstName { get; set; } = string.Empty;
+    public string FirstName { get; set; } = default!;
 
-    public string LastName { get; set; } = string.Empty;
+    public string LastName { get; set; } = default!;
 
-    public string PhoneNumber { get; set; } = string.Empty;
+    public string Phone { get; set; } = default!;
 
-    public string? Relationship { get; set; } = string.Empty;
+    public string? Relationship { get; set; } = default!;
 
     public PersonModel Person { get; set; } = null!;
 }

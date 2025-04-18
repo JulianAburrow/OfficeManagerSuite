@@ -10,6 +10,8 @@ public class PersonManagerDbContext(DbContextOptions<PersonManagerDbContext> opt
 
     public DbSet<EmploymentStatusModel> EmploymentStatuses { get; set; } = null!;
 
+    public DbSet<GenderModel> Genders { get; set; } = null!;
+
     public DbSet<PersonalPronounsModel> PersonalPronouns { get; set; } = null!;
 
     public DbSet<PersonModel> People { get; set; } = null!;
@@ -27,6 +29,7 @@ public class PersonManagerDbContext(DbContextOptions<PersonManagerDbContext> opt
         modelBuilder.ApplyConfiguration(new AddressTypeConfiguration());
         modelBuilder.ApplyConfiguration(new EmergencyContactConfiguration());
         modelBuilder.ApplyConfiguration(new EmploymentStatusConfiguration());
+        modelBuilder.ApplyConfiguration(new GenderConfiguration());
         modelBuilder.ApplyConfiguration(new PersonalPronounsConfiguration());
         modelBuilder.ApplyConfiguration(new PersonConfiguration());
     }

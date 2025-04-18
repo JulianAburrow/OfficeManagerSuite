@@ -1,0 +1,17 @@
+﻿@page "/personalpronouns/index"
+@inherits PersonalPronounsBasePageClass
+
+<PageTitle>Personal Pronouns</PageTitle>
+
+<a href="/personalpronouns/create" class="btn btn-primary">Create Personal Pronouns</a>
+
+<br />
+<br />
+
+@if (PersonalPronouns is null || !PersonalPronouns.Any())
+{
+    <LoadingOrNotFoundComponent ValueToShow="@PersonalPronounsPlural" />
+    return;
+}
+
+<PersonalPronounsGridviewComponent PersonalPronouns="@PersonalPronouns" />

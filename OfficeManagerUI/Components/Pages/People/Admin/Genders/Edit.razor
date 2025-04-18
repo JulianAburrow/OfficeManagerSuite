@@ -1,0 +1,28 @@
+﻿@page "/gender/edit/{GenderId:int}"
+@inherits GenderBasePageClass
+
+<PageTitle>Edit Gender</PageTitle>
+
+@if (GenderModel == null)
+{
+    <LoadingOrNotFoundComponent ValueToShow="@GenderSingular" />
+    return;
+}
+
+<EditForm Model="@GenderDisplayModel" OnValidSubmit="UpdateGender">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <MudGrid>
+        <MudItem sm="7">
+            <MudCard>
+                <GenderCreateUpdateComponent GenderDisplayModel="@GenderDisplayModel" />
+                <MudCardActions>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    &nbsp;
+                    <a class="btn btn-primary" href="/genders/index">Cancel</a>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>

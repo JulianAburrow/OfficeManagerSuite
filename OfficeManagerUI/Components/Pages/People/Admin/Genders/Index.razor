@@ -1,0 +1,17 @@
+﻿@page "/genders/index"
+@inherits GenderBasePageClass
+
+<PageTitle>Address Types</PageTitle>
+
+<a href="/gender/create" class="btn btn-primary">Create Gender</a>
+
+<br />
+<br />
+
+@if (Genders is null || !Genders.Any())
+{
+    <LoadingOrNotFoundComponent ValueToShow="@GenderPlural" />
+    return;
+}
+
+<GenderGridviewComponent Genders="@Genders" />

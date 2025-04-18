@@ -1,4 +1,4 @@
-﻿namespace OfficeManagerUI.Components.Shared.BasePageClasses;
+﻿namespace OfficeManagerUI.Components.Shared.BasePageClasses.People;
 
 public class EmploymentStatusBasePageClass : BasePageClass
 {
@@ -16,7 +16,7 @@ public class EmploymentStatusBasePageClass : BasePageClass
 
     protected BreadcrumbItem GetEmploymentStatusHomeBreadcrumbItem(bool isDisabled = false)
     {
-        return new("Employment Statuses", "/employmentstatuses/index", isDisabled);
+        return new(EmploymentStatusPlural, "/employmentstatuses/index", isDisabled);
     }
 
     protected void CopyDisplayModelToModel()

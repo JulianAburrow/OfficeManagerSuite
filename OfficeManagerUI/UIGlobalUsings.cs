@@ -7,7 +7,7 @@ global using OfficeManagerDataAccess.PersonManager.PersonManagerHandlers;
 global using OfficeManagerDataAccess.PersonManager.PersonManagerInterfaces;
 global using OfficeManagerDataAccess.PersonManager.PersonManagerModels;
 global using OfficeManagerUI.Components.Layout;
-global using OfficeManagerUI.Components.Shared.BasePageClasses;
+global using OfficeManagerUI.Components.Shared.BasePageClasses.People;
 global using OfficeManagerUI.Extensions;
 global using OfficeManagerUI.Models.PersonManagerModels;
 global using OfficeManagerUI.Components;

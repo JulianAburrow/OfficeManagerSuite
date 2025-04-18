@@ -13,7 +13,7 @@
             </MudTableSortLabel>
         </MudTh>
         <MudTh title="Sort by Phone Number">
-            <MudTableSortLabel SortBy="new Func<EmergencyContactModel, object>(x => x.PhoneNumber)">
+            <MudTableSortLabel SortBy="new Func<EmergencyContactModel, object>(x => x.Phone)">
                 Phone Number
             </MudTableSortLabel>
         </MudTh>
@@ -22,7 +22,7 @@
     <RowTemplate>
         <MudTd>@context.FirstName</MudTd>
         <MudTd>@context.LastName</MudTd>
-        <MudTd>@context.PhoneNumber</MudTd>
+        <MudTd>@context.Phone</MudTd>
         <MudTd>
             <a href="/emergencycontact/view/@context.EmergencyContactId" class="btn btn-primary">View</a>
             &nbsp;

@@ -10,14 +10,10 @@ public class AddressHandler(PersonManagerDbContext context) : IAddressHandler
         await _context.SaveChangesAsync();
     }
 
-    public async Task DeleteAddressAsync(int id)
+    public async Task DeleteAddressAsync(int addressId)
     {
-        var addressToDelete = await _context.Addresses.FindAsync(id);
-
-        if (addressToDelete is null)
-        {
-            throw new ArgumentNullException(nameof(addressToDelete), "Address not found");
-        }
+        var addressToDelete = await _context.Addresses.FindAsync(addressId)
+            ?? throw new ArgumentNullException(nameof(addressId), "Address not found");
 
         _context.Addresses.Remove(addressToDelete);
         await _context.SaveChangesAsync();

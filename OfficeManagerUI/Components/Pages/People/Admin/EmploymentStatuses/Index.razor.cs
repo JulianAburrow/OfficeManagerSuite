@@ -10,7 +10,7 @@ public partial class Index
         {
             EmploymentStatuses = await EmploymentStatusHandler.GetEmploymentStatusesAsync();
             Snackbar.Add($"{EmploymentStatuses.Count} item(s) found.", EmploymentStatuses.Count > 0 ? Severity.Info : Severity.Warning);
-            MainLayout.SetHeaderValue("Employment Statuses");
+            MainLayout.SetHeaderValue(EmploymentStatusPlural);
         }
         catch (Exception ex)
         {

@@ -1,0 +1,29 @@
+﻿@page "/gender/delete/{GenderId:int}"
+@inherits GenderBasePageClass
+
+<PageTitle>Delete Gender</PageTitle>
+
+@if (GenderModel is null)
+{
+    <LoadingOrNotFoundComponent ValueToShow="@GenderSingular" />
+    return;
+}
+
+@if (!OkToDelete)
+{
+    <CannotDeleteComponent ObjectType="@GenderSingular" ObjectName="@GenderModel.GenderName" ObjectCount="@GenderModel.Persons.Count" />
+    return;
+}
+
+<ConfirmDeleteComponent ObjectType="@GenderSingular" ObjectName="@GenderModel.GenderName" />
+
+<br />
+<br />
+
+@if (OkToDelete)
+{
+    <button class="btn btn-danger" @onclick="DeleteGender">Delete</button>
+    @:&nbsp;
+}
+
+<a class="btn btn-primary" href="/genders/index">Cancel</a>

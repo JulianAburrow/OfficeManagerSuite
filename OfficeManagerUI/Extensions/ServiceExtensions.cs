@@ -14,6 +14,7 @@ public static class ServiceExtensions
         services.AddTransient<IAddressTypeHandler, AddressTypeHandler>();
         services.AddTransient<IEmergencyContactHandler, EmergencyContactHandler>();
         services.AddTransient<IEmploymentStatusHandler, EmploymentStatusHandler>();
+        services.AddTransient<IGenderHandler, GenderHandler>();
         services.AddTransient<IPersonalPronounsHandler, PersonalPronounsHandler>();
         services.AddTransient<IPersonHandler, PersonHandler>();
     }

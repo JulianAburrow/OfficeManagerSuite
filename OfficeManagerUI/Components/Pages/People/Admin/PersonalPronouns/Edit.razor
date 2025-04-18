@@ -1,0 +1,29 @@
+﻿@page "/personalpronouns/edit/{PersonalPronounsId:int}"
+@inherits PersonalPronounsBasePageClass
+
+<PageTitle>Edit Address Type</PageTitle>
+
+@if (PersonalPronounsDisplayModel == null)
+{
+    <LoadingOrNotFoundComponent ValueToShow="@PersonalPronounsSingular" />
+    return;
+}
+
+<EditForm Model="@PersonalPronounsDisplayModel" OnValidSubmit="UpdatePersonalPronouns">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <MudGrid>
+        <MudItem sm="7">
+            <MudCard>
+                <PersonalPronounsCreateUpdateComponent PersonalPronounsDisplayModel="@PersonalPronounsDisplayModel" />
+                <MudCardActions>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    &nbsp;
+                    <a class="btn btn-primary" href="/personalpronouns/index">Cancel</a>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>
+

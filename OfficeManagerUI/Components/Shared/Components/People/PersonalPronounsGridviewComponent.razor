@@ -1,0 +1,28 @@
+﻿<MudTable Items="PersonalPronouns"
+          Hover
+          FixedHeader="true">
+    <HeaderContent>
+        <MudTh title="Sort by Pronouns">
+            <MudTableSortLabel SortBy="new Func<PersonalPronounsModel, object>(x => x.PronounNames)">
+                Pronoun Names
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh></MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd>@context.PronounNames</MudTd>
+        <MudTd>
+            <a href="/personalpronouns/view/@context.PersonalPronounsId" class="btn btn-primary">View</a>
+            &nbsp;
+            <a href="/personalpronouns/edit/@context.PersonalPronounsId" class="btn btn-primary">Edit</a>
+            @if (!context.Persons.Any())
+            {
+                @:&nbsp;
+                <a href="/personalpronouns/delete/@context.PersonalPronounsId" class="btn btn-danger">Delete</a>
+            }
+        </MudTd>
+    </RowTemplate>
+    <PagerContent>
+        <MudTablePager PageSizeOptions="new int[] { 5, 10, 15, int.MaxValue }" />
+    </PagerContent>
+</MudTable>

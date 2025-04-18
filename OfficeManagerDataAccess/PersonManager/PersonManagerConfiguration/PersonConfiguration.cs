@@ -1,4 +1,6 @@
-﻿namespace OfficeManagerDataAccess.PersonManager.PersonManagerConfiguration;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Conventions.Infrastructure;
+
+namespace OfficeManagerDataAccess.PersonManager.PersonManagerConfiguration;
 
 public class PersonConfiguration : IEntityTypeConfiguration<PersonModel>
 {
@@ -33,6 +35,10 @@ public class PersonConfiguration : IEntityTypeConfiguration<PersonModel>
             .IsRequired(false)
             .HasForeignKey(p => p.PersonalPronounsId)
             .OnDelete(DeleteBehavior.NoAction);
-
+        builder.HasOne(p => p.Gender)
+            .WithMany(p => p.Persons)
+            .IsRequired(false)
+            .HasForeignKey(p => p.GenderId)
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }

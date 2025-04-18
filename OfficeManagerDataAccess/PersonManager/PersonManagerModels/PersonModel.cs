@@ -4,11 +4,11 @@ public class PersonModel
 {
     public int PersonId { get; set; }
 
-    public string FirstName { get; set; } = null!;
+    public string FirstName { get; set; } = default!;
 
-    public string MiddleNames { get; set; } = null!;
+    public string? MiddleNames { get; set; } = null!;
 
-    public string LastName { get; set; } = null!;
+    public string LastName { get; set; } = default!;
 
     public string? EmailAddress { get; set; } = null!;
 
@@ -22,12 +22,13 @@ public class PersonModel
 
     public byte[]? Photo { get; set; } = null!;
 
-    public byte[] Pronunciation { get; set; } = null!;
+    public byte[]? Pronunciation { get; set; } = null!;
 
     public PersonalPronounsModel PersonalPronoun { get; set; } = null!;
 
     public EmploymentStatusModel EmploymentStatus { get; set; } = null!;
 
-    public ICollection<AddressModel> Addresses { get; set; } = [];
+    public GenderModel Gender { get; set; } = null!;
 
+    public ICollection<AddressModel> Addresses { get; set; } = [];
 }

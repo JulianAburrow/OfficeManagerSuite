@@ -14,7 +14,7 @@ public class EmergencyContactConfiguration : IEntityTypeConfiguration<EmergencyC
         builder.Property(e => e.LastName)
             .IsRequired()
             .HasMaxLength(100);
-        builder.Property(e => e.PhoneNumber)
+        builder.Property(e => e.Phone)
             .IsRequired()
             .HasMaxLength(20);
         builder.Property(e => e.Relationship)

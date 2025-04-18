@@ -49,7 +49,7 @@ public class EmergencyContactHandler(PersonManagerDbContext context) : IEmergenc
 
         emergencyContactToUpdate.FirstName = emergencyContact.FirstName;
         emergencyContactToUpdate.LastName = emergencyContact.LastName;
-        emergencyContactToUpdate.PhoneNumber = emergencyContact.PhoneNumber;
+        emergencyContactToUpdate.Phone = emergencyContact.Phone;
         emergencyContactToUpdate.Relationship = emergencyContact.Relationship;
 
         await _context.SaveChangesAsync();

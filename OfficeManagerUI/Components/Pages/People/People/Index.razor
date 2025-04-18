@@ -1,0 +1,17 @@
+﻿@page "/people/index"
+@inherits PeopleBasePageClass
+
+<PageTitle>People</PageTitle>
+
+<a href="/person/create" class="btn btn-primary">Create Person</a>
+
+<br />
+<br />
+
+@* @if (Persons is null || !Persons.Any())
+{
+    <LoadingOrNotFoundComponent ValueToShow="@AddressTypePlural" />
+    return;
+}
+
+<AddressTypeGridviewComponent AddressTypes="@AddressTypes" /> *@

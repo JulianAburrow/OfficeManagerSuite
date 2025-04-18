@@ -1,0 +1,28 @@
+﻿<MudTable Items="Genders"
+          Hover
+          FixedHeader="true">
+    <HeaderContent>
+        <MudTh title="Sort by Address Type">
+            <MudTableSortLabel SortBy="new Func<GenderModel, object>(x => x.GenderName)">
+                Gender Name
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh></MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd>@context.GenderName</MudTd>
+        <MudTd>
+            <a href="/gender/view/@context.GenderId" class="btn btn-primary">View</a>
+            &nbsp;
+            <a href="/gender/edit/@context.GenderId" class="btn btn-primary">Edit</a>
+            @if (!context.Persons.Any())
+            {
+                @:&nbsp;
+                <a href="/gender/delete/@context.GenderId" class="btn btn-danger">Delete</a>
+            }
+        </MudTd>
+    </RowTemplate>
+    <PagerContent>
+        <MudTablePager PageSizeOptions="new int[] { 5, 10, 15, int.MaxValue }" />
+    </PagerContent>
+</MudTable>

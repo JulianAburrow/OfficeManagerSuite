@@ -8,7 +8,7 @@ public partial class Index
     {
         EmergencyContacts = await EmergencyContactHandler.GetEmergencyContactsAsync();
         Snackbar.Add($"{EmergencyContacts.Count} item(s) found.", EmergencyContacts.Count > 0 ? Severity.Info : Severity.Warning);
-        MainLayout.SetHeaderValue("Emergency Contacts");
+        MainLayout.SetHeaderValue(EmergencyContactPlural);
     }
 
     protected override void OnInitialized()

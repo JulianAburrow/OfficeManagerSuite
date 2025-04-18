@@ -1,0 +1,30 @@
+﻿@page "/gender/view/{GenderId:int}"
+@inherits GenderBasePageClass
+
+<PageTitle>View Gender</PageTitle>
+
+@if (GenderModel is null)
+{
+    <LoadingOrNotFoundComponent ValueToShow="@GenderSingular" />
+    return;
+}
+
+<MudGrid>
+    <MudItem sm="7">
+        <MudCard>
+            <MudCardContent>
+                <GenderViewDeleteComponent GenderName="@GenderModel.GenderName" />
+            </MudCardContent>
+            <MudCardActions>
+                <a class="btn btn-primary" href="/gender/edit/@GenderModel.GenderId">Edit</a>
+                @if (!GenderModel.Persons.Any())
+                {
+                    @:&nbsp;
+                    <a class="btn btn-danger" href="/gender/delete/@GenderModel.GenderId">Delete</a>
+                }
+                &nbsp;
+                <a class="btn btn-primary" href="/genders/index">Cancel</a>"
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+</MudGrid>

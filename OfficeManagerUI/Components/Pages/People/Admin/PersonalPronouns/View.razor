@@ -1,0 +1,30 @@
+﻿@page "/personalpronouns/view/{PersonalPronounsId:int}"
+@inherits PersonalPronounsBasePageClass
+
+<PageTitle>View Personal Pronouns</PageTitle>
+
+@if (PersonalPronounsModel is null)
+{
+    <LoadingOrNotFoundComponent ValueToShow="@PersonalPronounsSingular" />
+    return;
+}
+
+<MudGrid>
+    <MudItem sm="7">
+        <MudCard>
+            <MudCardContent>
+                <PersonalPronounsViewDeleteComponent PersonalPronouns="@PersonalPronounsModel.PronounNames" />
+            </MudCardContent>
+            <MudCardActions>
+                <a class="btn btn-primary" href="/personalpronouns/edit/@PersonalPronounsModel.PersonalPronounsId">Edit</a>
+                @if (!PersonalPronounsModel.Persons.Any())
+                {
+                    @:&nbsp;
+                    <a class="btn btn-danger" href="/personalpronouns/delete/@PersonalPronounsModel.PersonalPronounsId">Delete</a>
+                }
+                &nbsp;
+                <a class="btn btn-primary" href="/personalpronouns/index">Cancel</a>"
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+</MudGrid>

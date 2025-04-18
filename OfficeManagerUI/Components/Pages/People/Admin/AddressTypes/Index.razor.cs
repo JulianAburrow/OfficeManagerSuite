@@ -2,13 +2,13 @@
 
 public partial class Index
 {
-    protected List<AddressTypeModel> AddressTypes = null!;
+    private List<AddressTypeModel> AddressTypes = null!;
 
     protected override async Task OnInitializedAsync()
     {
         AddressTypes = await AddressTypeHandler.GetAddressTypesAsync();
         Snackbar.Add($"{AddressTypes.Count} item(s) found.", AddressTypes.Count > 0 ? Severity.Info : Severity.Warning);
-        MainLayout.SetHeaderValue("Address Types");
+        MainLayout.SetHeaderValue(AddressTypePlural);
     }
 
     protected override void OnInitialized()

@@ -1,4 +1,4 @@
-﻿namespace OfficeManagerUI.Components.Shared.BasePageClasses;
+﻿namespace OfficeManagerUI.Components.Shared.BasePageClasses.People;
 
 public class EmergencyContactBasePageClass : BasePageClass
 {
@@ -20,7 +20,7 @@ public class EmergencyContactBasePageClass : BasePageClass
 
     protected BreadcrumbItem GetEmergencyContactHomeBreadcrumbItem(bool isDisabled = false)
     {
-        return new("Emergency Contacts", "/emergencycontacts/index", isDisabled);
+        return new(EmergencyContactPlural, "/emergencycontacts/index", isDisabled);
     }
 
     protected void CopyDisplayModelToModel()
@@ -28,7 +28,7 @@ public class EmergencyContactBasePageClass : BasePageClass
         EmergencyContactModel.FirstName = EmergencyContactDisplayModel.FirstName;
         EmergencyContactModel.LastName = EmergencyContactDisplayModel.LastName;
         EmergencyContactModel.Relationship = EmergencyContactDisplayModel.Relationship;
-        EmergencyContactModel.PhoneNumber = EmergencyContactDisplayModel.PhoneNumber;
+        EmergencyContactModel.Phone = EmergencyContactDisplayModel.Phone;
     }
 
     protected void CopyModelToDisplayModel()
@@ -36,6 +36,6 @@ public class EmergencyContactBasePageClass : BasePageClass
         EmergencyContactDisplayModel.FirstName = EmergencyContactModel.FirstName;
         EmergencyContactDisplayModel.LastName = EmergencyContactModel.LastName;
         EmergencyContactDisplayModel.Relationship = EmergencyContactModel.Relationship;
-        EmergencyContactDisplayModel.PhoneNumber = EmergencyContactModel.PhoneNumber;
+        EmergencyContactDisplayModel.Phone = EmergencyContactModel.Phone;
     }
 }

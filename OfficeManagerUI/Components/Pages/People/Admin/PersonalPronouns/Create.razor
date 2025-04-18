@@ -1,0 +1,23 @@
+﻿@page "/personalpronouns/create"
+@inherits PersonalPronounsBasePageClass
+
+<PageTitle>Create Personal Pronouns</PageTitle>
+
+<EditForm Model="PersonalPronounsDisplayModel" OnValidSubmit="CreatePersonalPronouns">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <MudGrid>
+        <MudItem sm="7">
+            <MudCard>
+                <MudCardContent>
+                    <PersonalPronounsCreateUpdateComponent PersonalPronounsDisplayModel="@PersonalPronounsDisplayModel" />
+                </MudCardContent>
+                <MudCardActions>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    &nbsp;
+                    <a class="btn btn-primary" href="/personalpronouns/index">Cancel</a>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>

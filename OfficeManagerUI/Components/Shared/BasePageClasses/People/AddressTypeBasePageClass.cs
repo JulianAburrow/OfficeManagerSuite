@@ -1,4 +1,4 @@
-﻿namespace OfficeManagerUI.Components.Shared.BasePageClasses;
+﻿namespace OfficeManagerUI.Components.Shared.BasePageClasses.People;
 
 public class AddressTypeBasePageClass : BasePageClass
 {
@@ -16,7 +16,7 @@ public class AddressTypeBasePageClass : BasePageClass
 
     protected BreadcrumbItem GetAddressTypeHomeBreadcrumbItem(bool isDisabled = false)
     {
-        return new("Address Types", "/addresstypes/index", isDisabled);
+        return new(AddressTypePlural, "/addresstypes/index", isDisabled);
     }
 
     protected void CopyDisplayModelToModel()
