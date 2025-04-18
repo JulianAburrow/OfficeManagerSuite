@@ -1,0 +1,32 @@
+﻿<MudTable Items="People"
+          Hover
+          FixedHeader="true">
+    <HeaderContent>
+        <MudTh title="Sort by First Name">
+            <MudTableSortLabel SortBy="new Func<PersonModel, object>(x => x.FirstName)">
+                First Name
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh title="Sort by Last Name">
+            <MudTableSortLabel SortBy="new Func<PersonModel, object>(x => x.LastName)">
+                Last Name
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh title="Sort by Employment Status">
+            <MudTableSortLabel SortBy="new Func<PersonModel, object>(x => x.EmploymentStatus.StatusName)">
+                Employment Status
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh></MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd>@context.FirstName</MudTd>
+        <MudTd>@context.LastName</MudTd>
+        <MudTd>@context.EmploymentStatus.StatusName</MudTd>
+        <MudTd>
+            <a href="/person/view/@context.PersonId" class="btn btn-primary">View</a>
+            &nbsp;
+            <a href="/person/edit/@context.PersonId" class="btn btn-primary">Edit</a>
+        </MudTd>
+    </RowTemplate>
+</MudTable>

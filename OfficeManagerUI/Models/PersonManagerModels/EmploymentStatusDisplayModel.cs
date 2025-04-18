@@ -8,6 +8,4 @@ public class EmploymentStatusDisplayModel
     [StringLength(20, ErrorMessage = "{0} cannot be more than {1} characters.")]
     [Display(Name = "Status Name")]
     public string StatusName { get; set; } = default!;
-
-    public ICollection<PersonModel> Persons { get; set; } = [];
 }

@@ -38,7 +38,7 @@ CREATE TABLE Person (
 	MiddleNames NVARCHAR(100) NULL,
 	LastName NVARCHAR(100) NOT NULL,
 	EmailAddress NVARCHAR(100) NULL,
-	Phone NVARCHAR(20) NULL,
+	PhoneNumber NVARCHAR(20) NULL,
 	PersonalPronounsId INT NULL,
 	GenderId INT NULL,
 	EmploymentStatusId INT NOT NULL,

@@ -19,7 +19,7 @@ public class AddressHandler(PersonManagerDbContext context) : IAddressHandler
         await _context.SaveChangesAsync();
     }
 
-    public async Task<AddressModel> GetAddressByIdAsync(int addressId) =>
+    public async Task<AddressModel> GetAddressAsync(int addressId) =>
         await _context.Addresses
             .Include(a => a.Person)
             .Include(a => a.AddressType)

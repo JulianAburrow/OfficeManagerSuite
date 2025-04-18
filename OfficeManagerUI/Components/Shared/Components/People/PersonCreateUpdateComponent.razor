@@ -1,0 +1,23 @@
+﻿<MudTextField Label="First Name" @bind-Value="PersonDisplayModel.FirstName" AutoFocus OnlyValidateIfDirty="true" />
+<MudTextField Label="Middle Names" @bind-Value="PersonDisplayModel.MiddleNames" />
+<MudTextField Label="Last Name" @bind-Value="PersonDisplayModel.LastName" />
+<MudTextField Label="Email Address" @bind-Value="PersonDisplayModel.EmailAddress" />
+<MudTextField Label="Phone Number" @bind-Value="PersonDisplayModel.PhoneNumber" />
+<MudSelect T="int?" Label="Person Pronouns" @bind-Value="PersonDisplayModel.PersonalPronounsId">
+    @foreach (var personalPronoun in PersonalPronouns)
+    {
+        <MudSelectItem T="int?" Value="@personalPronoun.PersonalPronounsId">@personalPronoun.PronounNames</MudSelectItem>
+    }
+</MudSelect>
+<MudSelect T="int?" Label="Gender" @bind-Value="PersonDisplayModel.GenderId">
+    @foreach (var gender in Genders)
+    {
+        <MudSelectItem T="int?" Value="@gender.GenderId">@gender.GenderName</MudSelectItem>
+    }
+</MudSelect>
+<MudSelect T="int" Label="Employment Status" @bind-Value="PersonDisplayModel.EmploymentStatusId">
+    @foreach (var employmentStatus in EmploymentStatuses)
+    {
+        <MudSelectItem T="int" Value="@employmentStatus.EmploymentStatusId">@employmentStatus.StatusName</MudSelectItem>
+    }
+</MudSelect>

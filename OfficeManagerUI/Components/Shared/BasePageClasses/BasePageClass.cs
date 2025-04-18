@@ -31,5 +31,13 @@ public class BasePageClass : ComponentBase
 
     protected string ViewTextForBreadcrumb = "View";
 
+    protected string PleaseSelectText = "Please Select";
+
+    protected int PleaseSelectValue = -1;
+
+    protected string NotStatedText = "Not Stated";
+
+    protected int NotStatedValue = 0;
+
     protected bool OkToDelete { get; set; }
 }

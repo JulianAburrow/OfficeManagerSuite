@@ -1,0 +1,37 @@
+﻿@page "/person/create"
+@inherits PersonBasePageClass
+
+<PageTitle>Create Person</PageTitle>
+
+@if (PersonDisplayModel is null ||
+    EmploymentStatuses is null ||
+    PersonalPronouns is null ||
+    Genders is null)
+{
+    <LoadingOrNotFoundComponent ValueToShow="@PersonSingular" />
+    return;
+}
+
+<EditForm Model="PersonDisplayModel" OnValidSubmit="CreatePerson">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <MudGrid>
+        <MudItem sm="7">
+            <MudCard>
+                <MudCardContent>
+                    <PersonCreateUpdateComponent
+                        PersonDisplayModel="@PersonDisplayModel"
+                        EmploymentStatuses="@EmploymentStatuses"
+                        PersonalPronouns="@PersonalPronouns"
+                        Genders="@Genders" />
+                </MudCardContent>
+                <MudCardActions>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    &nbsp;
+                    <a class="btn btn-primary" href="/people/index">Cancel</a>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>

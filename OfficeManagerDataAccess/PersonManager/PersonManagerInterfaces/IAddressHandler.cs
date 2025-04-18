@@ -2,7 +2,7 @@
 
 public interface IAddressHandler
 {
-    Task<AddressModel> GetAddressByIdAsync(int addressId);
+    Task<AddressModel> GetAddressAsync(int addressId);
 
     Task<List<AddressModel>> GetAddressesAsync(int personId);
 

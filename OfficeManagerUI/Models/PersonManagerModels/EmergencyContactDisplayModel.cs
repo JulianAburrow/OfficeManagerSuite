@@ -23,6 +23,4 @@ public class EmergencyContactDisplayModel
 
     [StringLength(50, ErrorMessage = "{0} cannot be more than {1} characters.")]
     public string? Relationship { get; set; } = default!;
-
-    public PersonModel Person { get; set; } = null!;
 }

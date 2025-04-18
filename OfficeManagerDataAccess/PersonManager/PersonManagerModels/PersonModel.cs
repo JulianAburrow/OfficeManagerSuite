@@ -12,7 +12,7 @@ public class PersonModel
 
     public string? EmailAddress { get; set; } = null!;
 
-    public string? Phone { get; set; } = null!;
+    public string? PhoneNumber { get; set; } = null!;
 
     public int? PersonalPronounsId { get; set; }
 

@@ -1,5 +1,5 @@
 ﻿@page "/people/index"
-@inherits PeopleBasePageClass
+@inherits PersonBasePageClass
 
 <PageTitle>People</PageTitle>
 
@@ -8,10 +8,10 @@
 <br />
 <br />
 
-@* @if (Persons is null || !Persons.Any())
+@if (People is null || !People.Any())
 {
-    <LoadingOrNotFoundComponent ValueToShow="@AddressTypePlural" />
+    <LoadingOrNotFoundComponent ValueToShow="@PersonPlural" />
     return;
 }
 
-<AddressTypeGridviewComponent AddressTypes="@AddressTypes" /> *@
+<PersonGridviewComponent People="@People" />
