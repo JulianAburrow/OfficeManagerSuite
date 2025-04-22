@@ -10,6 +10,8 @@ public class PersonBasePageClass : BasePageClass
 
     [Inject] protected IGenderHandler GenderHandler { get; set; } = null!;
 
+    [Parameter] public int PersonId { get; set; }
+
     protected List<EmploymentStatusModel> EmploymentStatuses { get; set; } = null!;
 
     protected List<PersonalPronounsModel> PersonalPronouns { get; set; } = null!;

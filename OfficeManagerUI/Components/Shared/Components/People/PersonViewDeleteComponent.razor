@@ -1,0 +1,13 @@
+﻿<MudField Label="First Name">@Person.FirstName</MudField>
+<MudField Label="Middle Name">@Person.MiddleNames</MudField>
+<MudField Label="Last Name">@Person.LastName</MudField>
+<MudField Label="Email Address">@Person.EmailAddress</MudField>
+<MudField Label="Phone Number">@Person.PhoneNumber</MudField>
+<MudField Label="Person Pronouns">@Person.PersonalPronouns.PronounNames</MudField>
+<MudField Label="Employment Status">@Person.EmploymentStatus.StatusName</MudField>
+<MudField Label="Gender">@Person.Gender.GenderName</MudField>
+<MudField Label="Address(es)">
+    <AddressGridviewComponent Addresses="@Person.Addresses.ToList()" />
+    <br />
+    <a href="/address/create/@Person.PersonId" class="btn btn-primary">Create Address</a>
+</MudField>

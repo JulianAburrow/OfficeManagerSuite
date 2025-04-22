@@ -17,7 +17,7 @@ public class AddressConfiguration : IEntityTypeConfiguration<AddressModel>
         builder.Property(a => a.City)
             .IsRequired()
             .HasMaxLength(100);
-        builder.Property(a => a.PostCode)
+        builder.Property(a => a.Postcode)
             .IsRequired()
             .HasMaxLength(20);
         builder.HasOne<PersonModel>()

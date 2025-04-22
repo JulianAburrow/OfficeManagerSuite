@@ -12,7 +12,7 @@ public class AddressModel
 
     public string City { get; set; } = default!;
 
-    public string PostCode { get; set; } = default!;
+    public string Postcode { get; set; } = default!;
 
     public int AddressTypeId { get; set; }
 

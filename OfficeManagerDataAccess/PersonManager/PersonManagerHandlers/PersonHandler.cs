@@ -23,7 +23,7 @@ public class PersonHandler(PersonManagerDbContext context) : IPersonHandler
         await _context.People
             .Include(p => p.Addresses)
             .Include(p => p.EmploymentStatus)
-            .Include(p => p.PersonalPronoun)
+            .Include(p => p.PersonalPronouns)
             .Include(p => p.Gender)
             .OrderBy(p => p.LastName)
             .ThenBy(p => p.FirstName)
@@ -40,8 +40,9 @@ public class PersonHandler(PersonManagerDbContext context) : IPersonHandler
     public async Task<PersonModel> GetPersonAsync(int personId) =>
         await _context.People
             .Include(p => p.Addresses)
+                .ThenInclude(a => a.AddressType)
             .Include(p => p.EmploymentStatus)
-            .Include(p => p.PersonalPronoun)
+            .Include(p => p.PersonalPronouns)
             .Include(p => p.Gender)
             .AsNoTracking()
             .FirstOrDefaultAsync(p => p.PersonId == personId);

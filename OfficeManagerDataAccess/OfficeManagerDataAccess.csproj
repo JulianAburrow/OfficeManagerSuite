@@ -9,13 +9,13 @@
   <ItemGroup>
     <Folder Include="AssetManager\AssetManagerConfiguration\" />
     <Folder Include="AssetManager\AssetManagerModels\" />
-    <Folder Include="CustomerRelationManager\CustomerRelationManagerInterfaces\" />
+    <Folder Include="CustomerManager\CustomerInterfaces\" />
     <Folder Include="AssetManager\AssetManagerInterfaces\" />
     <Folder Include="AssetManager\AssetManagerHandlers\" />
-    <Folder Include="CustomerRelationManager\CustomerRelationManagerHandlers\" />
-    <Folder Include="CustomerRelationManager\CustomerRelationManagerModels\" />
-    <Folder Include="CustomerRelationManager\CustomerRelationManagerConfiguration\" />
-    <Folder Include="CustomerRelationManager\CustomerRelationManagerData\" />
+    <Folder Include="CustomerManager\CustomerHandlers\" />
+    <Folder Include="CustomerManager\CustomerModels\" />
+    <Folder Include="CustomerManager\CustomerConfiguration\" />
+    <Folder Include="CustomerManager\CustomerData\" />
     <Folder Include="VehicleManager\VehicleManagerConfiguration\" />
     <Folder Include="VehicleManager\VehicleManagerModels\" />
     <Folder Include="VehicleManager\VehicleManagerData\" />

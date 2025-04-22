@@ -1,0 +1,50 @@
+﻿@if (Addresses == null || !Addresses.Any())
+{
+    <LoadingOrNotFoundComponent ValueToShow="Addresses" />
+    return;
+}
+
+<MudTable Items="Addresses"
+    Hover
+    FixedHeader="true">
+    <HeaderContent>
+        <MudTh title="Sort by Address Line 1">
+            <MudTableSortLabel SortBy="new Func<AddressModel, object>(x => x.AddressLine1)">
+                Address Line 1
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh title="Sort by Address Line 2">
+            <MudTableSortLabel SortBy="new Func<AddressModel, object>(x => x.AddressLine2)">
+                Address Line 2
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh title="Sort by City">
+            <MudTableSortLabel SortBy="new Func<AddressModel, object>(x => x.City)">
+                City
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh title="Sort by Postcode">
+            <MudTableSortLabel SortBy="new Func<AddressModel, object>(x => x.Postcode)">
+                Postcode
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh title="Sort by Address Type">
+            <MudTableSortLabel SortBy="new Func<AddressModel, object>(x => x.AddressType.TypeName)">
+                Address Type
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh></MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd>@context.AddressLine1</MudTd>
+        <MudTd>@context.AddressLine2</MudTd>
+        <MudTd>@context.City</MudTd>
+        <MudTd>@context.Postcode</MudTd>
+        <MudTd>@context.AddressType.TypeName</MudTd>
+        <MudTd>
+            <a href="/address/view/@context.AddressId" class="btn btn-primary">View</a>
+            &nbsp;
+            <a href="/address/edit/@context.AddressId" class="btn btn-primary">Edit</a>
+        </MudTd>
+    </RowTemplate>
+</MudTable>

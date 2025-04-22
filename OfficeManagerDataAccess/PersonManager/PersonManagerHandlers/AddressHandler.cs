@@ -43,7 +43,7 @@ public class AddressHandler(PersonManagerDbContext context) : IAddressHandler
         addressToUpdate.AddressLine1 = address.AddressLine1;
         addressToUpdate.AddressLine2 = address.AddressLine2;
         addressToUpdate.City = address.City;
-        addressToUpdate.PostCode = address.PostCode;
+        addressToUpdate.Postcode = address.Postcode;
         addressToUpdate.AddressTypeId = address.AddressTypeId;
 
         await _context.SaveChangesAsync();

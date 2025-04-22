@@ -1,0 +1,10 @@
+﻿<MudSelect T="int" Label="Address Type" @bind-Value="AddressDisplayModel.AddressTypeId" OnlyValidateIfDirty="true">
+    @foreach (var addressType in AddressTypes)
+    {
+        <MudSelectItem T="int" Value="@addressType.AddressTypeId">@addressType.TypeName</MudSelectItem>
+    }
+</MudSelect>
+<MudTextField Label="Address Line 1" @bind-Value="AddressDisplayModel.AddressLine1" AutoFocus OnlyValidateIfDirty="true" />
+<MudTextField Label="Address Line 2" @bind-Value="AddressDisplayModel.AddressLine2" />
+<MudTextField Label="City" @bind-Value="AddressDisplayModel.City" />
+<MudTextField Label="Postcode" @bind-Value="AddressDisplayModel.Postcode" />

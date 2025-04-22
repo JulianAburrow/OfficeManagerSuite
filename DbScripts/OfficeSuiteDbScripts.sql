@@ -20,17 +20,46 @@ CREATE TABLE EmploymentStatus (
 );
 GO
 
+INSERT INTO EmploymentStatus
+	( StatusName )
+VALUES
+	( 'Accepted' ),
+	( 'Left' ),
+	( 'Offered' ),
+	( 'Permanent' ),
+	( 'Probation' )
+GO
+
+
 CREATE TABLE Gender (
 	GenderId INT NOT NULL IDENTITY (1, 1),
 	GenderName NVARCHAR(20) NOT NULL,
 	CONSTRAINT PK_Gender PRIMARY KEY (GenderId)
 );
+GO
+
+INSERT INTO Gender
+	( GenderName )
+VALUES
+	( 'Male' ),
+	( 'Female' ),
+	( 'Divers' )
+GO
 
 CREATE TABLE PersonalPronouns (
 	PersonalPronounsId INT NOT NULL IDENTITY (1, 1),
 	PronounNames NVARCHAR(20) NOT NULL,
 	CONSTRAINT PK_PersonalPronouns PRIMARY KEY (PersonalPronounsId)
 );
+GO
+
+INSERT INTO PersonalPronouns
+	( PronounNames )
+VALUES
+	( 'He / Him / His' ),
+	( 'She / Her / Hers' ),
+	( 'They / Them / Theirs' )
+GO
 
 CREATE TABLE Person (
 	PersonId INT NOT NULL IDENTITY (1, 1),
@@ -79,9 +108,9 @@ CREATE TABLE Address (
 	AddressId INT NOT NULL IDENTITY (1, 1),
 	PersonId INT NOT NULL,
 	AddressLine1 NVARCHAR(100) NOT NULL,
-	AddressLine2 NVARCHAR(100) NOT NULL,
+	AddressLine2 NVARCHAR(100) NULL,
 	City NVARCHAR(100) NOT NULL,
-	PostCode NVARCHAR(20) NOT NULL,
+	Postcode NVARCHAR(20) NOT NULL,
 	AddressTypeId INT NOT NULL,
 	CONSTRAINT PK_Address PRIMARY KEY (AddressId),
 	CONSTRAINT FK_Address_Person FOREIGN KEY (PersonId)

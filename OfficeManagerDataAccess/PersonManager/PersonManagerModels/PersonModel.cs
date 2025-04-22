@@ -24,7 +24,7 @@ public class PersonModel
 
     public byte[]? Pronunciation { get; set; } = null!;
 
-    public PersonalPronounsModel PersonalPronoun { get; set; } = null!;
+    public PersonalPronounsModel PersonalPronouns { get; set; } = null!;
 
     public EmploymentStatusModel EmploymentStatus { get; set; } = null!;
 

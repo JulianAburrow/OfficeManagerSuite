@@ -11,7 +11,7 @@ public class PersonalPronounsConfiguration : IEntityTypeConfiguration<PersonalPr
             .IsRequired()
             .HasMaxLength(20);
         builder.HasMany(p => p.Persons)
-            .WithOne(p => p.PersonalPronoun)
+            .WithOne(p => p.PersonalPronouns)
             .HasForeignKey(p => p.PersonalPronounsId)
             .IsRequired(false)
             .OnDelete(DeleteBehavior.NoAction);

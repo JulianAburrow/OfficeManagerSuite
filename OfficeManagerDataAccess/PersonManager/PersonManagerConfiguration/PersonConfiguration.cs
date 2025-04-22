@@ -30,7 +30,7 @@ public class PersonConfiguration : IEntityTypeConfiguration<PersonModel>
             .IsRequired()
             .HasForeignKey(p => p.EmploymentStatusId)
             .OnDelete(DeleteBehavior.NoAction);
-        builder.HasOne(p => p.PersonalPronoun)
+        builder.HasOne(p => p.PersonalPronouns)
             .WithMany(p => p.Persons)
             .IsRequired(false)
             .HasForeignKey(p => p.PersonalPronounsId)

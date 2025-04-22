@@ -2,8 +2,6 @@
 
 public class PersonDisplayModel
 {
-    public int PersonId { get; set; }
-
     [Required(ErrorMessage = "{0} is required")]
     [StringLength(100, ErrorMessage = "{0} cannot be more than {1} characters")]
     [Display(Name = "First Name")]
@@ -19,16 +17,19 @@ public class PersonDisplayModel
     public string LastName { get; set; } = default!;
 
     [StringLength(100, ErrorMessage = "{0} cannot be more than {1} characters")]
+    [Display(Name = "Email Address")]
     public string? EmailAddress { get; set; } = null!;
 
     [StringLength(20, ErrorMessage = "{0} cannot be more than {1} characters")]
+    [Display(Name = "Phone Number")]
     public string? PhoneNumber { get; set; } = null!;
 
-    [Range(0, int.MaxValue, ErrorMessage = "{0} is required")]
+    [Required(ErrorMessage = "{0} is required but 'Not Stated' can be selected.")]
     [Display(Name = "Personal Pronouns")]
     public int? PersonalPronounsId { get; set; }
 
-    [Range(0, int.MaxValue, ErrorMessage = "{0} is required")]
+
+    [Required(ErrorMessage = "{0} is required but 'Not Stated' can be selected.")]
     [Display(Name = "Gender")]
     public int? GenderId { get; set; }
 

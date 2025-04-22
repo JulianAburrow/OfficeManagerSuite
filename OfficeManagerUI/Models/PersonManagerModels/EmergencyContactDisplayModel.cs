@@ -2,8 +2,6 @@
 
 public class EmergencyContactDisplayModel
 {
-    public int EmergencyContactId { get; set; }
-
     public int PersonId { get; set; }
 
     [Required(ErrorMessage = "{0} is required.")]

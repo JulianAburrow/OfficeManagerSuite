@@ -1,0 +1,25 @@
+﻿@page "/person/view/{PersonId:int}"
+@inherits PersonBasePageClass
+
+<PageTitle>View Person</PageTitle>
+
+@if (PersonModel is null || PersonModel.PersonalPronouns is null || PersonModel.Gender is null)
+{
+    <LoadingOrNotFoundComponent ValueToShow="@PersonSingular" />
+    return;
+}
+
+<MudGrid>
+    <MudItem sm="7">
+        <MudCard>
+            <MudCardContent>
+                <PersonViewDeleteComponent Person="@PersonModel" />
+            </MudCardContent>
+            <MudCardActions>
+                <a class="btn btn-primary" href="/person/edit/@PersonModel.PersonId">Edit</a>
+                &nbsp;
+                <a class="btn btn-primary" href="/people/index">Cancel</a>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+</MudGrid>
