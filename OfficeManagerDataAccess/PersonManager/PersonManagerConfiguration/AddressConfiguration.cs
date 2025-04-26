@@ -12,7 +12,7 @@ public class AddressConfiguration : IEntityTypeConfiguration<AddressModel>
             .IsRequired()
             .HasMaxLength(100);
         builder.Property(a => a.AddressLine2)
-            .IsRequired()
+            .IsRequired(false)
             .HasMaxLength(100);
         builder.Property(a => a.City)
             .IsRequired()
@@ -23,10 +23,12 @@ public class AddressConfiguration : IEntityTypeConfiguration<AddressModel>
         builder.HasOne<PersonModel>()
             .WithMany(p => p.Addresses)
             .HasForeignKey(a => a.PersonId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .IsRequired()
+            .OnDelete(DeleteBehavior.NoAction);
         builder.HasOne<AddressTypeModel>()
             .WithMany(a => a.Addresses)
             .HasForeignKey(a => a.AddressTypeId)
+            .IsRequired()
             .OnDelete(DeleteBehavior.NoAction);
     }
 }

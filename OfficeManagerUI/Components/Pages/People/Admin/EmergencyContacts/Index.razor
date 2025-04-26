@@ -1,9 +1,9 @@
-﻿@page "/emergencycontacts/index"
+﻿@page "/emergencycontacts/index/{PersonId:int}"
 @inherits EmergencyContactBasePageClass
 
 <PageTitle>Emergency Contacts</PageTitle>
 
-<a href="/emergencycontact/create" class="btn btn-primary">Create Emergency Contact</a>
+<a href="/emergencycontact/create/@PersonId" class="btn btn-primary">Create Emergency Contact</a>
 
 <br />
 <br />
@@ -14,4 +14,4 @@
     return;
 }
 
-<EmergencyContactGridviewComponent EmergencyContacts="@EmergencyContacts" />
+<EmergencyContactGridviewComponent EmergencyContacts="@EmergencyContacts" ShowStaffMember="true" />

@@ -13,7 +13,7 @@ public class AddressDisplayModel
 
     [StringLength(100, ErrorMessage = "{0} cannot be more than {1} characters")]
     [Display(Name = "Address Line 2")]
-    public string AddressLine2 { get; set; } = null!;
+    public string? AddressLine2 { get; set; } = null!;
 
     [Required(ErrorMessage = "{0} is required")]
     [StringLength(100, ErrorMessage = "{0} cannot be more than {1} characters")]

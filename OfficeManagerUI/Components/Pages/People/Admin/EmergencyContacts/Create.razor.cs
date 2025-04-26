@@ -5,6 +5,11 @@ public partial class Create
     protected override async Task OnInitializedAsync()
     {
         People = await PersonHandler.GetPeopleForEmergencyContactAsync();
+        People.Insert(0, new PersonModel {
+            PersonId = PleaseSelectValue,
+            FirstName = PleaseSelectText
+        });
+        EmergencyContactDisplayModel.PersonId = PersonId != default! ? PersonId : PleaseSelectValue;
         MainLayout.SetHeaderValue("Create Emergency Contact");
     }
 

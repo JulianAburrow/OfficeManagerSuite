@@ -41,6 +41,7 @@ public class PersonHandler(PersonManagerDbContext context) : IPersonHandler
         await _context.People
             .Include(p => p.Addresses)
                 .ThenInclude(a => a.AddressType)
+            .Include(p => p.EmergencyContacts)
             .Include(p => p.EmploymentStatus)
             .Include(p => p.PersonalPronouns)
             .Include(p => p.Gender)

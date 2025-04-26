@@ -10,9 +10,9 @@ public class EmergencyContactModel
 
     public string LastName { get; set; } = default!;
 
-    public string Phone { get; set; } = default!;
+    public string PhoneNumber { get; set; } = default!;
 
-    public string? Relationship { get; set; } = default!;
+    public string? Relationship { get; set; } = null!;
 
     public PersonModel Person { get; set; } = null!;
 }

@@ -1,0 +1,17 @@
+﻿@page "/addresses/index/{PersonId:int}"
+@inherits AddressBasePageClass
+
+<PageTitle>Addresses</PageTitle>
+
+<a href="/address/create/@PersonId" class="btn btn-primary">Create Address</a>
+
+<br />
+<br />
+
+@if (Addresses is null || !Addresses.Any())
+{
+    <LoadingOrNotFoundComponent ValueToShow="@AddressPlural" />
+    return;
+}
+
+<AddressGridviewComponent Addresses="@Addresses" />

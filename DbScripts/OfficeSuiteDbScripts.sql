@@ -89,7 +89,7 @@ CREATE TABLE EmergencyContact (
 	PersonId INT NOT NULL,
 	FirstName NVARCHAR(100) NOT NULL,
 	LastName NVARCHAR(100) NOT NULL,
-	Phone NVARCHAR(20) NOT NULL,
+	PhoneNumber NVARCHAR(20) NOT NULL,
 	Relationship NVARCHAR(50) NULL,
 	CONSTRAINT PK_EmergencyContact PRIMARY KEY (EmergencyContactId),
 	CONSTRAINT FK_EmergencyContact_Person FOREIGN KEY (PersonId)
@@ -102,6 +102,14 @@ CREATE TABLE AddressType (
 	TypeName NVARCHAR(20) NOT NULL,
 	CONSTRAINT PK_AddressType PRIMARY KEY (AddressTypeId)
 );
+GO
+
+INSERT INTO AddressType
+	( TypeName )
+VALUES
+	( 'Home' ),
+	( 'Correspondence' ),
+	( 'Holiday' )
 GO
 
 CREATE TABLE Address (

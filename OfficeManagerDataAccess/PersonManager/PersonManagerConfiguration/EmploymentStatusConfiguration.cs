@@ -15,7 +15,7 @@ public class EmploymentStatusConfiguration : IEntityTypeConfiguration<Employment
         builder.HasMany(e => e.Persons)
             .WithOne(p => p.EmploymentStatus)
             .HasForeignKey(p => p.EmploymentStatusId)
-            .IsRequired()
+            .IsRequired(false)
             .OnDelete(DeleteBehavior.NoAction);
     }
 }

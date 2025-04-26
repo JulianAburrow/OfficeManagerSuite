@@ -14,7 +14,7 @@ public class AddressTypeConfiguration : IEntityTypeConfiguration<AddressTypeMode
         builder.HasMany(a => a.Addresses)
             .WithOne(a => a.AddressType)
             .HasForeignKey(a => a.AddressTypeId)
-            .IsRequired()
+            .IsRequired(false)
             .OnDelete(DeleteBehavior.NoAction);
     }
 }

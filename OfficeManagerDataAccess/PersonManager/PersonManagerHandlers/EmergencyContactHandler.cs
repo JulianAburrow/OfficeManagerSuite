@@ -19,7 +19,7 @@ public class EmergencyContactHandler(PersonManagerDbContext context) : IEmergenc
         await _context.SaveChangesAsync();
     }
 
-    public Task<EmergencyContactModel> GetEmergencyContactByIdAsync(int emergencyContactId) =>
+    public Task<EmergencyContactModel> GetEmergencyContactAsync(int emergencyContactId) =>
         _context.EmergencyContacts
             .Include(e => e.Person)
             .AsNoTracking()
@@ -49,7 +49,7 @@ public class EmergencyContactHandler(PersonManagerDbContext context) : IEmergenc
 
         emergencyContactToUpdate.FirstName = emergencyContact.FirstName;
         emergencyContactToUpdate.LastName = emergencyContact.LastName;
-        emergencyContactToUpdate.Phone = emergencyContact.Phone;
+        emergencyContactToUpdate.PhoneNumber = emergencyContact.PhoneNumber;
         emergencyContactToUpdate.Relationship = emergencyContact.Relationship;
 
         await _context.SaveChangesAsync();

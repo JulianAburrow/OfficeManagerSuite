@@ -6,5 +6,5 @@ public class AddressTypeModel
 
     public string TypeName { get; set; } = default!;
 
-    public ICollection<AddressModel> Addresses { get; set; } = [];
+    public ICollection<AddressModel>? Addresses { get; set; } = null!;
 }

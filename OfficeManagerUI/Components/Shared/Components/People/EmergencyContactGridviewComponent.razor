@@ -2,6 +2,14 @@
     Hover
     FixedHeader="true">
     <HeaderContent>
+        @if (ShowStaffMember)
+        {
+            <MudTh title="Sort by Staff Member">
+                <MudTableSortLabel SortBy="new Func<EmergencyContactModel, object>(x => x.Person.FirstName)">
+                    Staff Member
+                </MudTableSortLabel>
+            </MudTh>
+        }
         <MudTh title="Sort by First Name">
             <MudTableSortLabel SortBy="new Func<EmergencyContactModel, object>(x => x.FirstName)">
                 First Name
@@ -13,16 +21,20 @@
             </MudTableSortLabel>
         </MudTh>
         <MudTh title="Sort by Phone Number">
-            <MudTableSortLabel SortBy="new Func<EmergencyContactModel, object>(x => x.Phone)">
+            <MudTableSortLabel SortBy="new Func<EmergencyContactModel, object>(x => x.PhoneNumber)">
                 Phone Number
             </MudTableSortLabel>
         </MudTh>
         <MudTh></MudTh>
     </HeaderContent>
     <RowTemplate>
+        @if (ShowStaffMember)
+        {
+            <MudTh>@context.Person.FirstName @context.Person.LastName</MudTh>
+        }
         <MudTd>@context.FirstName</MudTd>
         <MudTd>@context.LastName</MudTd>
-        <MudTd>@context.Phone</MudTd>
+        <MudTd>@context.PhoneNumber</MudTd>
         <MudTd>
             <a href="/emergencycontact/view/@context.EmergencyContactId" class="btn btn-primary">View</a>
             &nbsp;

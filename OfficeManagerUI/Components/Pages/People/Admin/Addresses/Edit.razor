@@ -1,0 +1,29 @@
+﻿@page "/address/edit/{AddressId:int}"
+@inherits AddressBasePageClass
+
+<PageTitle>Edit Address</PageTitle>
+
+@if (AddressDisplayModel == null)
+{
+    <LoadingOrNotFoundComponent ValueToShow="@AddressSingular" />
+    return;
+}
+
+<EditForm Model="@AddressDisplayModel" OnValidSubmit="UpdateAddress">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <MudGrid>
+        <MudItem sm="7">
+            <MudCard>
+                <AddressCreateUpdateComponent AddressDisplayModel="@AddressDisplayModel" AddressTypes="@AddressTypes" />
+                <MudCardActions>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    &nbsp;
+                    <a class="btn btn-primary" href="/addresses/index/@AddressDisplayModel.PersonId">Cancel</a>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>
+

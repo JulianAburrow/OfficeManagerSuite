@@ -24,11 +24,13 @@ public class PersonModel
 
     public byte[]? Pronunciation { get; set; } = null!;
 
-    public PersonalPronounsModel PersonalPronouns { get; set; } = null!;
+    public PersonalPronounsModel? PersonalPronouns { get; set; } = null!;
 
-    public EmploymentStatusModel EmploymentStatus { get; set; } = null!;
+    public EmploymentStatusModel EmploymentStatus { get; set; } = default!;
 
-    public GenderModel Gender { get; set; } = null!;
+    public GenderModel? Gender { get; set; } = null!;
 
-    public ICollection<AddressModel> Addresses { get; set; } = [];
+    public ICollection<AddressModel>? Addresses { get; set; } = null!;
+
+    public ICollection<EmergencyContactModel>? EmergencyContacts { get; set; } = null!;
 }

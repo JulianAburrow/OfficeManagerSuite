@@ -8,6 +8,8 @@ public class EmergencyContactBasePageClass : BasePageClass
 
     [Parameter] public int EmergencyContactId { get; set; }
 
+    [Parameter] public int PersonId { get; set; }
+
     protected EmergencyContactModel EmergencyContactModel { get; set; } = new();
 
     protected EmergencyContactDisplayModel EmergencyContactDisplayModel { get; set; } = new();
@@ -25,17 +27,20 @@ public class EmergencyContactBasePageClass : BasePageClass
 
     protected void CopyDisplayModelToModel()
     {
+        EmergencyContactModel.PersonId = EmergencyContactDisplayModel.PersonId;
         EmergencyContactModel.FirstName = EmergencyContactDisplayModel.FirstName;
         EmergencyContactModel.LastName = EmergencyContactDisplayModel.LastName;
         EmergencyContactModel.Relationship = EmergencyContactDisplayModel.Relationship;
-        EmergencyContactModel.Phone = EmergencyContactDisplayModel.Phone;
+        EmergencyContactModel.PhoneNumber = EmergencyContactDisplayModel.PhoneNumber;
     }
 
     protected void CopyModelToDisplayModel()
     {
+        EmergencyContactDisplayModel.PersonId = EmergencyContactModel.PersonId;
         EmergencyContactDisplayModel.FirstName = EmergencyContactModel.FirstName;
         EmergencyContactDisplayModel.LastName = EmergencyContactModel.LastName;
         EmergencyContactDisplayModel.Relationship = EmergencyContactModel.Relationship;
-        EmergencyContactDisplayModel.Phone = EmergencyContactModel.Phone;
+        EmergencyContactDisplayModel.PhoneNumber = EmergencyContactModel.PhoneNumber;
+        EmergencyContactDisplayModel.StaffMemberName = $"{EmergencyContactModel.Person.FirstName} {EmergencyContactModel.Person.LastName}";
     }
 }

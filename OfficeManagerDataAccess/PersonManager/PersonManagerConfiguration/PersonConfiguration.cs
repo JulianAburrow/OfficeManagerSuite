@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Conventions.Infrastructure;
-
-namespace OfficeManagerDataAccess.PersonManager.PersonManagerConfiguration;
+﻿namespace OfficeManagerDataAccess.PersonManager.PersonManagerConfiguration;
 
 public class PersonConfiguration : IEntityTypeConfiguration<PersonModel>
 {
@@ -13,19 +11,21 @@ public class PersonConfiguration : IEntityTypeConfiguration<PersonModel>
         builder.Property(p => p.FirstName)
             .HasMaxLength(100);
         builder.Property(p => p.MiddleNames)
-            .HasMaxLength(100);
+            .HasMaxLength(100)
+            .IsRequired(false);
         builder.Property(p => p.LastName)
             .HasMaxLength(100);
         builder.Property(p => p.EmploymentStatusId)
             .IsRequired();
         builder.Property(p => p.EmailAddress)
+            .IsRequired(false)
             .HasMaxLength(100);
         builder.HasMany(p => p.Addresses)
             .WithOne(p => p.Person)
             .IsRequired(false)
             .HasForeignKey(p => p.PersonId)
-            .OnDelete(DeleteBehavior.Cascade);
-        builder.HasOne(p =>p.EmploymentStatus)
+            .OnDelete(DeleteBehavior.NoAction);
+        builder.HasOne(p => p.EmploymentStatus)
             .WithMany(p => p.Persons)
             .IsRequired()
             .HasForeignKey(p => p.EmploymentStatusId)

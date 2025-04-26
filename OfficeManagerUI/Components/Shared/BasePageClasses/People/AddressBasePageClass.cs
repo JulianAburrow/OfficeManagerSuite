@@ -6,6 +6,8 @@ public class AddressBasePageClass : BasePageClass
 
     [Inject] protected IAddressTypeHandler AddressTypeHandler { get; set; } = null!;
 
+    [Inject] protected IPersonHandler PersonHandler { get; set; } = null!;
+
     [Parameter] public int AddressId { get; set; }
 
     [SupplyParameterFromQuery]
@@ -38,6 +40,7 @@ public class AddressBasePageClass : BasePageClass
     
     protected void CopyModelToDisplayModel()
     {
+        AddressDisplayModel.PersonId = AddressModel.PersonId;
         AddressDisplayModel.AddressLine1 = AddressModel.AddressLine1;
         AddressDisplayModel.AddressLine2 = AddressModel.AddressLine2;
         AddressDisplayModel.City = AddressModel.City;

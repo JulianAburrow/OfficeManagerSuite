@@ -1,0 +1,25 @@
+﻿@page "/address/view/{AddressId:int}"
+@inherits AddressBasePageClass
+
+<PageTitle>View Address</PageTitle>
+
+@if (AddressModel is null || AddressModel.AddressType is null)
+{
+    <LoadingOrNotFoundComponent ValueToShow="@AddressSingular" />
+    return;
+}
+
+<MudGrid>
+    <MudItem sm="7">
+        <MudCard>
+            <MudCardContent>
+                <AddressViewDeleteComponent AddressModel="@AddressModel" />
+            </MudCardContent>
+            <MudCardActions>
+                <a class="btn btn-primary" href="/address/edit/@AddressModel.AddressId">Edit</a>
+                &nbsp;
+                <a class="btn btn-primary" href="/addresses/index/@AddressModel.PersonId">Cancel</a>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+</MudGrid>

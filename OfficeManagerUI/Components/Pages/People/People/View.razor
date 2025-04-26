@@ -3,7 +3,7 @@
 
 <PageTitle>View Person</PageTitle>
 
-@if (PersonModel is null || PersonModel.PersonalPronouns is null || PersonModel.Gender is null)
+@if (PersonModel is null || PersonModel.PersonalPronouns is null || PersonModel.Gender is null || PersonModel.EmergencyContacts is null)
 {
     <LoadingOrNotFoundComponent ValueToShow="@PersonSingular" />
     return;

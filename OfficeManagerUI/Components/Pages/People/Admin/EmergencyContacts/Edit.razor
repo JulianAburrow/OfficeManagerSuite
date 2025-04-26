@@ -1,0 +1,28 @@
+﻿@page "/emergencycontact/edit/{EmergencyContactId:int}"
+@inherits EmergencyContactBasePageClass
+
+<PageTitle>Edit Emergency Contact</PageTitle>
+
+@if (EmergencyContactDisplayModel == null)
+{
+    <LoadingOrNotFoundComponent ValueToShow="@EmergencyContactSingular" />
+    return;
+}
+
+<EditForm Model="@EmergencyContactDisplayModel" OnValidSubmit="UpdateEmergencyContact">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <MudGrid>
+        <MudItem sm="7">
+            <MudCard>
+                <EmergencyContactCreateUpdateComponent EmergencyContactDisplayModel="@EmergencyContactDisplayModel" People="@People" DisablePeopleDropDownList="true"  />
+                <MudCardActions>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    &nbsp;
+                    <a class="btn btn-primary" href="/emergencycontacts/index">Cancel</a>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>

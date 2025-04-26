@@ -1,0 +1,25 @@
+﻿@page "/emergencycontact/view/{EmergencyContactId:int}"
+@inherits EmergencyContactBasePageClass
+
+<PageTitle>View Emergency Contact</PageTitle>
+
+@if (EmergencyContactModel is null || EmergencyContactModel.Person is null)
+{
+    <LoadingOrNotFoundComponent ValueToShow="@EmergencyContactSingular" />
+    return;
+}
+
+<MudGrid>
+    <MudItem sm="7">
+        <MudCard>
+            <MudCardContent>
+                <EmergencyContactViewDeleteComponent EmergencyContactModel="@EmergencyContactModel" />
+            </MudCardContent>
+            <MudCardActions>
+                <a class="btn btn-primary" href="/emergencycontact/edit/@EmergencyContactModel.EmergencyContactId">Edit</a>
+                &nbsp;
+                <a class="btn btn-primary" href="/emergencycontacts/index/@EmergencyContactModel.PersonId">Cancel</a>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+</MudGrid>

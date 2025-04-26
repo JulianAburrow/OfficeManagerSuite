@@ -4,7 +4,7 @@ public interface IEmergencyContactHandler
 {
     Task CreateEmergencyContactAsync(EmergencyContactModel emergencyContact);
 
-    Task<EmergencyContactModel> GetEmergencyContactByIdAsync(int emergencyContactId);
+    Task<EmergencyContactModel> GetEmergencyContactAsync(int emergencyContactId);
 
     Task<List<EmergencyContactModel>> GetEmergencyContactsByPersonIdAsync(int personId);
 

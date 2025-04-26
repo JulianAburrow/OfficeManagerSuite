@@ -8,7 +8,7 @@ public class AddressModel
 
     public string AddressLine1 { get; set; } = default!;
 
-    public string AddressLine2 { get; set; } = null!;
+    public string? AddressLine2 { get; set; } = null!;
 
     public string City { get; set; } = default!;
 

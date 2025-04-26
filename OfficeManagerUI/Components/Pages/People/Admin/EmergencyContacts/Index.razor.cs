@@ -6,7 +6,7 @@ public partial class Index
 
     protected override async Task OnInitializedAsync()
     {
-        EmergencyContacts = await EmergencyContactHandler.GetEmergencyContactsAsync();
+        EmergencyContacts = await EmergencyContactHandler.GetEmergencyContactsByPersonIdAsync(PersonId);
         Snackbar.Add($"{EmergencyContacts.Count} item(s) found.", EmergencyContacts.Count > 0 ? Severity.Info : Severity.Warning);
         MainLayout.SetHeaderValue(EmergencyContactPlural);
     }

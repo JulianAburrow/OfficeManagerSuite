@@ -3,11 +3,18 @@
 <MudField Label="Last Name">@Person.LastName</MudField>
 <MudField Label="Email Address">@Person.EmailAddress</MudField>
 <MudField Label="Phone Number">@Person.PhoneNumber</MudField>
-<MudField Label="Person Pronouns">@Person.PersonalPronouns.PronounNames</MudField>
+<MudField Label="Person Pronouns">@Person.PersonalPronouns?.PronounNames</MudField>
 <MudField Label="Employment Status">@Person.EmploymentStatus.StatusName</MudField>
-<MudField Label="Gender">@Person.Gender.GenderName</MudField>
+<MudField Label="Gender">@Person.Gender?.GenderName</MudField>
 <MudField Label="Address(es)">
-    <AddressGridviewComponent Addresses="@Person.Addresses.ToList()" />
+    <AddressGridviewComponent Addresses="@Person.Addresses?.ToList()" />
     <br />
     <a href="/address/create/@Person.PersonId" class="btn btn-primary">Create Address</a>
+    <a href="/addresses/index/@Person.PersonId" class="btn btn-primary">View Addresses In Page</a>
+</MudField>
+<MudField Label="Emergency Contact(s)">
+    <EmergencyContactGridviewComponent EmergencyContacts="@Person.EmergencyContacts?.ToList()" ShowStaffMember="false" />
+    <br />
+    <a href="/emergencycontact/create/@Person.PersonId" class="btn btn-primary">Create Emergency Contact</a>
+    <a href="/emergencycontacts/index/@Person.PersonId" class="btn btn-primary">View Emergency Contacts In Page</a>
 </MudField>
