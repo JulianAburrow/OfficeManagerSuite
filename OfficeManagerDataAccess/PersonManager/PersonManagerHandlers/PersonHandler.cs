@@ -27,7 +27,6 @@ public class PersonHandler(PersonManagerDbContext context) : IPersonHandler
             .Include(p => p.Gender)
             .OrderBy(p => p.LastName)
             .ThenBy(p => p.FirstName)
-                .ThenBy(p => p.FirstName)
             .AsNoTracking()
             .ToListAsync();
 

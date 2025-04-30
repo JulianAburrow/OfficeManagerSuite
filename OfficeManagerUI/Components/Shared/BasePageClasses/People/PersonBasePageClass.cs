@@ -79,27 +79,36 @@ public class PersonBasePageClass : BasePageClass
             StatusName = PleaseSelectText,
         });
 
-        Genders.Insert(0, new GenderModel
-        {
-            GenderId = NotStatedValue,
-            GenderName = NotStatedText,
-        });
+       AddGenderNotStated();
         Genders.Insert(0, new GenderModel
         {
             GenderId = PleaseSelectValue,
             GenderName = PleaseSelectText,
         });
 
-        PersonalPronouns.Insert(0, new PersonalPronounsModel
-        {
-            PersonalPronounsId = NotStatedValue,
-            PronounNames = NotStatedText,
-        });
-
+        AddPersonalPronounsNotStated();
         PersonalPronouns.Insert(0, new PersonalPronounsModel
         {
             PersonalPronounsId = PleaseSelectValue,
             PronounNames = PleaseSelectText,
+        });
+    }
+
+    protected void AddGenderNotStated()
+    {
+        Genders.Insert(0, new GenderModel
+        {
+            GenderId = NotStatedValue,
+            GenderName = NotStatedText,
+        });
+    }
+
+    protected void AddPersonalPronounsNotStated()
+    {
+        PersonalPronouns.Insert(0, new PersonalPronounsModel
+        {
+            PersonalPronounsId = NotStatedValue,
+            PronounNames = NotStatedText,
         });
     }
 }

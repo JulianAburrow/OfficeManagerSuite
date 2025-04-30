@@ -3,7 +3,7 @@
 <MudTextField Label="Last Name" @bind-Value="PersonDisplayModel.LastName" />
 <MudTextField Label="Email Address" @bind-Value="PersonDisplayModel.EmailAddress" />
 <MudTextField Label="Phone Number" @bind-Value="PersonDisplayModel.PhoneNumber" />
-<MudSelect T="int?" Label="Person Pronouns" @bind-Value="PersonDisplayModel.PersonalPronounsId">
+<MudSelect T="int?" Label="Personal Pronouns" @bind-Value="PersonDisplayModel.PersonalPronounsId">
     @foreach (var personalPronoun in PersonalPronouns)
     {
         <MudSelectItem T="int?" Value="@personalPronoun.PersonalPronounsId">@personalPronoun.PronounNames</MudSelectItem>

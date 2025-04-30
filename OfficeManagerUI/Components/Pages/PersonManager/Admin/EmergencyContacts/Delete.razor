@@ -1,0 +1,22 @@
+﻿@page "/emergencycontact/delete/{EmergencyContactId:int}"
+@inherits EmergencyContactBasePageClass
+
+<PageTitle>Delete Emergency Contact</PageTitle>
+
+@if (EmergencyContactModel is null || EmergencyContactModel.Person is null)
+{
+    <LoadingOrNotFoundComponent ValueToShow="@EmergencyContactSingular" />
+    return;
+}
+
+<ConfirmDeleteComponent ObjectType="@EmergencyContactSingular" ObjectName=@($"{EmergencyContactModel.FirstName} {EmergencyContactModel.LastName}") />
+
+<br />
+<br />
+
+<EmergencyContactViewDeleteComponent EmergencyContactModel="EmergencyContactModel" />
+
+<br />
+<br />
+
+<button class="btn btn-danger" @onclick="DeleteEmergencyContact">Delete</button> <a class="btn btn-primary" href="/emergencycontacts/index/@EmergencyContactModel.PersonId">Cancel</a>
