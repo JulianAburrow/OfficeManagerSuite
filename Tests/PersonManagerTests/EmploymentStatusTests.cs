@@ -31,13 +31,13 @@ public class EmploymentStatusTests
     [Fact]
     public async Task CreateEmploymentStatusAsync_CreatesEmploymentStatus()
     {
-        ClearEmploymentStatuses();
+        await ClearEmploymentStatusesAsync();
 
         var initialCount = _personManagerDbContext.EmploymentStatuses.Count();
 
         await _employmentStatusHandler.CreateEmploymentStatusAsync(EmploymentStatus1);
         await _employmentStatusHandler.CreateEmploymentStatusAsync(EmploymentStatus2);
-        _personManagerDbContext.SaveChanges();
+        await _personManagerDbContext.SaveChangesAsync();
 
         _personManagerDbContext.EmploymentStatuses.Count().Should().Be(initialCount + 2);
     }
@@ -45,7 +45,7 @@ public class EmploymentStatusTests
     [Fact]
     public async Task GetEmploymentStatusesAsync_ReturnsEmploymentStatuses()
     {
-        ClearEmploymentStatuses();
+        await ClearEmploymentStatusesAsync();
         _personManagerDbContext.EmploymentStatuses.Add(EmploymentStatus1);
         _personManagerDbContext.EmploymentStatuses.Add(EmploymentStatus2);
         await _personManagerDbContext.SaveChangesAsync();
@@ -58,7 +58,7 @@ public class EmploymentStatusTests
     [Fact]
     public async Task GetEmploymentStatusAsync_ReturnsEmploymentStatus()
     {
-        ClearEmploymentStatuses();
+        await ClearEmploymentStatusesAsync();
         _personManagerDbContext.EmploymentStatuses.Add(EmploymentStatus1);
         await _personManagerDbContext.SaveChangesAsync();
 
@@ -69,14 +69,15 @@ public class EmploymentStatusTests
     }
 
     [Fact]
-    public async Task UpdateEmploymentStatus_UpdatesEmploymentStatus()
+    public async Task UpdateEmploymentStatusAsync_UpdatesEmploymentStatus()
     {
-        ClearEmploymentStatuses();
+        await ClearEmploymentStatusesAsync();
 
         _personManagerDbContext.EmploymentStatuses.Add(EmploymentStatus1);
         await _personManagerDbContext.SaveChangesAsync();
 
         var employmentStatusToUpdate = await _personManagerDbContext.EmploymentStatuses.FindAsync(EmploymentStatus1.EmploymentStatusId);
+        employmentStatusToUpdate.Should().NotBeNull();
         employmentStatusToUpdate.StatusName = TestStatusName2;
         await _employmentStatusHandler.UpdateEmploymentStatusAsync(employmentStatusToUpdate);
 
@@ -86,9 +87,9 @@ public class EmploymentStatusTests
     }
 
     [Fact]
-    public async Task DeleteEmploymentStatus_DeletesEmploymentStatus()
+    public async Task DeleteEmploymentStatusAsync_DeletesEmploymentStatus()
     {
-        ClearEmploymentStatuses();
+        await ClearEmploymentStatusesAsync();
         var initialCount = _personManagerDbContext.EmploymentStatuses.Count();
         _personManagerDbContext.EmploymentStatuses.Add(EmploymentStatus1);
         await _personManagerDbContext.SaveChangesAsync();
@@ -101,9 +102,9 @@ public class EmploymentStatusTests
     }
         
 
-    private void ClearEmploymentStatuses()
+    private async Task ClearEmploymentStatusesAsync()
     {
         _personManagerDbContext.EmploymentStatuses.RemoveRange(_personManagerDbContext.EmploymentStatuses);
-        _personManagerDbContext.SaveChanges();
+        await _personManagerDbContext.SaveChangesAsync();
     }
 }
