@@ -4,7 +4,7 @@ public partial class View
 {
     protected override async Task OnInitializedAsync()
     {
-        EmergencyContactModel = await EmergencyContactHandler.GetEmergencyContactAsync(EmergencyContactId);
+        EmergencyContactModel = await EmergencyContactHandler.GetEmergencyContactByIdAsync(EmergencyContactId);
         MainLayout.SetHeaderValue("View Emergency Contact");
     }
 

@@ -4,7 +4,7 @@ public partial class Edit
 {
     protected override async Task OnInitializedAsync()
     {
-        EmploymentStatusModel = await EmploymentStatusHandler.GetEmploymentStatusAsync(EmploymentStatusId);
+        EmploymentStatusModel = await EmploymentStatusHandler.GetEmploymentStatusByIdAsync(EmploymentStatusId);
         CopyModelToDisplayModel();
         MainLayout.SetHeaderValue("Edit Employment Status");
     }

@@ -4,7 +4,7 @@ public partial class Delete
 {
     protected override async Task OnInitializedAsync()
     {
-        GenderModel = await GenderHandler.GetGenderAsync(GenderId);
+        GenderModel = await GenderHandler.GetGenderByIdAsync(GenderId);
         MainLayout.SetHeaderValue("Delete Gender");
         OkToDelete = GenderModel.Persons != null && GenderModel.Persons.Count == 0;
     }

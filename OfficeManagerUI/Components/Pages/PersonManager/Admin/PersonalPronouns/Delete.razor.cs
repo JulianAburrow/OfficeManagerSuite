@@ -4,7 +4,7 @@ public partial class Delete
 {
     protected override async Task OnInitializedAsync()
     {
-        PersonalPronounsModel = await PersonalPronounsHandler.GetPersonalPronounAsync(PersonalPronounsId);
+        PersonalPronounsModel = await PersonalPronounsHandler.GetPersonalPronounsByIdAsync(PersonalPronounsId);
         MainLayout.SetHeaderValue("Delete Personal Pronouns");
         OkToDelete = PersonalPronounsModel.Persons != null && PersonalPronounsModel.Persons.Count == 0;
     }

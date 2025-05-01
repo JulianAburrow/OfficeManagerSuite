@@ -4,7 +4,7 @@ public partial class View
 {
     protected override async Task OnInitializedAsync()
     {
-        PersonModel = await PersonHandler.GetPersonAsync(PersonId);
+        PersonModel = await PersonHandler.GetPersonByIdAsync(PersonId);
         if (PersonModel.Gender is null)
             PersonModel.Gender = new GenderModel {  GenderName = NotStatedText };
         if (PersonModel.PersonalPronouns is null)

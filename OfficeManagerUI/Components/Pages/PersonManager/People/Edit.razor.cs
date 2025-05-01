@@ -5,16 +5,16 @@ public partial class Edit
 
     protected override async Task OnInitializedAsync()
     {
-        PersonModel = await PersonHandler.GetPersonAsync(PersonId);
+        PersonModel = await PersonHandler.GetPersonByIdAsync(PersonId);
         CopyModelToDisplayModel();
-        EmploymentStatuses = await EmploymentStatusHandler.GetEmploymentStatusesAsync();
-        PersonalPronouns = await PersonalPronounsHandler.GetPersonalPronounsAsync();
+        EmploymentStatuses = await EmploymentStatusHandler.GetAllEmploymentStatusesAsync();
+        PersonalPronouns = await PersonalPronounsHandler.GetAllPersonalPronounsAsync();
         AddPersonalPronounsNotStated();
         if (PersonModel.PersonalPronounsId == null)
         {            
             PersonModel.PersonalPronounsId = NotStatedValue;
         }
-        Genders = await GenderHandler.GetGendersAsync();
+        Genders = await GenderHandler.GetAllGendersAsync();
         AddGenderNotStated();
         if (PersonModel.GenderId == null)
         {            

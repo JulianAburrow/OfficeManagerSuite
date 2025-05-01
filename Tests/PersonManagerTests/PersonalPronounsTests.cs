@@ -45,7 +45,7 @@ public class PersonalPronounsTests
         _personManagerDbContext.PersonalPronouns.Add(PersonalPronouns1);
         _personManagerDbContext.PersonalPronouns.Add(PersonalPronouns2);
         await _personManagerDbContext.SaveChangesAsync();
-        var personalpronouns = await _personalPronounsHandler.GetPersonalPronounsAsync();
+        var personalpronouns = await _personalPronounsHandler.GetAllPersonalPronounsAsync();
         personalpronouns.Should().HaveCount(2);
         personalpronouns.Should().Contain(e => e.PronounNames == TestPronouns1);
         personalpronouns.Should().Contain(e => e.PronounNames == TestPronouns2);
@@ -58,7 +58,7 @@ public class PersonalPronounsTests
         _personManagerDbContext.PersonalPronouns.Add(PersonalPronouns1);
         await _personManagerDbContext.SaveChangesAsync();
 
-        var personalPronouns = await _personalPronounsHandler.GetPersonalPronounAsync(PersonalPronouns1.PersonalPronounsId);
+        var personalPronouns = await _personalPronounsHandler.GetPersonalPronounsByIdAsync(PersonalPronouns1.PersonalPronounsId);
         personalPronouns.Should().NotBeNull();
         personalPronouns.Should().BeOfType<PersonalPronounsModel>();
         personalPronouns.PronounNames.Should().Be(TestPronouns1);
@@ -72,12 +72,12 @@ public class PersonalPronounsTests
         _personManagerDbContext.PersonalPronouns.Add(PersonalPronouns1);
         await _personManagerDbContext.SaveChangesAsync();
 
-        var personalPronounsToUpdate = await _personalPronounsHandler.GetPersonalPronounAsync(PersonalPronouns1.PersonalPronounsId);
+        var personalPronounsToUpdate = await _personalPronounsHandler.GetPersonalPronounsByIdAsync(PersonalPronouns1.PersonalPronounsId);
         personalPronounsToUpdate.Should().NotBeNull();
         personalPronounsToUpdate.PronounNames = TestPronouns2;
         await _personalPronounsHandler.UpdatePersonalPronounsAsync(personalPronounsToUpdate);
 
-        var updatedPronouns = await _personalPronounsHandler.GetPersonalPronounAsync(PersonalPronouns1.PersonalPronounsId);
+        var updatedPronouns = await _personalPronounsHandler.GetPersonalPronounsByIdAsync(PersonalPronouns1.PersonalPronounsId);
         updatedPronouns.Should().NotBeNull();
         updatedPronouns.PronounNames.Should().Be(TestPronouns2);
     }

@@ -6,7 +6,7 @@ public partial class Index
 
     protected override async Task OnInitializedAsync()
     {
-        Genders = await GenderHandler.GetGendersAsync();
+        Genders = await GenderHandler.GetAllGendersAsync();
         Snackbar.Add($"{Genders.Count} item(s) found", Genders.Count > 0 ? Severity.Info : Severity.Warning);
         MainLayout.SetHeaderValue(GenderPlural);
     }

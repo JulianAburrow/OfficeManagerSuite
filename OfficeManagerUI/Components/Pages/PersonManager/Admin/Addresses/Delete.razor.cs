@@ -4,7 +4,7 @@ public partial class Delete
 {
     protected override async Task OnInitializedAsync()
     {
-        AddressModel = await AddressHandler.GetAddressAsync(AddressId);
+        AddressModel = await AddressHandler.GetAddressByIdAsync(AddressId);
         MainLayout.SetHeaderValue("Delete Address");
     }
 

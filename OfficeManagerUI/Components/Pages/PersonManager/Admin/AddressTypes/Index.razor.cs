@@ -6,7 +6,7 @@ public partial class Index
 
     protected override async Task OnInitializedAsync()
     {
-        AddressTypes = await AddressTypeHandler.GetAddressTypesAsync();
+        AddressTypes = await AddressTypeHandler.GetAllAddressTypesAsync();
         Snackbar.Add($"{AddressTypes.Count} item(s) found.", AddressTypes.Count > 0 ? Severity.Info : Severity.Warning);
         MainLayout.SetHeaderValue(AddressTypePlural);
     }

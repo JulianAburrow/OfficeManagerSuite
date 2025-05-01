@@ -2,11 +2,11 @@
 
 public interface IPersonHandler
 {
-    Task<List<PersonModel>> GetPeopleForEmergencyContactAsync();
+    Task<List<PersonModel>> GetAllPeopleForEmergencyContactAsync();
 
-    Task<List<PersonModel>> GetPeopleAsync();
+    Task<List<PersonModel>> GetAllPeopleAsync();
 
-    Task<PersonModel> GetPersonAsync(int personId);
+    Task<PersonModel> GetPersonByIdAsync(int personId);
 
     Task CreatePersonAsync(PersonModel personModel);
 

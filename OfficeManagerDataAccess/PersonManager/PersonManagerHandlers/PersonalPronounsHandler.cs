@@ -20,13 +20,13 @@ public class PersonalPronounsHandler(PersonManagerDbContext context) : IPersonal
         await _context.SaveChangesAsync();
     }
 
-    public async Task<PersonalPronounsModel> GetPersonalPronounAsync(int personalPronounsId) =>
+    public async Task<PersonalPronounsModel> GetPersonalPronounsByIdAsync(int personalPronounsId) =>
         await _context.PersonalPronouns
             .Include(p => p.Persons)
             .AsNoTracking()
             .FirstOrDefaultAsync(p => p.PersonalPronounsId == personalPronounsId);
 
-    public async Task<List<PersonalPronounsModel>> GetPersonalPronounsAsync() =>
+    public async Task<List<PersonalPronounsModel>> GetAllPersonalPronounsAsync() =>
         await _context.PersonalPronouns
             .Include(p => p.Persons)
             .AsNoTracking()

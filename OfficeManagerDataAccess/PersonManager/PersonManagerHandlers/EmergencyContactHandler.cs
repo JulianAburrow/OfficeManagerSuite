@@ -19,13 +19,13 @@ public class EmergencyContactHandler(PersonManagerDbContext context) : IEmergenc
         await _context.SaveChangesAsync();
     }
 
-    public Task<EmergencyContactModel> GetEmergencyContactAsync(int emergencyContactId) =>
+    public Task<EmergencyContactModel> GetEmergencyContactByIdAsync(int emergencyContactId) =>
         _context.EmergencyContacts
             .Include(e => e.Person)
             .AsNoTracking()
             .FirstOrDefaultAsync(e => e.EmergencyContactId == emergencyContactId);
 
-    public Task<List<EmergencyContactModel>> GetEmergencyContactsAsync() =>
+    public Task<List<EmergencyContactModel>> GetAllEmergencyContactsAsync() =>
         _context.EmergencyContacts
             .Include(e => e.Person)
             .AsNoTracking()
@@ -33,7 +33,7 @@ public class EmergencyContactHandler(PersonManagerDbContext context) : IEmergenc
             .ThenBy(e => e.FirstName)
             .ToListAsync();
 
-    public Task<List<EmergencyContactModel>> GetEmergencyContactsByPersonIdAsync(int personId) =>
+    public Task<List<EmergencyContactModel>> GetAllEmergencyContactsByPersonIdAsync(int personId) =>
         _context.EmergencyContacts
             .Include(e => e.Person)
             .AsNoTracking()

@@ -19,7 +19,7 @@ public class PersonHandler(PersonManagerDbContext context) : IPersonHandler
         await _context.SaveChangesAsync();
     }
 
-    public async Task<List<PersonModel>> GetPeopleAsync() =>
+    public async Task<List<PersonModel>> GetAllPeopleAsync() =>
         await _context.People
             .Include(p => p.Addresses)
             .Include(p => p.EmploymentStatus)
@@ -30,13 +30,13 @@ public class PersonHandler(PersonManagerDbContext context) : IPersonHandler
             .AsNoTracking()
             .ToListAsync();
 
-    public async Task<List<PersonModel>> GetPeopleForEmergencyContactAsync() =>
+    public async Task<List<PersonModel>> GetAllPeopleForEmergencyContactAsync() =>
         await _context.People
             .AsNoTracking()
             .OrderBy(p => p.LastName)
             .ToListAsync();
 
-    public async Task<PersonModel> GetPersonAsync(int personId) =>
+    public async Task<PersonModel> GetPersonByIdAsync(int personId) =>
         await _context.People
             .Include(p => p.Addresses)
                 .ThenInclude(a => a.AddressType)

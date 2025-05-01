@@ -6,7 +6,7 @@ public partial class Create
     {
         AddressDisplayModel.PersonId = PersonId;
         AddressDisplayModel.AddressTypeId = PleaseSelectValue;
-        AddressTypes = await AddressTypeHandler.GetAddressTypesAsync();
+        AddressTypes = await AddressTypeHandler.GetAllAddressTypesAsync();
         AddressTypes.Insert(0, new AddressTypeModel
         {
             AddressTypeId = PleaseSelectValue,

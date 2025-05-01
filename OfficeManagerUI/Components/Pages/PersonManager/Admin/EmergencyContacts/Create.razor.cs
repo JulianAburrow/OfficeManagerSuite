@@ -4,7 +4,7 @@ public partial class Create
 {
     protected override async Task OnInitializedAsync()
     {
-        People = await PersonHandler.GetPeopleForEmergencyContactAsync();
+        People = await PersonHandler.GetAllPeopleForEmergencyContactAsync();
         People.Insert(0, new PersonModel {
             PersonId = PleaseSelectValue,
             FirstName = PleaseSelectText

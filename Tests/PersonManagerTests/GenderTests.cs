@@ -52,7 +52,7 @@ public class GenderTests
         _personManagerDbContext.Genders.Add(Gender1);
         _personManagerDbContext.Genders.Add(Gender2);
         await _personManagerDbContext.SaveChangesAsync();
-        var genders = await _genderHandler.GetGendersAsync();
+        var genders = await _genderHandler.GetAllGendersAsync();
         genders.Should().HaveCount(2);
         genders.Should().Contain(g => g.GenderName == TestGenderName1);
         genders.Should().Contain(g => g.GenderName == TestGenderName2);
@@ -65,7 +65,7 @@ public class GenderTests
         _personManagerDbContext.Genders.Add(Gender1);
         await _personManagerDbContext.SaveChangesAsync();
 
-        var gender = await _genderHandler.GetGenderAsync(Gender1.GenderId);
+        var gender = await _genderHandler.GetGenderByIdAsync(Gender1.GenderId);
         gender.Should().NotBeNull();
         gender.Should().BeOfType<GenderModel>();
         gender.GenderName.Should().Be(TestGenderName1);

@@ -4,7 +4,7 @@ public partial class View
 {
     protected override async Task OnInitializedAsync()
     {
-        AddressTypeModel = await AddressTypeHandler.GetAddressTypeAsync(AddressTypeId);
+        AddressTypeModel = await AddressTypeHandler.GetAddressTypeByIdAsync(AddressTypeId);
         MainLayout.SetHeaderValue("View Address Type");
     }
 

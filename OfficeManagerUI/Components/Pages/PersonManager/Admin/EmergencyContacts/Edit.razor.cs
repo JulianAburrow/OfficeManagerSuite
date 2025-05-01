@@ -4,8 +4,8 @@ public partial class Edit
 {
     protected override async Task OnInitializedAsync()
     {
-        People = await PersonHandler.GetPeopleForEmergencyContactAsync();
-        EmergencyContactModel = await EmergencyContactHandler.GetEmergencyContactAsync(EmergencyContactId);
+        People = await PersonHandler.GetAllPeopleForEmergencyContactAsync();
+        EmergencyContactModel = await EmergencyContactHandler.GetEmergencyContactByIdAsync(EmergencyContactId);
         CopyModelToDisplayModel();
         MainLayout.SetHeaderValue("Edit Emergency Contact");
     }

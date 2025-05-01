@@ -101,7 +101,7 @@ public class AddressTests
         _personManagerDbContext.Addresses.Add(Address1);
         _personManagerDbContext.Addresses.Add(Address2);
         await _personManagerDbContext.SaveChangesAsync();
-        var addresses = await _addressHandler.GetAddressesAsync(1);
+        var addresses = await _addressHandler.GetAllAddressesAsync(1);
         addresses.Should().HaveCount(2);
         addresses.Should().Contain(a => a.AddressLine1 == TestAddressLine1);
         addresses.Should().Contain(a => a.AddressLine2 == TestAddressLine2);

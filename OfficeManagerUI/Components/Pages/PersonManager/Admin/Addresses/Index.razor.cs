@@ -6,8 +6,8 @@ public partial class Index
 
     protected override async Task OnInitializedAsync()
     {
-        var person = await PersonHandler.GetPersonAsync(PersonId);
-        Addresses = await AddressHandler.GetAddressesAsync(PersonId);
+        var person = await PersonHandler.GetPersonByIdAsync(PersonId);
+        Addresses = await AddressHandler.GetAllAddressesAsync(PersonId);
         Snackbar.Add($"{Addresses.Count} item(s) found.", Addresses.Count > 0 ? Severity.Info : Severity.Warning);
         MainLayout.SetHeaderValue($"{AddressPlural} for {person.FirstName} {person.LastName}");
     }

@@ -8,7 +8,7 @@ public partial class Index
     {
         try
         {
-            EmploymentStatuses = await EmploymentStatusHandler.GetEmploymentStatusesAsync();
+            EmploymentStatuses = await EmploymentStatusHandler.GetAllEmploymentStatusesAsync();
             Snackbar.Add($"{EmploymentStatuses.Count} item(s) found.", EmploymentStatuses.Count > 0 ? Severity.Info : Severity.Warning);
             MainLayout.SetHeaderValue(EmploymentStatusPlural);
         }

@@ -4,7 +4,7 @@ public partial class View
 {
     protected override async Task OnInitializedAsync()
     {
-        PersonalPronounsModel = await PersonalPronounsHandler.GetPersonalPronounAsync(PersonalPronounsId);
+        PersonalPronounsModel = await PersonalPronounsHandler.GetPersonalPronounsByIdAsync(PersonalPronounsId);
         MainLayout.SetHeaderValue("View Personal Pronouns");
     }
 

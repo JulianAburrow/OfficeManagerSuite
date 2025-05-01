@@ -6,7 +6,7 @@ public partial class Index
 
     protected override async Task OnInitializedAsync()
     {
-        People = await PersonHandler.GetPeopleAsync();
+        People = await PersonHandler.GetAllPeopleAsync();
         Snackbar.Add($"{People.Count} item(s) found.", People.Count > 0 ? Severity.Info : Severity.Warning);
         MainLayout.SetHeaderValue(PersonPlural);
     }

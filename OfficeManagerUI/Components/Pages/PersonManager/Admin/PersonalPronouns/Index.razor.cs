@@ -6,7 +6,7 @@ public partial class Index
 
     protected override async Task OnInitializedAsync()
     {
-        PersonalPronouns = await PersonalPronounsHandler.GetPersonalPronounsAsync();
+        PersonalPronouns = await PersonalPronounsHandler.GetAllPersonalPronounsAsync();
         Snackbar.Add($"{PersonalPronouns.Count} item(s) found.", PersonalPronouns.Count > 0 ? Severity.Info : Severity.Warning);
         MainLayout.SetHeaderValue(PersonalPronounsPlural);
     }

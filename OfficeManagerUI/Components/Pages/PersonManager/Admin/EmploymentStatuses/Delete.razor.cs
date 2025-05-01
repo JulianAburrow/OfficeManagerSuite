@@ -4,7 +4,7 @@ public partial class Delete
 {
     protected override async Task OnInitializedAsync()
     {
-        EmploymentStatusModel = await EmploymentStatusHandler.GetEmploymentStatusAsync(EmploymentStatusId);
+        EmploymentStatusModel = await EmploymentStatusHandler.GetEmploymentStatusByIdAsync(EmploymentStatusId);
         MainLayout.SetHeaderValue("Delete Employment Status");
         OkToDelete = EmploymentStatusModel.Persons != null && EmploymentStatusModel.Persons.Count == 0;
     }

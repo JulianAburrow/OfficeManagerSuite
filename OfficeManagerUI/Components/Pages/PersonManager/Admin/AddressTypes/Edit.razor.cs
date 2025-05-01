@@ -4,7 +4,7 @@ public partial class Edit
 {
     protected override async Task OnInitializedAsync()
     {
-        AddressTypeModel = await AddressTypeHandler.GetAddressTypeAsync(AddressTypeId);
+        AddressTypeModel = await AddressTypeHandler.GetAddressTypeByIdAsync(AddressTypeId);
         CopyModelToDisplayModel();
         MainLayout.SetHeaderValue("Edit Address Type");
     }

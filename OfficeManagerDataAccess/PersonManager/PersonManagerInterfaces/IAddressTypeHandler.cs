@@ -3,9 +3,9 @@
 public interface IAddressTypeHandler
 {
 
-    Task<AddressTypeModel> GetAddressTypeAsync(int addressTypeId);
+    Task<AddressTypeModel> GetAddressTypeByIdAsync(int addressTypeId);
 
-    Task<List<AddressTypeModel>> GetAddressTypesAsync();
+    Task<List<AddressTypeModel>> GetAllAddressTypesAsync();
 
     Task CreateAddressTypeAsync(AddressTypeModel addressType);
 

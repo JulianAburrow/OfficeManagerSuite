@@ -69,9 +69,9 @@ public class PersonBasePageClass : BasePageClass
 
     protected override async Task OnInitializedAsync()
     {
-        EmploymentStatuses = await EmploymentStatusHandler.GetEmploymentStatusesAsync();
-        Genders = await GenderHandler.GetGendersAsync();
-        PersonalPronouns = await PersonalPronounsHandler.GetPersonalPronounsAsync();
+        EmploymentStatuses = await EmploymentStatusHandler.GetAllEmploymentStatusesAsync();
+        Genders = await GenderHandler.GetAllGendersAsync();
+        PersonalPronouns = await PersonalPronounsHandler.GetAllPersonalPronounsAsync();
 
         EmploymentStatuses.Insert(0, new EmploymentStatusModel
         {

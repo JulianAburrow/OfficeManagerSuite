@@ -9,13 +9,13 @@ public partial class Index
         var headerText = string.Empty;
         if (PersonId == 0)
         {
-            EmergencyContacts = await EmergencyContactHandler.GetEmergencyContactsAsync();
+            EmergencyContacts = await EmergencyContactHandler.GetAllEmergencyContactsAsync();
             headerText = $"All {EmergencyContactPlural}";
         }
         else
         {
-            EmergencyContacts = await EmergencyContactHandler.GetEmergencyContactsByPersonIdAsync(PersonId);
-            var person = await PersonHandler.GetPersonAsync(PersonId);
+            EmergencyContacts = await EmergencyContactHandler.GetAllEmergencyContactsByPersonIdAsync(PersonId);
+            var person = await PersonHandler.GetPersonByIdAsync(PersonId);
             headerText = $"{EmergencyContactPlural} for {person.FirstName} {person.LastName}";
         }
         Snackbar.Add($"{EmergencyContacts.Count} item(s) found.", EmergencyContacts.Count > 0 ? Severity.Info : Severity.Warning);

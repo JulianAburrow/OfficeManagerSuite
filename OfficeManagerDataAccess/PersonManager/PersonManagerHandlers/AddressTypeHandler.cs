@@ -20,13 +20,13 @@ public class AddressTypeHandler(PersonManagerDbContext context) : IAddressTypeHa
         await _context.SaveChangesAsync();
     }
 
-    public async Task<AddressTypeModel> GetAddressTypeAsync(int addressTypeId) =>
+    public async Task<AddressTypeModel> GetAddressTypeByIdAsync(int addressTypeId) =>
         await _context.AddressTypes
             .Include(a => a.Addresses)
             .AsNoTracking()
             .FirstOrDefaultAsync(a => a.AddressTypeId == addressTypeId);
 
-    public async Task<List<AddressTypeModel>> GetAddressTypesAsync() =>
+    public async Task<List<AddressTypeModel>> GetAllAddressTypesAsync() =>
         await _context.AddressTypes
                 .Include(a => a.Addresses)
                 .AsNoTracking()

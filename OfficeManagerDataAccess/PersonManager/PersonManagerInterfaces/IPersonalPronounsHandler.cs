@@ -2,9 +2,9 @@
 
 public interface IPersonalPronounsHandler
 {
-    Task<PersonalPronounsModel> GetPersonalPronounAsync(int personalPronounsId);
+    Task<PersonalPronounsModel> GetPersonalPronounsByIdAsync(int personalPronounsId);
 
-    Task<List<PersonalPronounsModel>> GetPersonalPronounsAsync();
+    Task<List<PersonalPronounsModel>> GetAllPersonalPronounsAsync();
 
     Task CreatePersonalPronounsAsync(PersonalPronounsModel personalPronounsModel);
 

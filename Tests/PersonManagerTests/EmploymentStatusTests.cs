@@ -49,7 +49,7 @@ public class EmploymentStatusTests
         _personManagerDbContext.EmploymentStatuses.Add(EmploymentStatus1);
         _personManagerDbContext.EmploymentStatuses.Add(EmploymentStatus2);
         await _personManagerDbContext.SaveChangesAsync();
-        var employmentStatuses = await _employmentStatusHandler.GetEmploymentStatusesAsync();
+        var employmentStatuses = await _employmentStatusHandler.GetAllEmploymentStatusesAsync();
         employmentStatuses.Should().HaveCount(2);
         employmentStatuses.Should().Contain(e => e.StatusName == TestStatusName1);
         employmentStatuses.Should().Contain(e => e.StatusName == TestStatusName2);
@@ -62,7 +62,7 @@ public class EmploymentStatusTests
         _personManagerDbContext.EmploymentStatuses.Add(EmploymentStatus1);
         await _personManagerDbContext.SaveChangesAsync();
 
-        var result = await _employmentStatusHandler.GetEmploymentStatusAsync(EmploymentStatus1.EmploymentStatusId);
+        var result = await _employmentStatusHandler.GetEmploymentStatusByIdAsync(EmploymentStatus1.EmploymentStatusId);
         result.Should().NotBeNull();
         result.Should().BeOfType<EmploymentStatusModel>();
         result.StatusName.Should().Be(TestStatusName1);

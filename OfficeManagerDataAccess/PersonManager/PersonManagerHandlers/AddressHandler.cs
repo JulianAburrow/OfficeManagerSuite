@@ -19,13 +19,13 @@ public class AddressHandler(PersonManagerDbContext context) : IAddressHandler
         await _context.SaveChangesAsync();
     }
 
-    public async Task<AddressModel> GetAddressAsync(int addressId) =>
+    public async Task<AddressModel> GetAddressByIdAsync(int addressId) =>
         await _context.Addresses
             .Include(a => a.Person)
             .Include(a => a.AddressType)
             .FirstOrDefaultAsync(a => a.AddressId == addressId);
 
-    public async Task<List<AddressModel>> GetAddressesAsync(int personId) =>
+    public async Task<List<AddressModel>> GetAllAddressesAsync(int personId) =>
         await _context.Addresses
             .Include(a => a.Person)
             .Include(a => a.AddressType)

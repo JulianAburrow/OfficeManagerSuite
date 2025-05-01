@@ -4,7 +4,7 @@ public partial class Delete
 {
     protected override async Task OnInitializedAsync()
     {
-        AddressTypeModel = await AddressTypeHandler.GetAddressTypeAsync(AddressTypeId);
+        AddressTypeModel = await AddressTypeHandler.GetAddressTypeByIdAsync(AddressTypeId);
         MainLayout.SetHeaderValue("Delete Address Type");
         OkToDelete = AddressTypeModel.Addresses != null && AddressTypeModel.Addresses.Count == 0;
     }

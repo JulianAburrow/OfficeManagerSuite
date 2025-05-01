@@ -20,13 +20,13 @@ public class GenderHandler(PersonManagerDbContext context) : IGenderHandler
         await _context.SaveChangesAsync();
     }
 
-    public Task<GenderModel> GetGenderAsync(int genderId) =>
+    public Task<GenderModel> GetGenderByIdAsync(int genderId) =>
         _context.Genders
             .Include(g => g.Persons)
             .AsNoTracking()
             .FirstOrDefaultAsync(g => g.GenderId == genderId);
 
-    public async Task<List<GenderModel>> GetGendersAsync() =>
+    public async Task<List<GenderModel>> GetAllGendersAsync() =>
         await _context.Genders
             .Include(g => g.Persons)
             .AsNoTracking()

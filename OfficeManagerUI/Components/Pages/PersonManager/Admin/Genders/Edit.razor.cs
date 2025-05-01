@@ -4,7 +4,7 @@ public partial class Edit
 {
     protected override async Task OnInitializedAsync()
     {
-        GenderModel = await GenderHandler.GetGenderAsync(GenderId);
+        GenderModel = await GenderHandler.GetGenderByIdAsync(GenderId);
         CopyModelToDisplayModel();
         MainLayout.SetHeaderValue("Edit Gender");
     }

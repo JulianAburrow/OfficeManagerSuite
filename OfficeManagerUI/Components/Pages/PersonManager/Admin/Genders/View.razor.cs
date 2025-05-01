@@ -4,7 +4,7 @@ public partial class View
 {
     protected override async Task OnInitializedAsync()
     {
-        GenderModel = await GenderHandler.GetGenderAsync(GenderId);
+        GenderModel = await GenderHandler.GetGenderByIdAsync(GenderId);
         MainLayout.SetHeaderValue("View Gender");
     }
 

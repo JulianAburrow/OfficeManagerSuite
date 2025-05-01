@@ -19,13 +19,13 @@ public class EmploymentStatusHandler(PersonManagerDbContext context) : IEmployme
         await _context.SaveChangesAsync();
     }
 
-    public Task<EmploymentStatusModel> GetEmploymentStatusAsync(int employmentStatusId) =>
+    public Task<EmploymentStatusModel> GetEmploymentStatusByIdAsync(int employmentStatusId) =>
         _context.EmploymentStatuses
             .Include(e => e.Persons)
             .AsNoTracking()
             .FirstOrDefaultAsync(e => e.EmploymentStatusId == employmentStatusId);
 
-    public Task<List<EmploymentStatusModel>> GetEmploymentStatusesAsync() =>
+    public Task<List<EmploymentStatusModel>> GetAllEmploymentStatusesAsync() =>
         _context.EmploymentStatuses
             .Include(e => e.Persons)
             .AsNoTracking()

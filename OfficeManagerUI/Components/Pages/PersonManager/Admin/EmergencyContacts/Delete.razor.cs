@@ -4,7 +4,7 @@ public partial class Delete
 {
     protected override async Task OnInitializedAsync()
     {
-        EmergencyContactModel = await EmergencyContactHandler.GetEmergencyContactAsync(EmergencyContactId);
+        EmergencyContactModel = await EmergencyContactHandler.GetEmergencyContactByIdAsync(EmergencyContactId);
         MainLayout.SetHeaderValue("Delete Emergency Contact");
     }
     protected override void OnInitialized()

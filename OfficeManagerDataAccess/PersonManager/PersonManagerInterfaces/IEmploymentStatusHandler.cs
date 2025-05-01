@@ -2,9 +2,9 @@
 
 public interface IEmploymentStatusHandler
 {
-    Task<List<EmploymentStatusModel>> GetEmploymentStatusesAsync();
+    Task<List<EmploymentStatusModel>> GetAllEmploymentStatusesAsync();
 
-    Task<EmploymentStatusModel> GetEmploymentStatusAsync(int employmentStatusId);
+    Task<EmploymentStatusModel> GetEmploymentStatusByIdAsync(int employmentStatusId);
 
     Task CreateEmploymentStatusAsync(EmploymentStatusModel employmentStatus);
 

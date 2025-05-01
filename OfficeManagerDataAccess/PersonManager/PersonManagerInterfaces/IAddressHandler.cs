@@ -2,9 +2,9 @@
 
 public interface IAddressHandler
 {
-    Task<AddressModel> GetAddressAsync(int addressId);
+    Task<AddressModel> GetAddressByIdAsync(int addressId);
 
-    Task<List<AddressModel>> GetAddressesAsync(int personId);
+    Task<List<AddressModel>> GetAllAddressesAsync(int personId);
 
     Task CreateAddressAsync(AddressModel address);
 
