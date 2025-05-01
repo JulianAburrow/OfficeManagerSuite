@@ -14,6 +14,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfficeManagerUI", "OfficeMa
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C12856D0-ADAE-472D-995B-5503DA17C8C7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05-4346-4AA6-1389-037BE0695223}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{73B2167A-5235-4925-8D76-E88C098A6D74}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +32,10 @@ Global
 		{C5CD6F6D-839F-4909-9065-29236A433144}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5CD6F6D-839F-4909-9065-29236A433144}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5CD6F6D-839F-4909-9065-29236A433144}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73B2167A-5235-4925-8D76-E88C098A6D74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73B2167A-5235-4925-8D76-E88C098A6D74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73B2167A-5235-4925-8D76-E88C098A6D74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73B2167A-5235-4925-8D76-E88C098A6D74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -35,6 +43,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{7227039B-1CA0-4270-A388-05C720ED599A} = {C12856D0-ADAE-472D-995B-5503DA17C8C7}
 		{C5CD6F6D-839F-4909-9065-29236A433144} = {C12856D0-ADAE-472D-995B-5503DA17C8C7}
+		{73B2167A-5235-4925-8D76-E88C098A6D74} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2D4D2DFA-9BD4-4ED6-9E0D-A7D67C6A6B61}

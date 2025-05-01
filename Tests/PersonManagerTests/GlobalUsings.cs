@@ -1,0 +1,7 @@
+﻿global using FluentAssertions;
+global using Microsoft.EntityFrameworkCore;
+global using OfficeManagerDataAccess.PersonManager.PersonManagerData;
+global using OfficeManagerDataAccess.PersonManager.PersonManagerHandlers;
+global using OfficeManagerDataAccess.PersonManager.PersonManagerInterfaces;
+global using OfficeManagerDataAccess.PersonManager.PersonManagerModels;
+global using Xunit;
