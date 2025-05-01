@@ -1,0 +1,21 @@
+﻿@page "/address/delete/{AddressId:int}"
+@inherits AddressBasePageClass
+
+<PageTitle>Delete Address</PageTitle>
+
+@if (AddressModel is null || AddressModel.Person is null)
+{
+    <LoadingOrNotFoundComponent ValueToShow="@AddressSingular" />
+    return;
+}
+
+<ConfirmDeleteComponent ObjectType="@AddressSingular" ObjectName="@AddressModel.AddressLine1" />
+
+<br />
+<br />
+<AddressViewDeleteComponent AddressModel="@AddressModel" />
+
+<br />
+<br />
+
+<button class="btn btn-danger" @onclick="DeleteAddress">Delete</button>&nbsp;<a class="btn btn-primary" href="/addresses/index/@AddressModel.PersonId">Cancel</a>
