@@ -4,9 +4,11 @@
 <PageTitle>Emergency Contacts</PageTitle>
 
 <a href="/emergencycontact/create/@PersonId" class="btn btn-primary">Create Emergency Contact</a>
-&nbsp;
-<a href="/person/view/@PersonId" class="btn btn-primary">View Person</a>
-
+@if (PersonId > 0)
+{
+    @:&nbsp;
+    <a href="/person/view/@PersonId" class="btn btn-primary">View Person</a>
+}
 
 <br />
 <br />
@@ -17,4 +19,4 @@
     return;
 }
 
-<EmergencyContactGridviewComponent EmergencyContacts="@EmergencyContacts" ShowStaffMember="true" />
+<EmergencyContactGridviewComponent EmergencyContacts="@EmergencyContacts" ShowStaffMember="@(PersonId == 0)" />
