@@ -54,4 +54,13 @@ public class EmergencyContactHandler(PersonManagerDbContext context) : IEmergenc
 
         await _context.SaveChangesAsync();
     }
+
+    public async Task<List<string>> GetAllRelationshipsAsync() =>
+        await _context.EmergencyContacts
+            .AsNoTracking()
+            .OrderBy(e => e.Relationship)
+            .Select(e => e.Relationship)
+            .Where(r => !string.IsNullOrEmpty(r))
+            .Distinct()
+            .ToListAsync();
 }

@@ -16,6 +16,8 @@ public class EmergencyContactBasePageClass : BasePageClass
 
     protected List<PersonModel> People { get; set; } = [];
 
+    protected List<string> Relationships { get; set; } = [];
+
     protected string EmergencyContactSingular = "Emergency Contact";
 
     protected string EmergencyContactPlural = "Emergency Contacts";

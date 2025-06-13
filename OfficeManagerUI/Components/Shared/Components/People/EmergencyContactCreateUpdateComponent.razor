@@ -13,7 +13,15 @@
                 <MudTextField Label="First Name" @bind-Value="EmergencyContactDisplayModel.FirstName" />
                 <MudTextField Label="Last Name" @bind-Value="EmergencyContactDisplayModel.LastName" />
                 <MudTextField Label="Phone Number" @bind-Value="EmergencyContactDisplayModel.PhoneNumber" />
-                <MudTextField Label="Relationship" @bind-Value="EmergencyContactDisplayModel.Relationship" />
+                @* <MudTextField Label="Relationship" @bind-Value="EmergencyContactDisplayModel.Relationship" /> *@
+                <MudAutocomplete
+                    Label="Relationship"
+                    T="string"
+                    SearchFunc="@GetRelationships"
+                    ResetValueOnEmptyText="false"
+                    ValueChanged="@PopulateRelationship"
+                    CoerceValue="true"
+                    Value="@EmergencyContactDisplayModel.Relationship" />
             </MudCardContent>
         </MudCard>
     </MudItem>

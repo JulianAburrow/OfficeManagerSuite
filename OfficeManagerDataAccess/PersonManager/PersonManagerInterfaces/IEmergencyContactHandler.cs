@@ -13,4 +13,6 @@ public interface IEmergencyContactHandler
     Task UpdateEmergencyContactAsync(EmergencyContactModel emergencyContact);
 
     Task DeleteEmergencyContactAsync(int emergencyContactId);
+
+    Task<List<string>> GetAllRelationshipsAsync();
 }

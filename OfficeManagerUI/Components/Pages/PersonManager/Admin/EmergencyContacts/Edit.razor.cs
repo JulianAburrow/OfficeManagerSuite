@@ -6,6 +6,7 @@ public partial class Edit
     {
         People = await PersonHandler.GetAllPeopleForEmergencyContactAsync();
         EmergencyContactModel = await EmergencyContactHandler.GetEmergencyContactByIdAsync(EmergencyContactId);
+        Relationships = await EmergencyContactHandler.GetAllRelationshipsAsync();
         CopyModelToDisplayModel();
         MainLayout.SetHeaderValue("Edit Emergency Contact");
     }

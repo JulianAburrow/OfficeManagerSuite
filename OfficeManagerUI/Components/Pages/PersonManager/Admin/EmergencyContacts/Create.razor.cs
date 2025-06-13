@@ -10,6 +10,7 @@ public partial class Create
             FirstName = PleaseSelectText
         });
         EmergencyContactDisplayModel.PersonId = PersonId != default! ? PersonId : PleaseSelectValue;
+        Relationships = await EmergencyContactHandler.GetAllRelationshipsAsync();
         MainLayout.SetHeaderValue("Create Emergency Contact");
     }
 
