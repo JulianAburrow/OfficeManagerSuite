@@ -7,7 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfficeManagerDataAccess", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DbScripts", "DbScripts", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 	ProjectSection(SolutionItems) = preProject
-		DbScripts\OfficeSuiteDbScripts.sql = DbScripts\OfficeSuiteDbScripts.sql
+		DbScripts\OfficeSuiteDbScriptsPerson.sql = DbScripts\OfficeSuiteDbScriptsPerson.sql
+		OfficeSuiteDbScriptsVehicle.sql = OfficeSuiteDbScriptsVehicle.sql
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfficeManagerUI", "OfficeManagerUI\OfficeManagerUI.csproj", "{C5CD6F6D-839F-4909-9065-29236A433144}"

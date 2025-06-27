@@ -19,14 +19,15 @@ public class EmploymentStatusHandler(PersonManagerDbContext context) : IEmployme
         await _context.SaveChangesAsync();
     }
 
-    public Task<EmploymentStatusModel> GetEmploymentStatusByIdAsync(int employmentStatusId) =>
-        _context.EmploymentStatuses
+    public async Task<EmploymentStatusModel> GetEmploymentStatusByIdAsync(int employmentStatusId) =>
+        await _context.EmploymentStatuses
             .Include(e => e.Persons)
             .AsNoTracking()
-            .FirstOrDefaultAsync(e => e.EmploymentStatusId == employmentStatusId);
+            .FirstOrDefaultAsync(e => e.EmploymentStatusId == employmentStatusId)
+            ?? throw new ArgumentNullException(nameof(employmentStatusId), "Employment status not found");
 
-    public Task<List<EmploymentStatusModel>> GetAllEmploymentStatusesAsync() =>
-        _context.EmploymentStatuses
+    public async Task<List<EmploymentStatusModel>> GetAllEmploymentStatusesAsync() =>
+        await _context.EmploymentStatuses
             .Include(e => e.Persons)
             .AsNoTracking()
             .OrderBy(e => e.StatusName)

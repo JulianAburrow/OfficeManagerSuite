@@ -19,22 +19,23 @@ public class EmergencyContactHandler(PersonManagerDbContext context) : IEmergenc
         await _context.SaveChangesAsync();
     }
 
-    public Task<EmergencyContactModel> GetEmergencyContactByIdAsync(int emergencyContactId) =>
-        _context.EmergencyContacts
+    public async Task<EmergencyContactModel> GetEmergencyContactByIdAsync(int emergencyContactId) =>
+        await _context.EmergencyContacts
             .Include(e => e.Person)
             .AsNoTracking()
-            .FirstOrDefaultAsync(e => e.EmergencyContactId == emergencyContactId);
+            .FirstOrDefaultAsync(e => e.EmergencyContactId == emergencyContactId)
+            ?? throw new ArgumentNullException(nameof(emergencyContactId), "Emergency contact not found");
 
-    public Task<List<EmergencyContactModel>> GetAllEmergencyContactsAsync() =>
-        _context.EmergencyContacts
+    public async Task<List<EmergencyContactModel>> GetAllEmergencyContactsAsync() =>
+        await _context.EmergencyContacts
             .Include(e => e.Person)
             .AsNoTracking()
             .OrderBy(e => e.LastName)
             .ThenBy(e => e.FirstName)
             .ToListAsync();
 
-    public Task<List<EmergencyContactModel>> GetAllEmergencyContactsByPersonIdAsync(int personId) =>
-        _context.EmergencyContacts
+    public async Task<List<EmergencyContactModel>> GetAllEmergencyContactsByPersonIdAsync(int personId) =>
+        await _context.EmergencyContacts
             .Include(e => e.Person)
             .AsNoTracking()
             .Where(e => e.PersonId == personId)

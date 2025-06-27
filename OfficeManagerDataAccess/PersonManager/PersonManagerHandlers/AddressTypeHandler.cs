@@ -1,5 +1,4 @@
-﻿
-namespace OfficeManagerDataAccess.PersonManager.PersonManagerHandlers;
+﻿namespace OfficeManagerDataAccess.PersonManager.PersonManagerHandlers;
 
 public class AddressTypeHandler(PersonManagerDbContext context) : IAddressTypeHandler
 {
@@ -24,7 +23,8 @@ public class AddressTypeHandler(PersonManagerDbContext context) : IAddressTypeHa
         await _context.AddressTypes
             .Include(a => a.Addresses)
             .AsNoTracking()
-            .FirstOrDefaultAsync(a => a.AddressTypeId == addressTypeId);
+            .FirstOrDefaultAsync(a => a.AddressTypeId == addressTypeId)
+            ?? throw new ArgumentNullException(nameof(addressTypeId), "Address type not found");
 
     public async Task<List<AddressTypeModel>> GetAllAddressTypesAsync() =>
         await _context.AddressTypes

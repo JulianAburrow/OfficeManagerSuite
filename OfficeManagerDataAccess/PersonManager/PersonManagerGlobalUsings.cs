@@ -1,3 +1,5 @@
-﻿global using OfficeManagerDataAccess.PersonManager.PersonManagerModels;
-global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using OfficeManagerDataAccess.PersonManager.PersonManagerConfiguration;
 global using OfficeManagerDataAccess.PersonManager.PersonManagerData;
+global using OfficeManagerDataAccess.PersonManager.PersonManagerInterfaces;
+global using OfficeManagerDataAccess.PersonManager.PersonManagerModels;

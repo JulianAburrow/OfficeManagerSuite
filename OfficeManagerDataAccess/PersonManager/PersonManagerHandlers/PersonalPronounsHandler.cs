@@ -24,7 +24,8 @@ public class PersonalPronounsHandler(PersonManagerDbContext context) : IPersonal
         await _context.PersonalPronouns
             .Include(p => p.Persons)
             .AsNoTracking()
-            .FirstOrDefaultAsync(p => p.PersonalPronounsId == personalPronounsId);
+            .FirstOrDefaultAsync(p => p.PersonalPronounsId == personalPronounsId)
+            ?? throw new ArgumentNullException(nameof(personalPronounsId), "Personal pronouns not found");
 
     public async Task<List<PersonalPronounsModel>> GetAllPersonalPronounsAsync() =>
         await _context.PersonalPronouns

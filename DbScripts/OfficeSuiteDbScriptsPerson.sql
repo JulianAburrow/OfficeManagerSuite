@@ -1,6 +1,8 @@
 ﻿USE Master
 GO
 
+-- PersonManager
+
 IF EXISTS (Select * From sys.databases Where name = 'OfficeManagerSuitePerson')
 	Alter Database [OfficeManagerSuitePerson] Set Single_User With Rollback Immediate
 GO
@@ -127,3 +129,4 @@ CREATE TABLE Address (
 		REFERENCES AddressType (AddressTypeId)
 );
 GO
+

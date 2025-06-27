@@ -23,12 +23,15 @@ public class AddressHandler(PersonManagerDbContext context) : IAddressHandler
         await _context.Addresses
             .Include(a => a.Person)
             .Include(a => a.AddressType)
-            .FirstOrDefaultAsync(a => a.AddressId == addressId);
+            .AsNoTracking()
+            .FirstOrDefaultAsync(a => a.AddressId == addressId)
+            ?? throw new ArgumentNullException(nameof(addressId), "Address not found");
 
     public async Task<List<AddressModel>> GetAllAddressesAsync(int personId) =>
         await _context.Addresses
             .Include(a => a.Person)
             .Include(a => a.AddressType)
+            .AsNoTracking() 
             .Where(a => a.PersonId == personId)
             .ToListAsync();
 

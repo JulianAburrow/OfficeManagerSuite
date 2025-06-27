@@ -24,10 +24,10 @@ public class PersonHandler(PersonManagerDbContext context) : IPersonHandler
             .Include(p => p.Addresses)
             .Include(p => p.EmploymentStatus)
             .Include(p => p.PersonalPronouns)
+            .AsNoTracking()
             .Include(p => p.Gender)
             .OrderBy(p => p.LastName)
             .ThenBy(p => p.FirstName)
-            .AsNoTracking()
             .ToListAsync();
 
     public async Task<List<PersonModel>> GetAllPeopleForEmergencyContactAsync() =>
@@ -45,7 +45,8 @@ public class PersonHandler(PersonManagerDbContext context) : IPersonHandler
             .Include(p => p.PersonalPronouns)
             .Include(p => p.Gender)
             .AsNoTracking()
-            .FirstOrDefaultAsync(p => p.PersonId == personId);
+            .FirstOrDefaultAsync(p => p.PersonId == personId)
+            ?? throw new ArgumentNullException(nameof(personId), "Person not found");
 
     public async Task UpdatePersonAsync(PersonModel personModel)
     {

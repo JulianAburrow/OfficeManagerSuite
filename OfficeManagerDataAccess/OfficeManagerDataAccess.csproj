@@ -16,11 +16,6 @@
     <Folder Include="CustomerManager\CustomerModels\" />
     <Folder Include="CustomerManager\CustomerConfiguration\" />
     <Folder Include="CustomerManager\CustomerData\" />
-    <Folder Include="VehicleManager\VehicleManagerConfiguration\" />
-    <Folder Include="VehicleManager\VehicleManagerModels\" />
-    <Folder Include="VehicleManager\VehicleManagerData\" />
-    <Folder Include="VehicleManager\VehicleManagerHandlers\" />
-    <Folder Include="VehicleManager\VehicleManagerInterfaces\" />
   </ItemGroup>
 
   <ItemGroup>

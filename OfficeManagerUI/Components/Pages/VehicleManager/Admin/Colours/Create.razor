@@ -1,0 +1,25 @@
+﻿@page "/colour/create"
+@inherits ColourBasePageClass
+
+<PageTitle>Create Colour</PageTitle>
+
+<EditForm Model="ColourDisplayModel" OnValidSubmit="CreateColour">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <MudGrid>
+        <MudItem sm="7">
+            <MudCard>
+                <MudCardContent>
+                    <ColourCreateUpdateComponent ColourDisplayModel="@ColourDisplayModel" />
+                </MudCardContent>
+                <MudCardActions>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    &nbsp;
+                    <a class="btn btn-primary" href="/colours/index">Cancel</a>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>
+

@@ -20,11 +20,12 @@ public class GenderHandler(PersonManagerDbContext context) : IGenderHandler
         await _context.SaveChangesAsync();
     }
 
-    public Task<GenderModel> GetGenderByIdAsync(int genderId) =>
-        _context.Genders
+    public async Task<GenderModel> GetGenderByIdAsync(int genderId) =>
+        await _context.Genders
             .Include(g => g.Persons)
             .AsNoTracking()
-            .FirstOrDefaultAsync(g => g.GenderId == genderId);
+            .FirstOrDefaultAsync(g => g.GenderId == genderId)
+            ?? throw new ArgumentNullException(nameof(genderId), "Gender not found");
 
     public async Task<List<GenderModel>> GetAllGendersAsync() =>
         await _context.Genders

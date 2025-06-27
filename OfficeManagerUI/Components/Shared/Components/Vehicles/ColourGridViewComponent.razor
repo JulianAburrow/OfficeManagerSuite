@@ -1,0 +1,28 @@
+﻿<MudTable Items="Colours"
+          Hover
+          FixedHeader="true">
+    <HeaderContent>
+        <MudTh title="Sort by Address Type">
+            <MudTableSortLabel SortBy="new Func<ColourModel, object>(x => x.ColourName)">
+                Colour Name
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh></MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd>@context.ColourName</MudTd>
+        <MudTd>
+            <a href="/colour/view/@context.ColourId" class="btn btn-primary">View</a>
+            &nbsp;
+            <a href="/colour/edit/@context.ColourId" class="btn btn-primary">Edit</a>
+            @if (!context.Vehicles.Any())
+            {
+                @:&nbsp;
+                <a href="/colour/delete/@context.ColourId" class="btn btn-danger">Delete</a>
+            }
+        </MudTd>
+    </RowTemplate>
+    <PagerContent>
+        <MudTablePager PageSizeOptions="new int[] { 5, 10, 15, int.MaxValue }" />
+    </PagerContent>
+</MudTable>

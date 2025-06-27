@@ -1,0 +1,4 @@
+﻿global using OfficeManagerDataAccess.VehicleManager.VehicleManagerConfiguration;
+global using OfficeManagerDataAccess.VehicleManager.VehicleManagerData;
+global using OfficeManagerDataAccess.VehicleManager.VehicleManagerInterfaces;
+global using OfficeManagerDataAccess.VehicleManager.VehicleManagerModels;

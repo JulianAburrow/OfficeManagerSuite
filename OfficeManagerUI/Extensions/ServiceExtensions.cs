@@ -6,6 +6,8 @@ public static class ServiceExtensions
     {
         services.AddDbContext<PersonManagerDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("PersonManagerConnection")));
+        services.AddDbContext<VehicleManagerDbContext>(options =>
+            options.UseSqlServer(configuration.GetConnectionString("VehicleManagerConnection")));
     }
 
     public static void AddPersonManagerDependencies(this IServiceCollection services)
@@ -17,5 +19,13 @@ public static class ServiceExtensions
         services.AddTransient<IGenderHandler, GenderHandler>();
         services.AddTransient<IPersonalPronounsHandler, PersonalPronounsHandler>();
         services.AddTransient<IPersonHandler, PersonHandler>();
+    }
+
+    public static void AddVehicleManagerDependencies(this IServiceCollection services)
+    {
+        services.AddTransient<IColourHandler, ColourHandler>();
+        services.AddTransient<IManufacturerHandler, ManufacturerHandler>();
+        services.AddTransient<IModelHandler, ModelHandler>();
+        services.AddTransient<IVehicleHandler, VehicleHandler>();
     }
 }
