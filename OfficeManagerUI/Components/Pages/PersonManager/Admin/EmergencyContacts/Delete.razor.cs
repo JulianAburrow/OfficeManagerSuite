@@ -23,7 +23,7 @@ public partial class Delete
         {
             await EmergencyContactHandler.DeleteEmergencyContactAsync(EmergencyContactId);
             Snackbar.Add($"Emergency contact {EmergencyContactModel.FirstName} {EmergencyContactModel.LastName} successfully deleted", Severity.Success);
-            NavigationManager.NavigateTo("/emergencycontacts/index");
+            NavigationManager.NavigateTo("/personmanager/emergencycontacts/index");
         }
         catch
         {

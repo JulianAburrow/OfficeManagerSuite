@@ -1,0 +1,25 @@
+﻿<MudTable Items="Relationships"
+          Hover
+          FixedHeader="true">
+    <HeaderContent>
+        <MudTh title="Sort by Address Line 1">
+            <MudTableSortLabel SortBy="new Func<RelationshipModel, object>(x => x.RelationshipName)">
+                Relationship
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh></MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd>@context.RelationshipName</MudTd>
+        <MudTd>
+            <a href="/personmanager/relationship/view/@context.RelationshipId" class="btn btn-primary">View</a>
+            @if (!context.EmergencyContacts.Any())
+            {
+                @:&nbsp;
+                <a href="/personmanager/relationship/edit/@context.RelationshipId" class="btn btn-primary">Edit</a>            
+                @:&nbsp;
+                <a href="/personmanager/relationship/delete/@context.RelationshipId" class="btn btn-danger">Delete</a>
+            }
+        </MudTd>
+    </RowTemplate>
+</MudTable>

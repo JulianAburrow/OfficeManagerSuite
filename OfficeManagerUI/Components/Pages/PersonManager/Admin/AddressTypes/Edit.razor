@@ -1,4 +1,4 @@
-﻿@page "/addresstype/edit/{AddressTypeId:int}"
+﻿@page "/personmanager/addresstype/edit/{AddressTypeId:int}"
 @inherits AddressTypeBasePageClass
 
 <PageTitle>Edit Address Type</PageTitle>
@@ -6,6 +6,16 @@
 @if (AddressTypeDisplayModel == null)
 {
     <LoadingOrNotFoundComponent ValueToShow="@AddressTypeSingular" />
+    return;
+}
+
+@if (!OkToEditOrDelete)
+{
+    <CannotEditOrDeleteComponent
+        WhichManager="@ManagerEnum.person.ToString()"
+        ObjectType="@AddressTypePlural"
+        ObjectCount="@AddressTypeDisplayModel.AddressCount"
+        ObjectName="@AddressTypeDisplayModel.TypeName" />
     return;
 }
 
@@ -20,7 +30,7 @@
                 <MudCardActions>
                     <button type="submit" class="btn btn-primary">Update</button>
                     &nbsp;
-                    <a class="btn btn-primary" href="/addresstypes/index">Cancel</a>
+                    <a class="btn btn-primary" href="/personmanager/addresstypes/index">Cancel</a>
                 </MudCardActions>
             </MudCard>
         </MudItem>

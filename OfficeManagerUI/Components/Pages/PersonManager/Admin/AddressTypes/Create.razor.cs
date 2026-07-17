@@ -20,7 +20,7 @@ public partial class Create
             CopyDisplayModelToModel();
             await AddressTypeHandler.CreateAddressTypeAsync(AddressTypeModel);
             Snackbar.Add($"Address Type {AddressTypeModel.TypeName} successfully created", Severity.Success);
-            NavigationManager.NavigateTo("/addresstypes/index");
+            NavigationManager.NavigateTo("/personmanager/addresstypes/index");
         }
         catch
         {

@@ -7,6 +7,7 @@ public partial class Edit
         EmploymentStatusModel = await EmploymentStatusHandler.GetEmploymentStatusByIdAsync(EmploymentStatusId);
         CopyModelToDisplayModel();
         MainLayout.SetHeaderValue("Edit Employment Status");
+        OkToEditOrDelete = EmploymentStatusModel.Persons.Count == 0;
     }
 
     protected override void OnInitialized()
@@ -26,7 +27,7 @@ public partial class Edit
             CopyDisplayModelToModel();
             await EmploymentStatusHandler.UpdateEmploymentStatusAsync(EmploymentStatusModel);
             Snackbar.Add($"Employment Status {EmploymentStatusModel.StatusName} successfully updated", Severity.Success);
-            NavigationManager.NavigateTo("/employmentstatuses/index");
+            NavigationManager.NavigateTo("/personmanager/employmentstatuses/index");
         }
         catch
         {

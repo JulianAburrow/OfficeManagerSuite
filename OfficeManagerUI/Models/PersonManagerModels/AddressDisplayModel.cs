@@ -26,4 +26,8 @@ public class AddressDisplayModel
     [Range(1, int.MaxValue, ErrorMessage = "{0} is required")]
     [Display(Name = "Address Type")]
     public int AddressTypeId { get; set; }
+
+    public decimal? Latitude { get; set; }
+
+    public decimal? Longitude { get; set; }
 }

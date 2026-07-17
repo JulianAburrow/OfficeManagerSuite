@@ -1,4 +1,4 @@
-﻿@page "/emergencycontact/edit/{EmergencyContactId:int}"
+﻿@page "/personmanager/emergencycontact/edit/{EmergencyContactId:int}"
 @inherits EmergencyContactBasePageClass
 
 <PageTitle>Edit Emergency Contact</PageTitle>
@@ -16,11 +16,15 @@
     <MudGrid>
         <MudItem sm="7">
             <MudCard>
-                <EmergencyContactCreateUpdateComponent EmergencyContactDisplayModel="@EmergencyContactDisplayModel" People="@People" DisablePeopleDropDownList="true" Relationships="@Relationships"  />
+                <EmergencyContactCreateUpdateComponent
+                    EmergencyContactDisplayModel="@EmergencyContactDisplayModel"
+                    People="@People"
+                    DisablePeopleDropDownList="true"
+                    Relationships="@Relationships"  />
                 <MudCardActions>
                     <button type="submit" class="btn btn-primary">Update</button>
                     &nbsp;
-                    <a class="btn btn-primary" href="/emergencycontacts/index/@EmergencyContactModel.PersonId">Cancel</a>
+                    <a class="btn btn-primary" href="/personmanager/emergencycontacts/index/@EmergencyContactModel.PersonId">Cancel</a>
                 </MudCardActions>
             </MudCard>
         </MudItem>

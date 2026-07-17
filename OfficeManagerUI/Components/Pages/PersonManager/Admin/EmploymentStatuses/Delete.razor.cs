@@ -6,7 +6,7 @@ public partial class Delete
     {
         EmploymentStatusModel = await EmploymentStatusHandler.GetEmploymentStatusByIdAsync(EmploymentStatusId);
         MainLayout.SetHeaderValue("Delete Employment Status");
-        OkToDelete = EmploymentStatusModel.Persons != null && EmploymentStatusModel.Persons.Count == 0;
+        OkToEditOrDelete = EmploymentStatusModel.Persons != null && EmploymentStatusModel.Persons.Count == 0;
     }
 
     protected override void OnInitialized()
@@ -25,7 +25,7 @@ public partial class Delete
         {
             await EmploymentStatusHandler.DeleteEmploymentStatusAsync(EmploymentStatusId);
             Snackbar.Add($"Employment Status {EmploymentStatusModel.StatusName} successfully deleted", Severity.Success);
-            NavigationManager.NavigateTo("/employmentstatuses/index");
+            NavigationManager.NavigateTo("/personmanager/employmentstatuses/index");
         }
         catch
         {

@@ -1,4 +1,4 @@
-﻿@page "/address/view/{AddressId:int}"
+﻿@page "/personmanager/address/view/{AddressId:int}"
 @inherits AddressBasePageClass
 
 <PageTitle>View Address</PageTitle>
@@ -16,12 +16,21 @@
                 <AddressViewDeleteComponent AddressModel="@AddressModel" />
             </MudCardContent>
             <MudCardActions>
-                <a class="btn btn-primary" href="/address/edit/@AddressModel.AddressId">Edit</a>
+                <a class="btn btn-primary" href="/personmanager/address/edit/@AddressModel.AddressId">Edit</a>
                 &nbsp;
-                <a class="btn btn-danger" href="/address/delete/@AddressModel.AddressId">Delete</a>
+                <a class="btn btn-danger" href="/personmanager/address/delete/@AddressModel.AddressId">Delete</a>
                 &nbsp;
-                <a class="btn btn-primary" href="/addresses/index/@AddressModel.PersonId">Cancel</a>
+                <a class="btn btn-primary" href="/personmanager/addresses/index/@AddressModel.PersonId">Cancel</a>
             </MudCardActions>
         </MudCard>
     </MudItem>
 </MudGrid>
+
+@if (!ShowMap)
+{
+    return;
+}
+
+<br />
+
+<div id="map" style="width: 100%;height:400px;"></div>

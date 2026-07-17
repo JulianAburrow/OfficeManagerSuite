@@ -30,7 +30,7 @@ public class PersonModel
 
     public GenderModel? Gender { get; set; } = null!;
 
-    public ICollection<AddressModel>? Addresses { get; set; } = null!;
+    public ICollection<AddressModel> Addresses { get; set; } = [];
 
-    public ICollection<EmergencyContactModel>? EmergencyContacts { get; set; } = null!;
+    public ICollection<EmergencyContactModel> EmergencyContacts { get; set; } = [];
 }

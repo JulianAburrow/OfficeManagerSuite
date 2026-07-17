@@ -1,4 +1,4 @@
-﻿@page "/gender/edit/{GenderId:int}"
+﻿@page "/personmanager/gender/edit/{GenderId:int}"
 @inherits GenderBasePageClass
 
 <PageTitle>Edit Gender</PageTitle>
@@ -6,6 +6,16 @@
 @if (GenderModel == null)
 {
     <LoadingOrNotFoundComponent ValueToShow="@GenderSingular" />
+    return;
+}
+
+@if (!OkToEditOrDelete)
+{
+    <CannotEditOrDeleteComponent
+        WhichManager="@ManagerEnum.person.ToString()"
+        ObjectType="@GenderPlural"
+        ObjectName="@GenderModel.GenderName"
+        ObjectCount="@GenderModel.Persons.Count" />
     return;
 }
 
@@ -20,7 +30,7 @@
                 <MudCardActions>
                     <button type="submit" class="btn btn-primary">Update</button>
                     &nbsp;
-                    <a class="btn btn-primary" href="/genders/index">Cancel</a>
+                    <a class="btn btn-primary" href="/personmanager/genders/index">Cancel</a>
                 </MudCardActions>
             </MudCard>
         </MudItem>

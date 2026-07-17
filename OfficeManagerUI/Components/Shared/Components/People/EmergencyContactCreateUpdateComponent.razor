@@ -2,7 +2,7 @@
     <MudItem sm="7">
         <MudCard>
             <MudCardContent>
-                <MudSelect Label="Staff Member" @bind-Value="EmergencyContactDisplayModel.PersonId" Disabled="@DisablePeopleDropDownList">
+                <MudSelect T="int" Label="Staff Member" @bind-Value="EmergencyContactDisplayModel.PersonId" Disabled="@DisablePeopleDropDownList">
                     @foreach (var person in People)
                     {
                         <MudSelectItem T="int" Value="@person.PersonId">
@@ -13,15 +13,12 @@
                 <MudTextField Label="First Name" @bind-Value="EmergencyContactDisplayModel.FirstName" />
                 <MudTextField Label="Last Name" @bind-Value="EmergencyContactDisplayModel.LastName" />
                 <MudTextField Label="Phone Number" @bind-Value="EmergencyContactDisplayModel.PhoneNumber" />
-                @* <MudTextField Label="Relationship" @bind-Value="EmergencyContactDisplayModel.Relationship" /> *@
-                <MudAutocomplete
-                    Label="Relationship"
-                    T="string"
-                    SearchFunc="@GetRelationships"
-                    ResetValueOnEmptyText="false"
-                    ValueChanged="@PopulateRelationship"
-                    CoerceValue="true"
-                    Value="@EmergencyContactDisplayModel.Relationship" />
+                <MudSelect T="int" Label="Relationship" @bind-Value="EmergencyContactDisplayModel.RelationshipId">
+                    @foreach (var relationship in Relationships)
+                    {
+                        <MudSelectItem T="int" Value="@relationship.RelationshipId">@relationship.RelationshipName</MudSelectItem>
+                    }
+                </MudSelect>
             </MudCardContent>
         </MudCard>
     </MudItem>

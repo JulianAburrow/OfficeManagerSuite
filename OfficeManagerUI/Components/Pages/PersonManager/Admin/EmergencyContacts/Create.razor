@@ -1,8 +1,14 @@
-﻿@page "/emergencycontact/create"
-@page "/emergencycontact/create/{PersonId:int}"
+﻿@page "/personmanager/emergencycontact/create"
+@page "/personmanager/emergencycontact/create/{PersonId:int}"
 @inherits EmergencyContactBasePageClass
 
 <PageTitle>Create Emergency Contact</PageTitle>
+
+@if (People is null || Relationships is null)
+{
+    <LoadingOrNotFoundComponent ValueToShow="Values" />
+    return;
+}
 
 <EditForm Model="EmergencyContactDisplayModel" OnValidSubmit="CreateEmergencyContact">
     <DataAnnotationsValidator />
@@ -20,7 +26,7 @@
                 <MudCardActions>
                     <button type="submit" class="btn btn-primary">Submit</button>
                     &nbsp;
-                    <a class="btn btn-primary" href="/emergencycontacts/index/@PersonId">Cancel</a>
+                    <a class="btn btn-primary" href="/personmanager/emergencycontacts/index/@PersonId">Cancel</a>
                 </MudCardActions>
             </MudCard>
         </MudItem>

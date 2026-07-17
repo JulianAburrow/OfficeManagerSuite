@@ -20,7 +20,7 @@ public partial class Create
             CopyDisplayModelToModel();
             await PersonalPronounsHandler.CreatePersonalPronounsAsync(PersonalPronounsModel);
             Snackbar.Add($"Personal Pronoun {PersonalPronounsModel.PronounNames} successfully created", Severity.Success);
-            NavigationManager.NavigateTo("/personalpronouns/index");
+            NavigationManager.NavigateTo("/personmanager/personalpronouns/index");
         }
         catch
         {

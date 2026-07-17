@@ -1,4 +1,4 @@
-﻿@page "/employmentstatus/delete/{EmploymentStatusId:int}"
+﻿@page "/personmanager/employmentstatus/delete/{EmploymentStatusId:int}"
 @inherits EmploymentStatusBasePageClass
 
 <PageTitle>Delete Employment Status</PageTitle>
@@ -9,9 +9,13 @@
     return;
 }
 
-@if (!OkToDelete)
+@if (!OkToEditOrDelete)
 {
-    <CannotDeleteComponent ObjectType="@EmploymentStatusSingular" ObjectName="@EmploymentStatusModel.StatusName" ObjectCount="@EmploymentStatusModel.Persons.Count" />
+    <CannotEditOrDeleteComponent
+        WhichManager="@ManagerEnum.person.ToString()"
+        ObjectType="@EmploymentStatusPlural"
+        ObjectName="@EmploymentStatusModel.StatusName"
+        ObjectCount="@EmploymentStatusModel.Persons.Count" />
     return;
 }
 
@@ -25,10 +29,10 @@
 <br />
 <br />
 
-@if (OkToDelete)
+@if (OkToEditOrDelete)
 {
     <button class="btn btn-danger" @onclick="DeleteEmploymentStatus">Delete</button>
     @:&nbsp;
 }
 
-<a class="btn btn-primary" href="/employmentstatuses/index">Cancel</a>
+<a class="btn btn-primary" href="/personmanager/employmentstatuses/index">Cancel</a>

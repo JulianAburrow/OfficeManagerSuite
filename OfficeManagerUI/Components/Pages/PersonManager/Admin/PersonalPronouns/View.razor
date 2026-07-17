@@ -1,4 +1,4 @@
-﻿@page "/personalpronouns/view/{PersonalPronounsId:int}"
+﻿@page "/personmanager/personalpronouns/view/{PersonalPronounsId:int}"
 @inherits PersonalPronounsBasePageClass
 
 <PageTitle>View Personal Pronouns</PageTitle>
@@ -16,14 +16,14 @@
                 <PersonalPronounsViewDeleteComponent PersonalPronouns="@PersonalPronounsModel.PronounNames" />
             </MudCardContent>
             <MudCardActions>
-                <a class="btn btn-primary" href="/personalpronouns/edit/@PersonalPronounsModel.PersonalPronounsId">Edit</a>
+                <a class="btn btn-primary" href="/personmanager/personalpronouns/edit/@PersonalPronounsModel.PersonalPronounsId">Edit</a>
                 @if (!PersonalPronounsModel.Persons.Any())
                 {
                     @:&nbsp;
-                    <a class="btn btn-danger" href="/personalpronouns/delete/@PersonalPronounsModel.PersonalPronounsId">Delete</a>
+                    <a class="btn btn-danger" href="/personmanager/personalpronouns/delete/@PersonalPronounsModel.PersonalPronounsId">Delete</a>
                 }
                 &nbsp;
-                <a class="btn btn-primary" href="/personalpronouns/index">Cancel</a>"
+                <a class="btn btn-primary" href="/personmanager/personalpronouns/index">Cancel</a>"
             </MudCardActions>
         </MudCard>
     </MudItem>

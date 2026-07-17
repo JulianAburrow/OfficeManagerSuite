@@ -8,6 +8,8 @@ public class AddressBasePageClass : BasePageClass
 
     [Inject] protected IPersonHandler PersonHandler { get; set; } = null!;
 
+    [Inject] protected IGeocodingService Geocoder { get; set; } = null!;
+
     [Parameter] public int AddressId { get; set; }
 
     [SupplyParameterFromQuery]

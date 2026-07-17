@@ -6,7 +6,7 @@ public partial class Delete
     {
         AddressTypeModel = await AddressTypeHandler.GetAddressTypeByIdAsync(AddressTypeId);
         MainLayout.SetHeaderValue("Delete Address Type");
-        OkToDelete = AddressTypeModel.Addresses != null && AddressTypeModel.Addresses.Count == 0;
+        OkToEditOrDelete = AddressTypeModel.Addresses.Count == 0;
     }
 
     protected override void OnInitialized()
@@ -25,7 +25,7 @@ public partial class Delete
         {
             await AddressTypeHandler.DeleteAddressTypeAsync(AddressTypeId);
             Snackbar.Add($"Address Type {AddressTypeModel.TypeName} successfully deleted", Severity.Success);
-            NavigationManager.NavigateTo("/addresstypes/index");
+            NavigationManager.NavigateTo("/personmanager/addresstypes/index");
         }
         catch
         {

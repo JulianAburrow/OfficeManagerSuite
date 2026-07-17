@@ -2,6 +2,9 @@
 global using Microsoft.EntityFrameworkCore;
 global using MudBlazor;
 global using MudBlazor.Services;
+global using OfficeManagerUI.Components;
 global using OfficeManagerUI.Components.Layout;
 global using OfficeManagerUI.Extensions;
-global using OfficeManagerUI.Components;
+global using OfficeManagerUI.GlobalValues.Enums;
+global using OfficeManagerUI.Interfaces;
+global using OfficeManagerUI.Services;

@@ -1,0 +1,41 @@
+﻿@page "/personmanager/relationship/edit/{RelationshipId:int}"
+@inherits RelationshipBasePageClass
+
+<PageTitle>Edit Relationship</PageTitle>
+
+@if (RelationshipDisplayModel == null)
+{
+    <LoadingOrNotFoundComponent ValueToShow="@RelationshipSingular" />
+    return;
+}
+
+@if (!OkToEditOrDelete)
+{
+    <CannotEditOrDeleteComponent
+        WhichManager="@ManagerEnum.person.ToString()"
+        ObjectType="@RelationshipPlural"
+        ObjectCount="@RelationshipDisplayModel.PersonCount"
+        ObjectName="@RelationshipDisplayModel.RelationshipName" />
+    return;
+}
+
+<EditForm Model="RelationshipDisplayModel" OnValidSubmit="UpdateRelationship">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <MudGrid>
+        <MudItem sm="7">
+            <MudCard>
+                <MudCardContent>
+                    <RelationshipCreateUpdateComponent RelationshipDisplayModel="@RelationshipDisplayModel" />
+                </MudCardContent>
+                <MudCardActions>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    &nbsp;
+                    <a class="btn btn-primary" href="/personmanager/relationships/index">Cancel</a>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>
+

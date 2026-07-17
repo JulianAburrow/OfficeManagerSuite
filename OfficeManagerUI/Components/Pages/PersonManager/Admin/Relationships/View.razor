@@ -1,0 +1,30 @@
+﻿@page "/personmanager/relationship/view/{RelationshipId:int}"
+@inherits RelationshipBasePageClass
+
+<PageTitle>View Relationship</PageTitle>
+
+@if (RelationshipModel is null)
+{
+    <LoadingOrNotFoundComponent ValueToShow="@RelationshipSingular" />
+    return;
+}
+
+<MudGrid>
+    <MudItem sm="7">
+        <MudCard>
+            <MudCardContent>
+                <AddressTypeViewDeleteComponent TypeName="@RelationshipModel.RelationshipName" />
+            </MudCardContent>
+            <MudCardActions>
+                @if (OkToEditOrDelete)
+                {
+                    <a class="btn btn-primary" href="/personmanager/relationship/edit/@RelationshipModel.RelationshipId">Edit</a>
+                    @:&nbsp;
+                    <a class="btn btn-danger" href="/personmanager/relationship/delete/@RelationshipModel.RelationshipId">Delete</a>
+                    @:&nbsp;
+                }
+                <a class="btn btn-primary" href="/personmanager/relationships/index">Cancel</a>"
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+</MudGrid>

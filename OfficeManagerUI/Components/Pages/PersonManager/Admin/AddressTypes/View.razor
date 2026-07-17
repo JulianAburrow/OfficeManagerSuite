@@ -1,4 +1,4 @@
-﻿@page "/addresstype/view/{AddressTypeId:int}"
+﻿@page "/personmanager/addresstype/view/{AddressTypeId:int}"
 @inherits AddressTypeBasePageClass
 
 <PageTitle>View Address Type</PageTitle>
@@ -16,14 +16,14 @@
                 <AddressTypeViewDeleteComponent TypeName="@AddressTypeModel.TypeName" />
             </MudCardContent>
             <MudCardActions>
-                <a class="btn btn-primary" href="/addresstype/edit/@AddressTypeModel.AddressTypeId">Edit</a>
-                @if (!AddressTypeModel.Addresses.Any())
+                @if (OkToEditOrDelete)
                 {
+                    <a class="btn btn-primary" href="/personmanager/addresstype/edit/@AddressTypeModel.AddressTypeId">Edit</a>
                     @:&nbsp;
-                    <a class="btn btn-danger" href="/addresstype/delete/@AddressTypeModel.AddressTypeId">Delete</a>
+                    <a class="btn btn-danger" href="/personmanager/addresstype/delete/@AddressTypeModel.AddressTypeId">Delete</a>
+                    @:&nbsp;
                 }
-                &nbsp;
-                <a class="btn btn-primary" href="/addresstypes/index">Cancel</a>"
+                <a class="btn btn-primary" href="/personmanager/addresstypes/index">Cancel</a>"
             </MudCardActions>
         </MudCard>
     </MudItem>

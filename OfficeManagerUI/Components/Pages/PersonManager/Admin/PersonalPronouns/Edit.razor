@@ -1,4 +1,4 @@
-﻿@page "/personalpronouns/edit/{PersonalPronounsId:int}"
+﻿@page "/personmanager/personalpronouns/edit/{PersonalPronounsId:int}"
 @inherits PersonalPronounsBasePageClass
 
 <PageTitle>Edit Address Type</PageTitle>
@@ -6,6 +6,15 @@
 @if (PersonalPronounsDisplayModel == null)
 {
     <LoadingOrNotFoundComponent ValueToShow="@PersonalPronounsSingular" />
+    return;
+}
+
+@if (!OkToEditOrDelete)
+{
+    <CannotEditOrDeleteComponent WhichManager="@ManagerEnum.person.ToString()"
+                                 ObjectType="@PersonalPronounsPlural"
+                                 ObjectName="@PersonalPronounsModel.PronounNames"
+                                 ObjectCount="@PersonalPronounsModel.Persons.Count" />
     return;
 }
 
@@ -20,7 +29,7 @@
                 <MudCardActions>
                     <button type="submit" class="btn btn-primary">Update</button>
                     &nbsp;
-                    <a class="btn btn-primary" href="/personalpronouns/index">Cancel</a>
+                    <a class="btn btn-primary" href="/personmanager/personalpronouns/index">Cancel</a>
                 </MudCardActions>
             </MudCard>
         </MudItem>

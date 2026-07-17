@@ -1,4 +1,5 @@
-﻿global using OfficeManagerDataAccess.PersonManager.PersonManagerData;
+﻿global using Microsoft.JSInterop;
+global using OfficeManagerDataAccess.PersonManager.PersonManagerData;
 global using OfficeManagerDataAccess.PersonManager.PersonManagerHandlers;
 global using OfficeManagerDataAccess.PersonManager.PersonManagerInterfaces;
 global using OfficeManagerDataAccess.PersonManager.PersonManagerModels;

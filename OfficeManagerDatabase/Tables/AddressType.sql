@@ -1,0 +1,5 @@
+﻿CREATE TABLE AddressType (
+	AddressTypeId INT NOT NULL IDENTITY (1, 1),
+	TypeName NVARCHAR(20) NOT NULL,
+	CONSTRAINT PK_AddressType PRIMARY KEY (AddressTypeId)
+);

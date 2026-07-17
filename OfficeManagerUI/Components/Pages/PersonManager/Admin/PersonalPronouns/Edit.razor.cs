@@ -7,6 +7,7 @@ public partial class Edit
         PersonalPronounsModel = await PersonalPronounsHandler.GetPersonalPronounsByIdAsync(PersonalPronounsId);
         CopyModelToDisplayModel();
         MainLayout.SetHeaderValue("Edit Personal Pronouns");
+        OkToEditOrDelete = PersonalPronounsModel.Persons.Count == 0;
     }
 
     protected override void OnInitialized()
@@ -26,7 +27,7 @@ public partial class Edit
             CopyDisplayModelToModel();
             await PersonalPronounsHandler.UpdatePersonalPronounsAsync(PersonalPronounsModel);
             Snackbar.Add($"Personal Pronouns {PersonalPronounsModel.PronounNames} successfully updated", Severity.Success);
-            NavigationManager.NavigateTo("/personalpronouns/index");
+            NavigationManager.NavigateTo("/personmanager/personalpronouns/index");
         }
         catch
         {

@@ -6,4 +6,6 @@ public class PersonalPronounsDisplayModel
     [StringLength(20, ErrorMessage = "{0} cannot be more than {1} characters.")]
     [Display(Name = "Pronoun Names")]
     public string PronounNames { get; set; } = default!;
+
+    public int PersonCount { get; set; }
 }

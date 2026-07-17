@@ -41,12 +41,13 @@ public class PersonHandler(PersonManagerDbContext context) : IPersonHandler
             .Include(p => p.Addresses)
                 .ThenInclude(a => a.AddressType)
             .Include(p => p.EmergencyContacts)
+                .ThenInclude(e => e.Relationship)
             .Include(p => p.EmploymentStatus)
             .Include(p => p.PersonalPronouns)
             .Include(p => p.Gender)
             .AsNoTracking()
             .FirstOrDefaultAsync(p => p.PersonId == personId)
-            ?? throw new ArgumentNullException(nameof(personId), "Person not found");
+            ?? throw new ArgumentException(nameof(personId), "Person not found");
 
     public async Task UpdatePersonAsync(PersonModel personModel)
     {

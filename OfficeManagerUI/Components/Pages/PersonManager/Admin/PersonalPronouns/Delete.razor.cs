@@ -6,7 +6,7 @@ public partial class Delete
     {
         PersonalPronounsModel = await PersonalPronounsHandler.GetPersonalPronounsByIdAsync(PersonalPronounsId);
         MainLayout.SetHeaderValue("Delete Personal Pronouns");
-        OkToDelete = PersonalPronounsModel.Persons != null && PersonalPronounsModel.Persons.Count == 0;
+        OkToEditOrDelete = PersonalPronounsModel.Persons != null && PersonalPronounsModel.Persons.Count == 0;
     }
 
     protected override void OnInitialized()
@@ -25,7 +25,7 @@ public partial class Delete
         {
             await PersonalPronounsHandler.DeletePersonalPronounsAsync(PersonalPronounsId);
             Snackbar.Add($"Personal Pronouns {PersonalPronounsModel.PronounNames} successfully deleted", Severity.Success);
-            NavigationManager.NavigateTo("/personalpronouns/index");
+            NavigationManager.NavigateTo("/personmanager/personalpronouns/index");
         }
         catch
         {

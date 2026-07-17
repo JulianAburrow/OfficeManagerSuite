@@ -16,6 +16,8 @@ public class PersonManagerDbContext(DbContextOptions<PersonManagerDbContext> opt
 
     public DbSet<PersonModel> People { get; set; } = null!;
 
+    public DbSet<RelationshipModel> Relationships { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         foreach (var property in modelBuilder.Model.GetEntityTypes()
@@ -32,5 +34,6 @@ public class PersonManagerDbContext(DbContextOptions<PersonManagerDbContext> opt
         modelBuilder.ApplyConfiguration(new GenderConfiguration());
         modelBuilder.ApplyConfiguration(new PersonalPronounsConfiguration());
         modelBuilder.ApplyConfiguration(new PersonConfiguration());
+        modelBuilder.ApplyConfiguration(new RelationshipConfiguration());
     }
 }

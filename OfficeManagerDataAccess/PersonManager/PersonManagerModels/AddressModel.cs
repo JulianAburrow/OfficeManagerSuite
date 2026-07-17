@@ -16,6 +16,10 @@ public class AddressModel
 
     public int AddressTypeId { get; set; }
 
+    public decimal? Latitude { get; set; }
+
+    public decimal? Longitude { get; set; }
+
     public PersonModel Person { get; set; } = null!;
 
     public AddressTypeModel AddressType { get; set; } = null!;

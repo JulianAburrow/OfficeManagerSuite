@@ -30,9 +30,13 @@ public partial class Create
         try
         {
             CopyDisplayModelToModel();
+            var address = $"{AddressModel.AddressLine1} {AddressModel.AddressLine2} {AddressModel.City} {AddressModel.Postcode}";
+            var (lat, lng) = await Geocoder.GeocodeAsync(address);
+            AddressModel.Latitude = lat;
+            AddressModel.Longitude = lng;
             await AddressHandler.CreateAddressAsync(AddressModel);
             Snackbar.Add($"Address {AddressModel.AddressLine1} successfully created", Severity.Success);
-            NavigationManager.NavigateTo($"/person/view/{PersonId}");
+            NavigationManager.NavigateTo($"/personmanager/person/view/{PersonId}");
         }
         catch
         {

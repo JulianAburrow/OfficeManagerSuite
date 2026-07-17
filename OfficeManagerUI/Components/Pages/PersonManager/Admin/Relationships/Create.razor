@@ -1,0 +1,25 @@
+﻿@page "/personmanager/relationship/create"
+@inherits RelationshipBasePageClass
+
+<PageTitle>Create Relationship</PageTitle>
+
+<EditForm Model="RelationshipDisplayModel" OnValidSubmit="CreateRelationship">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <MudGrid>
+        <MudItem sm="7">
+            <MudCard>
+                <MudCardContent>
+                    <RelationshipCreateUpdateComponent RelationshipDisplayModel="@RelationshipDisplayModel" />
+                </MudCardContent>
+                <MudCardActions>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    &nbsp;
+                    <a class="btn btn-primary" href="/personmanager/relationships/index">Cancel</a>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>
+

@@ -1,4 +1,4 @@
-﻿@page "/address/create/{PersonId:int}"
+﻿@page "/personmanager/address/create/{PersonId:int}"
 @inherits AddressBasePageClass
 
 <PageTitle>Create Address</PageTitle>
@@ -16,7 +16,7 @@
                 <MudCardActions>
                     <button type="submit" class="btn btn-primary">Submit</button>
                     &nbsp;
-                    <a class="btn btn-primary" href="/addresses/index/@PersonId">Cancel</a>
+                    <a class="btn btn-primary" href="/personmanager/addresses/index/@PersonId">Cancel</a>
                 </MudCardActions>
             </MudCard>
         </MudItem>

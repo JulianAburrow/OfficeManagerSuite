@@ -20,7 +20,7 @@ public partial class Create
             CopyDisplayModelToModel();
             await ColourHandler.CreateColourAsync(ColourModel);
             Snackbar.Add($"Colour {ColourModel.ColourName} successfully created", Severity.Success);
-            NavigationManager.NavigateTo("/colours/index");
+            NavigationManager.NavigateTo("/personmanager/colours/index");
         }
         catch
         {

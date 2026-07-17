@@ -1,13 +1,13 @@
-﻿@page "/emergencycontacts/index/{PersonId:int}"
+﻿@page "/personmanager/emergencycontacts/index/{PersonId:int}"
 @inherits EmergencyContactBasePageClass
 
 <PageTitle>Emergency Contacts</PageTitle>
 
-<a href="/emergencycontact/create/@PersonId" class="btn btn-primary">Create Emergency Contact</a>
+<a href="/personmanager/emergencycontact/create/@PersonId" class="btn btn-primary">Create Emergency Contact</a>
 @if (PersonId > 0)
 {
     @:&nbsp;
-    <a href="/person/view/@PersonId" class="btn btn-primary">View Person</a>
+    <a href="/personmanager/person/view/@PersonId" class="btn btn-primary">View Person</a>
 }
 
 <br />

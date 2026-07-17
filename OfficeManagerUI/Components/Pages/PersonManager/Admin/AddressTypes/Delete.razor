@@ -1,4 +1,4 @@
-﻿@page "/addresstype/delete/{AddressTypeId:int}"
+﻿@page "/personmanager/addresstype/delete/{AddressTypeId:int}"
 @inherits AddressTypeBasePageClass
 
 <PageTitle>Delete Address Type</PageTitle>
@@ -9,9 +9,13 @@
     return;
 }
 
-@if (!OkToDelete)
+@if (!OkToEditOrDelete)
 {
-    <CannotDeleteComponent ObjectType="@AddressTypeSingular" ObjectName="@AddressTypeModel.TypeName" ObjectCount="@AddressTypeModel.Addresses.Count" />
+    <CannotEditOrDeleteComponent
+        WhichManager="@ManagerEnum.person.ToString()"
+        ObjectType="@AddressTypePlural"
+        ObjectName="@AddressTypeModel.TypeName"
+        ObjectCount="@AddressTypeModel.Addresses.Count" />
     return;
 }
 
@@ -25,10 +29,6 @@
 <br />
 <br />
 
-@if (OkToDelete)
-{
-    <button class="btn btn-danger" @onclick="DeleteAddressType">Delete</button>
-    @:&nbsp;
-}
-
-<a class="btn btn-primary" href="/addresstypes/index">Cancel</a>
+<button class="btn btn-danger" @onclick="DeleteAddressType">Delete</button>
+&nbsp;
+<a class="btn btn-primary" href="/personmanager/addresstypes/index">Cancel</a>

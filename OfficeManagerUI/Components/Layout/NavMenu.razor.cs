@@ -6,6 +6,6 @@ public partial class NavMenu(NavigationManager NavigationManager)
 
     private void GoToEmergencyContacts()
     {
-        navigationManager.NavigateTo("/emergencycontacts/index/0", true);
+        navigationManager.NavigateTo("/personmanager/emergencycontacts/index/0", true);
     }
 }

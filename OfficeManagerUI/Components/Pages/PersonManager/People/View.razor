@@ -1,4 +1,4 @@
-﻿@page "/person/view/{PersonId:int}"
+﻿@page "/personmanager/person/view/{PersonId:int}"
 @inherits PersonBasePageClass
 
 <PageTitle>View Person</PageTitle>
@@ -16,9 +16,9 @@
                 <PersonViewDeleteComponent Person="@PersonModel" />
             </MudCardContent>
             <MudCardActions>
-                <a class="btn btn-primary" href="/person/edit/@PersonModel.PersonId">Edit</a>
+                <a class="btn btn-primary" href="/personmanager/person/edit/@PersonModel.PersonId">Edit</a>
                 &nbsp;
-                <a class="btn btn-primary" href="/people/index">Cancel</a>
+                <a class="btn btn-primary" href="/personmanager/people/index">Cancel</a>
             </MudCardActions>
         </MudCard>
     </MudItem>

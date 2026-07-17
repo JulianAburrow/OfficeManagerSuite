@@ -6,6 +6,7 @@ public partial class View
     {
         AddressTypeModel = await AddressTypeHandler.GetAddressTypeByIdAsync(AddressTypeId);
         MainLayout.SetHeaderValue("View Address Type");
+        OkToEditOrDelete = AddressTypeModel.Addresses.Count == 0;
     }
 
     protected override void OnInitialized()

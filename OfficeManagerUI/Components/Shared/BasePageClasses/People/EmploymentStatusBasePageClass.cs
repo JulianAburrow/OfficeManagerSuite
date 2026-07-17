@@ -27,5 +27,6 @@ public class EmploymentStatusBasePageClass : BasePageClass
     protected void CopyModelToDisplayModel()
     {
         EmploymentStatusDisplayModel.StatusName = EmploymentStatusModel.StatusName;
+        EmploymentStatusDisplayModel.PersonCount = EmploymentStatusModel.Persons.Count;
     }
 }

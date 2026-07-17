@@ -12,13 +12,13 @@
     <RowTemplate>
         <MudTd>@context.TypeName</MudTd>
         <MudTd>
-            <a href="/addresstype/view/@context.AddressTypeId" class="btn btn-primary">View</a>
-            &nbsp;
-            <a href="/addresstype/edit/@context.AddressTypeId" class="btn btn-primary">Edit</a>
+            <a href="/personmanager/addresstype/view/@context.AddressTypeId" class="btn btn-primary">View</a>
             @if (!context.Addresses.Any())
             {
                 @:&nbsp;
-                <a href="/addresstype/delete/@context.AddressTypeId" class="btn btn-danger">Delete</a>
+                <a href="/personmanager/addresstype/edit/@context.AddressTypeId" class="btn btn-primary">Edit</a>
+                @:&nbsp;
+                <a href="/personmanager/addresstype/delete/@context.AddressTypeId" class="btn btn-danger">Delete</a>
             }
         </MudTd>
     </RowTemplate>

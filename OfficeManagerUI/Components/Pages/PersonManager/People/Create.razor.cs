@@ -23,7 +23,7 @@ public partial class Create
             CopyDisplayModelToModel();
             await PersonHandler.CreatePersonAsync(PersonModel);
             Snackbar.Add($"Person {PersonModel.FirstName} {PersonModel.LastName} successfully created", Severity.Success);
-            NavigationManager.NavigateTo("/people/index");
+            NavigationManager.NavigateTo("/personmanager/people/index");
         }
         catch
         {

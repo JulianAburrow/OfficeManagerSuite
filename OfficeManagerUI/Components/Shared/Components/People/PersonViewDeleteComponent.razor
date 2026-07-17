@@ -9,12 +9,12 @@
 <MudField Label="Address(es)">
     <AddressGridviewComponent Addresses="@Person.Addresses?.ToList()" />
     <br />
-    <a href="/address/create/@Person.PersonId" class="btn btn-primary">Create Address</a>
-    <a href="/addresses/index/@Person.PersonId" class="btn btn-primary">View Addresses In Page</a>
+    <a href="/personmanager/address/create/@Person.PersonId" class="btn btn-primary">Create Address</a>
+    <a href="/personmanager/addresses/index/@Person.PersonId" class="btn btn-primary">View Addresses In Page</a>
 </MudField>
 <MudField Label="Emergency Contact(s)">
     <EmergencyContactGridviewComponent EmergencyContacts="@Person.EmergencyContacts?.ToList()" ShowStaffMember="false" />
     <br />
-    <a href="/emergencycontact/create/@Person.PersonId" class="btn btn-primary">Create Emergency Contact</a>
-    <a href="/emergencycontacts/index/@Person.PersonId" class="btn btn-primary">View Emergency Contacts In Page</a>
+    <a href="/personmanager/emergencycontact/create/@Person.PersonId" class="btn btn-primary">Create Emergency Contact</a>
+    <a href="/personmanager/emergencycontacts/index/@Person.PersonId" class="btn btn-primary">View Emergency Contacts In Page</a>
 </MudField>

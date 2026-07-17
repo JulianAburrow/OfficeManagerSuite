@@ -1,4 +1,4 @@
-﻿@page "/employmentstatus/view/{EmploymentStatusId:int}"
+﻿@page "/personmanager/employmentstatus/view/{EmploymentStatusId:int}"
 @inherits EmploymentStatusBasePageClass
 
 <PageTitle>View Address Type</PageTitle>
@@ -16,14 +16,14 @@
                 <AddressTypeViewDeleteComponent TypeName="@EmploymentStatusModel.StatusName" />
             </MudCardContent>
             <MudCardActions>
-                <a class="btn btn-primary" href="/employmentstatus/edit/@EmploymentStatusModel.EmploymentStatusId">Edit</a>
-                @if (!EmploymentStatusModel.Persons.Any())
+                @if (OkToEditOrDelete)
                 {
+                    <a class="btn btn-primary" href="/personmanager/employmentstatus/edit/@EmploymentStatusModel.EmploymentStatusId">Edit</a>
                     @:&nbsp;
-                    <a class="btn btn-danger" href="/employmentstatus/delete/@EmploymentStatusModel.EmploymentStatusId">Delete</a>
+                    <a class="btn btn-danger" href="/personmanager/employmentstatus/delete/@EmploymentStatusModel.EmploymentStatusId">Delete</a>
                 }
                 &nbsp;
-                <a class="btn btn-primary" href="/employmentstatuses/index">Cancel</a>"
+                <a class="btn btn-primary" href="/personmanager/employmentstatuses/index">Cancel</a>"
             </MudCardActions>
         </MudCard>
     </MudItem>

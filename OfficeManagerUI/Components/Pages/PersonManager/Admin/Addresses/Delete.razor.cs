@@ -24,7 +24,7 @@ public partial class Delete
         {
             await AddressHandler.DeleteAddressAsync(AddressId);
             Snackbar.Add($"Address {AddressModel.AddressLine1} successfully deleted", Severity.Success);
-            NavigationManager.NavigateTo($"/addresses/index/{AddressModel.PersonId}");
+            NavigationManager.NavigateTo($"/personmanager/addresses/index/{AddressModel.PersonId}");
         }
         catch
         {

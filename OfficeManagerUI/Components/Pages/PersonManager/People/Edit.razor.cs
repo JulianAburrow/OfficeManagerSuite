@@ -40,7 +40,7 @@ public partial class Edit
             CopyDisplayModelToModel();
             await PersonHandler.UpdatePersonAsync(PersonModel);
             Snackbar.Add($"Person {PersonModel.FirstName} {PersonModel.LastName} successfully updated", Severity.Success);
-            NavigationManager.NavigateTo("/people/index");
+            NavigationManager.NavigateTo("/personmanager/people/index");
         }
         catch
         {

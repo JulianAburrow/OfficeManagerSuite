@@ -6,4 +6,6 @@ public class AddressTypeDisplayModel
     [StringLength(20, ErrorMessage = "{0} cannot be more than {1} characters.")]
     [Display(Name = "Address Type")]
     public string TypeName { get; set; } = default!;
+
+    public int AddressCount { get; set; }
 }

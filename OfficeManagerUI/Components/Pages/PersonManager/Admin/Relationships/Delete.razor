@@ -1,0 +1,38 @@
+﻿@page "/personmanager/relationship/delete/{RelationshipId:int}"
+@inherits RelationshipBasePageClass
+
+<PageTitle>Delete Relationship</PageTitle>
+
+@if (RelationshipModel is null)
+{
+    <LoadingOrNotFoundComponent ValueToShow="@RelationshipSingular" />
+    return;
+}
+
+@if (!OkToEditOrDelete)
+{
+    <CannotEditOrDeleteComponent
+        WhichManager="@ManagerEnum.person.ToString()"
+        ObjectType="@RelationshipPlural"
+        ObjectName="@RelationshipModel.RelationshipName"
+        ObjectCount="@RelationshipModel.EmergencyContacts.Count" />
+    return;
+}
+
+<ConfirmDeleteComponent ObjectType="@RelationshipSingular" ObjectName="@RelationshipModel.RelationshipName" />
+
+<br />
+<br />
+
+<RelationshipViewDeleteComponent RelationshipName="@RelationshipModel.RelationshipName" />
+
+<br />
+<br />
+
+@if (OkToEditOrDelete)
+{
+    <button class="btn btn-danger" @onclick="DeleteRelationship">Delete</button>
+    @:&nbsp;
+}
+
+<a class="btn btn-primary" href="/personmanager/relationships/index">Cancel</a>

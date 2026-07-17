@@ -1,5 +1,5 @@
 ﻿<MudAlert Severity="Severity.Error" ContentAlignment="HorizontalAlignment.Center">
-    Cannot delete @ObjectType "@ObjectName" as it is in use in @ObjectCount place(s).
+    Cannot edit or delete @ObjectType "@ObjectName" as it is in use in @(ObjectCount == 1 ? "1 place" : $"{ObjectCount} places").
 </MudAlert>
 <br />
 <a href="@CancelURL" class="btn btn-primary">Cancel</a>

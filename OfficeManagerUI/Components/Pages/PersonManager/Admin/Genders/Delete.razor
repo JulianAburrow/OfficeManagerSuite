@@ -1,4 +1,4 @@
-﻿@page "/gender/delete/{GenderId:int}"
+﻿@page "/personmanager/gender/delete/{GenderId:int}"
 @inherits GenderBasePageClass
 
 <PageTitle>Delete Gender</PageTitle>
@@ -9,9 +9,13 @@
     return;
 }
 
-@if (!OkToDelete)
+@if (!OkToEditOrDelete)
 {
-    <CannotDeleteComponent ObjectType="@GenderSingular" ObjectName="@GenderModel.GenderName" ObjectCount="@GenderModel.Persons.Count" />
+    <CannotEditOrDeleteComponent
+        WhichManager="@ManagerEnum.person.ToString()"
+        ObjectType="@GenderPlural"
+        ObjectName="@GenderModel.GenderName"
+        ObjectCount="@GenderModel.Persons.Count" />
     return;
 }
 
@@ -25,10 +29,10 @@
 <br />
 <br />
 
-@if (OkToDelete)
+@if (OkToEditOrDelete)
 {
     <button class="btn btn-danger" @onclick="DeleteGender">Delete</button>
     @:&nbsp;
 }
 
-<a class="btn btn-primary" href="/genders/index">Cancel</a>
+<a class="btn btn-primary" href="/personmanager/genders/index">Cancel</a>

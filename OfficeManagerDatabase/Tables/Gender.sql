@@ -1,0 +1,5 @@
+﻿CREATE TABLE Gender (
+	GenderId INT NOT NULL IDENTITY (1, 1),
+	GenderName NVARCHAR(20) NOT NULL,
+	CONSTRAINT PK_Gender PRIMARY KEY (GenderId)
+);

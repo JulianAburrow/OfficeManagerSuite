@@ -7,9 +7,10 @@ public partial class Edit
         GenderModel = await GenderHandler.GetGenderByIdAsync(GenderId);
         CopyModelToDisplayModel();
         MainLayout.SetHeaderValue("Edit Gender");
+        OkToEditOrDelete = GenderModel.Persons.Count == 0;
     }
 
-    protected void OnInitialized()
+    protected override void OnInitialized()
     {
         MainLayout.SetBreadcrumbs(
         [
@@ -26,7 +27,7 @@ public partial class Edit
             CopyDisplayModelToModel();
             await GenderHandler.UpdateGenderAsync(GenderModel);
             Snackbar.Add($"Gender {GenderModel.GenderName} successfully updated", Severity.Success);
-            NavigationManager.NavigateTo("/genders/index");
+            NavigationManager.NavigateTo("/personmanager/genders/index");
         }
         catch
         {

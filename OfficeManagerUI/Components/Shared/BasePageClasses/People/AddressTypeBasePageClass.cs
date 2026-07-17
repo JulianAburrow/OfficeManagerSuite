@@ -16,7 +16,7 @@ public class AddressTypeBasePageClass : BasePageClass
 
     protected BreadcrumbItem GetAddressTypeHomeBreadcrumbItem(bool isDisabled = false)
     {
-        return new(AddressTypePlural, "/addresstypes/index", isDisabled);
+        return new(AddressTypePlural, "/personmanager/addresstypes/index", isDisabled);
     }
 
     protected void CopyDisplayModelToModel()
@@ -27,5 +27,6 @@ public class AddressTypeBasePageClass : BasePageClass
     protected void CopyModelToDisplayModel()
     {
         AddressTypeDisplayModel.TypeName = AddressTypeModel.TypeName;
+        AddressTypeDisplayModel.AddressCount = AddressTypeModel.Addresses.Count;
     }
 }

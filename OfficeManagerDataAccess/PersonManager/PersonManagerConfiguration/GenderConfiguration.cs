@@ -1,5 +1,4 @@
-﻿
-namespace OfficeManagerDataAccess.PersonManager.PersonManagerConfiguration;
+﻿namespace OfficeManagerDataAccess.PersonManager.PersonManagerConfiguration;
 
 public class GenderConfiguration : IEntityTypeConfiguration<GenderModel>
 {

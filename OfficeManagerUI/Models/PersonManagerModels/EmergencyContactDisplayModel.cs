@@ -21,8 +21,9 @@ public class EmergencyContactDisplayModel
     [Display(Name = "Phone Number")]
     public string PhoneNumber { get; set; } = default!;
 
-    [StringLength(50, ErrorMessage = "{0} cannot be more than {1} characters.")]
-    public string? Relationship { get; set; } = default!;
+    [Range(1, int.MaxValue, ErrorMessage = "{0} is required")]
+    [Display(Name = "Relationship")]
+    public int RelationshipId { get; set; }
 
     public string StaffMemberName { get; set; } = default!;
 }

@@ -6,6 +6,7 @@ public partial class View
     {
         EmploymentStatusModel = await EmploymentStatusHandler.GetEmploymentStatusByIdAsync(EmploymentStatusId);
         MainLayout.SetHeaderValue("View Employment Status");
+        OkToEditOrDelete = EmploymentStatusModel.Persons.Count == 0;
     }
 
     protected override void OnInitialized()

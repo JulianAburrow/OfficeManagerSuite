@@ -1,4 +1,4 @@
-﻿@page "/employmentstatus/edit/{EmploymentStatusId:int}"
+﻿@page "/personmanager/employmentstatus/edit/{EmploymentStatusId:int}"
 @inherits EmploymentStatusBasePageClass
 
 <PageTitle>Edit Address Type</PageTitle>
@@ -7,6 +7,19 @@
 {
     <LoadingOrNotFoundComponent ValueToShow="@EmploymentStatusSingular" />
     return;
+}
+
+@if (!OkToEditOrDelete)
+{
+    <CannotEditOrDeleteComponent
+        WhichManager="@ManagerEnum.person.ToString()"
+        ObjectType="@EmploymentStatusPlural"
+        ObjectCount="EmploymentStatusDisplayModel.PersonCount"
+        ObjectName="@EmploymentStatusDisplayModel.StatusName" />
+    <br />
+    <a class="btn btn-primary" href="/personmanager/employmentstatuses/index">Cancel</a>
+    return;
+
 }
 
 <EditForm Model="@EmploymentStatusDisplayModel" OnValidSubmit="UpdateEmploymentStatus">
@@ -20,7 +33,7 @@
                 <MudCardActions>
                     <button type="submit" class="btn btn-primary">Update</button>
                     &nbsp;
-                    <a class="btn btn-primary" href="/employmentstatuses/index">Cancel</a>
+                    <a class="btn btn-primary" href="/personmanager/employmentstatuses/index">Cancel</a>
                 </MudCardActions>
             </MudCard>
         </MudItem>

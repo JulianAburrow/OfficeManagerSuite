@@ -1,4 +1,4 @@
-﻿@page "/personalpronouns/delete/{PersonalPronounsId:int}"
+﻿@page "/personmanager/personalpronouns/delete/{PersonalPronounsId:int}"
 @inherits PersonalPronounsBasePageClass
 
 <PageTitle>Delete Personal Pronouns</PageTitle>
@@ -9,9 +9,13 @@
     return;
 }
 
-@if (!OkToDelete)
+@if (!OkToEditOrDelete)
 {
-    <CannotDeleteComponent ObjectType="@PersonalPronounsSingular" ObjectName="@PersonalPronounsModel.PronounNames" ObjectCount="@PersonalPronounsModel.Persons.Count" />
+    <CannotEditOrDeleteComponent
+        WhichManager="@ManagerEnum.person.ToString()"
+        ObjectType="@PersonalPronounsPlural"
+        ObjectName="@PersonalPronounsModel.PronounNames"
+        ObjectCount="@PersonalPronounsModel.Persons.Count" />
     return;
 }
 
@@ -25,11 +29,11 @@
 <br />
 <br />
 
-@if (OkToDelete)
+@if (OkToEditOrDelete)
 {
     <button class="btn btn-danger" @onclick="DeletePersonalPronouns">Delete</button>
     @:&nbsp;
 }
 
-<a class="btn btn-primary" href="/personalpronouns/index">Cancel</a>
+<a class="btn btn-primary" href="/personmanager/personalpronouns/index">Cancel</a>
 

@@ -7,6 +7,7 @@ public partial class Edit
         AddressTypeModel = await AddressTypeHandler.GetAddressTypeByIdAsync(AddressTypeId);
         CopyModelToDisplayModel();
         MainLayout.SetHeaderValue("Edit Address Type");
+        OkToEditOrDelete = AddressTypeModel.Addresses.Count == 0;
     }
 
     protected override void OnInitialized()
@@ -26,7 +27,7 @@ public partial class Edit
             CopyDisplayModelToModel();
             await AddressTypeHandler.UpdateAddressTypeAsync(AddressTypeModel);
             Snackbar.Add($"Address Type {AddressTypeModel.TypeName} successfully updated", Severity.Success);
-            NavigationManager.NavigateTo("/addresstypes/index");
+            NavigationManager.NavigateTo("/personmanager/addresstypes/index");
         }
         catch
         {

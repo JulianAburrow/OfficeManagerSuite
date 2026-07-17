@@ -1,0 +1,17 @@
+﻿@page "/personmanager/relationships/index"
+@inherits RelationshipBasePageClass
+
+<PageTitle>Relationships</PageTitle>
+
+<a href="/personmanager/relationship/create" class="btn btn-primary">Create Relationship</a>
+
+<br />
+<br />
+
+@if (Relationships is null || !Relationships.Any())
+{
+    <LoadingOrNotFoundComponent ValueToShow="@RelationshipPlural" />
+    return;
+}
+
+<RelationshipGridviewComponent Relationships="@Relationships" />

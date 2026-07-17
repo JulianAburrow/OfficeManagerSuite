@@ -6,7 +6,7 @@ public partial class Edit
     {
         People = await PersonHandler.GetAllPeopleForEmergencyContactAsync();
         EmergencyContactModel = await EmergencyContactHandler.GetEmergencyContactByIdAsync(EmergencyContactId);
-        Relationships = await EmergencyContactHandler.GetAllRelationshipsAsync();
+        Relationships = await RelationshipHandler.GetAllRelationshipsAsync();
         CopyModelToDisplayModel();
         MainLayout.SetHeaderValue("Edit Emergency Contact");
     }
@@ -27,7 +27,7 @@ public partial class Edit
             CopyDisplayModelToModel();
             await EmergencyContactHandler.UpdateEmergencyContactAsync(EmergencyContactModel);
             Snackbar.Add($"Emergency contact {EmergencyContactModel.FirstName} {EmergencyContactModel.LastName} updated successfully", Severity.Success);
-            NavigationManager.NavigateTo($"/emergencycontacts/index/{EmergencyContactModel.PersonId}");
+            NavigationManager.NavigateTo($"/personmanager/emergencycontacts/index/{EmergencyContactModel.PersonId}");
         }
         catch
         {

@@ -39,5 +39,5 @@ public class BasePageClass : ComponentBase
 
     protected int NotStatedValue = 0;
 
-    protected bool OkToDelete { get; set; }
+    protected bool OkToEditOrDelete { get; set; }
 }

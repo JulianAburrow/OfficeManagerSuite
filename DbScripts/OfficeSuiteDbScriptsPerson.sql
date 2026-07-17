@@ -32,6 +32,18 @@ VALUES
 	( 'Probation' )
 GO
 
+CREATE TABLE Relationship (
+	RelationshipId INT NOT NULL IDENTITY (1, 1),
+	RelationshipName NVARCHAR(50),
+	CONSTRAINT PK_Relationship PRIMARY KEY (relationshipId)
+);
+GO
+
+INSERT INTO Relationship
+	( RelationshipName )
+VALUES
+	( 'Spouse' )
+GO
 
 CREATE TABLE Gender (
 	GenderId INT NOT NULL IDENTITY (1, 1),
@@ -82,7 +94,6 @@ CREATE TABLE Person (
 		REFERENCES PersonalPronouns (PersonalPronounsId),
 	CONSTRAINT FK_Person_Gender FOREIGN KEY (GenderId)
 		REFERENCES Gender (GenderId)
-
 );
 GO
 
@@ -92,10 +103,12 @@ CREATE TABLE EmergencyContact (
 	FirstName NVARCHAR(100) NOT NULL,
 	LastName NVARCHAR(100) NOT NULL,
 	PhoneNumber NVARCHAR(20) NOT NULL,
-	Relationship NVARCHAR(50) NULL,
+	RelationshipId INT NOT NULL,
 	CONSTRAINT PK_EmergencyContact PRIMARY KEY (EmergencyContactId),
 	CONSTRAINT FK_EmergencyContact_Person FOREIGN KEY (PersonId)
-		REFERENCES Person (PersonId)
+		REFERENCES Person (PersonId),
+	CONSTRAINT FK_EmergencyContact_Relationship FOREIGN KEY (RelationshipId)
+		REFERENCES Relationship (RelationshipId)
 );
 GO
 
@@ -122,6 +135,8 @@ CREATE TABLE Address (
 	City NVARCHAR(100) NOT NULL,
 	Postcode NVARCHAR(20) NOT NULL,
 	AddressTypeId INT NOT NULL,
+	Latitude DECIMAL (9, 6) NULL,
+	Longitude DECIMAL (9, 6) NULL, 
 	CONSTRAINT PK_Address PRIMARY KEY (AddressId),
 	CONSTRAINT FK_Address_Person FOREIGN KEY (PersonId)
 		REFERENCES Person (PersonId),

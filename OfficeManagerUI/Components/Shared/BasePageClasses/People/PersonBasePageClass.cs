@@ -28,7 +28,7 @@ public class PersonBasePageClass : BasePageClass
 
     protected BreadcrumbItem GetPersonHomeBreadcrumbItem(bool isDisabled = false)
     {
-        return new(PersonPlural, "/people/index", isDisabled);
+        return new(PersonPlural, "/personmanager/people/index", isDisabled);
     }
 
     protected void CopyDisplayModelToModel()

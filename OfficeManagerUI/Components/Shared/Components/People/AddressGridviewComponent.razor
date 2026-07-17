@@ -1,10 +1,4 @@
-﻿@if (Addresses == null || !Addresses.Any())
-{
-    <LoadingOrNotFoundComponent ValueToShow="Addresses" />
-    return;
-}
-
-<MudTable Items="Addresses"
+﻿<MudTable Items="Addresses"
     Hover
     FixedHeader="true">
     <HeaderContent>
@@ -54,11 +48,11 @@
         }
         <MudTd>@context.AddressType.TypeName</MudTd>
         <MudTd>
-            <a href="/address/view/@context.AddressId" class="btn btn-primary">View</a>
+            <a href="/personmanager/address/view/@context.AddressId" class="btn btn-primary">View</a>
             &nbsp;
-            <a href="/address/edit/@context.AddressId" class="btn btn-primary">Edit</a>
+            <a href="/personmanager/address/edit/@context.AddressId" class="btn btn-primary">Edit</a>
             &nbsp;
-            <a href="/address/delete/@context.AddressId" class="btn btn-danger">Delete</a>
+            <a href="/personmanager/address/delete/@context.AddressId" class="btn btn-danger">Delete</a>
         </MudTd>
     </RowTemplate>
 </MudTable>

@@ -12,13 +12,13 @@
     <RowTemplate>
         <MudTd>@context.GenderName</MudTd>
         <MudTd>
-            <a href="/gender/view/@context.GenderId" class="btn btn-primary">View</a>
+            <a href="/personmanager/gender/view/@context.GenderId" class="btn btn-primary">View</a>
             &nbsp;
-            <a href="/gender/edit/@context.GenderId" class="btn btn-primary">Edit</a>
+            <a href="/personmanager/gender/edit/@context.GenderId" class="btn btn-primary">Edit</a>
             @if (!context.Persons.Any())
             {
                 @:&nbsp;
-                <a href="/gender/delete/@context.GenderId" class="btn btn-danger">Delete</a>
+                <a href="/personmanager/gender/delete/@context.GenderId" class="btn btn-danger">Delete</a>
             }
         </MudTd>
     </RowTemplate>

@@ -20,7 +20,7 @@ public partial class Create
             CopyDisplayModelToModel();
             await EmploymentStatusHandler.CreateEmploymentStatusAsync(EmploymentStatusModel);
             Snackbar.Add($"Employment Status {EmploymentStatusModel.StatusName} successfully created", Severity.Success);
-            NavigationManager.NavigateTo("/employmentstatuses/index");
+            NavigationManager.NavigateTo("/personmanager/employmentstatuses/index");
         }
         catch
         {

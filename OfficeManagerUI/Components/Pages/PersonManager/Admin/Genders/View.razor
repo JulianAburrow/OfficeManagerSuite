@@ -1,4 +1,4 @@
-﻿@page "/gender/view/{GenderId:int}"
+﻿@page "/personmanager/gender/view/{GenderId:int}"
 @inherits GenderBasePageClass
 
 <PageTitle>View Gender</PageTitle>
@@ -16,14 +16,14 @@
                 <GenderViewDeleteComponent GenderName="@GenderModel.GenderName" />
             </MudCardContent>
             <MudCardActions>
-                <a class="btn btn-primary" href="/gender/edit/@GenderModel.GenderId">Edit</a>
+                <a class="btn btn-primary" href="/personmanager/gender/edit/@GenderModel.GenderId">Edit</a>
                 @if (!GenderModel.Persons.Any())
                 {
                     @:&nbsp;
-                    <a class="btn btn-danger" href="/gender/delete/@GenderModel.GenderId">Delete</a>
+                    <a class="btn btn-danger" href="/personmanager/gender/delete/@GenderModel.GenderId">Delete</a>
                 }
                 &nbsp;
-                <a class="btn btn-primary" href="/genders/index">Cancel</a>"
+                <a class="btn btn-primary" href="/personmanager/genders/index">Cancel</a>"
             </MudCardActions>
         </MudCard>
     </MudItem>

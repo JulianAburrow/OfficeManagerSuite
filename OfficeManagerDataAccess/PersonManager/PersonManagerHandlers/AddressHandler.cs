@@ -48,6 +48,8 @@ public class AddressHandler(PersonManagerDbContext context) : IAddressHandler
         addressToUpdate.City = address.City;
         addressToUpdate.Postcode = address.Postcode;
         addressToUpdate.AddressTypeId = address.AddressTypeId;
+        addressToUpdate.Latitude = address.Latitude;
+        addressToUpdate.Longitude = address.Longitude;
 
         await _context.SaveChangesAsync();
     }

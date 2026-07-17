@@ -20,7 +20,7 @@ public partial class Create
             CopyDisplayModelToModel();
             await GenderHandler.CreateGenderAsync(GenderModel);
             Snackbar.Add($"Gender {GenderModel.GenderName} successfully created", Severity.Success);
-            NavigationManager.NavigateTo("/genders/index");
+            NavigationManager.NavigateTo("/personmanager/genders/index");
         }
         catch
         {

@@ -6,7 +6,7 @@ public partial class Delete
     {
         GenderModel = await GenderHandler.GetGenderByIdAsync(GenderId);
         MainLayout.SetHeaderValue("Delete Gender");
-        OkToDelete = GenderModel.Persons != null && GenderModel.Persons.Count == 0;
+        OkToEditOrDelete = GenderModel.Persons != null && GenderModel.Persons.Count == 0;
     }
 
     protected override void OnInitialized()
@@ -25,7 +25,7 @@ public partial class Delete
         {
             await GenderHandler.DeleteGenderAsync(GenderId);
             Snackbar.Add($"Gender {GenderModel.GenderName} successfully deleted", Severity.Success);
-            NavigationManager.NavigateTo("/genders/index");
+            NavigationManager.NavigateTo("/personmanager/genders/index");
         }
         catch
         {

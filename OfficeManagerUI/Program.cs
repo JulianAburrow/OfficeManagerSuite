@@ -8,7 +8,7 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddMudServices();
 builder.Services.ConfigureSqlConnections(configuration);
-builder.Services.AddPersonManagerDependencies();
+builder.Services.AddPersonManagerDependencies(configuration);
 builder.Services.AddVehicleManagerDependencies();
 
 var app = builder.Build();

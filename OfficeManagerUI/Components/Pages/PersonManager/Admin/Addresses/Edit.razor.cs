@@ -24,10 +24,20 @@ public partial class Edit
     {
         try
         {
+            if (AddressModel.AddressLine1 != AddressDisplayModel.AddressLine1 ||
+                AddressModel.AddressLine2 != AddressDisplayModel.AddressLine2 ||
+                AddressModel.City != AddressDisplayModel.City ||
+                AddressModel.Postcode != AddressDisplayModel.Postcode)
+            {
+                var address = $"{AddressDisplayModel.AddressLine1} {AddressDisplayModel.AddressLine2} {AddressDisplayModel.City} {AddressDisplayModel.Postcode}";
+                var (lat, lng) = await Geocoder.GeocodeAsync(address);
+                AddressModel.Latitude = lat;
+                AddressModel.Longitude = lng;
+            }
             CopyDisplayModelToModel();
             await AddressHandler.UpdateAddressAsync(AddressModel);
             Snackbar.Add($"Address {AddressModel.AddressLine1} successfully updated", Severity.Success);
-            NavigationManager.NavigateTo($"/addresses/index/{AddressModel.PersonId}");
+            NavigationManager.NavigateTo($"/personmanager/addresses/index/{AddressModel.PersonId}");
         }
         catch
         {
