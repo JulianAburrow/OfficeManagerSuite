@@ -1,44 +1,62 @@
 ﻿namespace OfficeManagerDataAccess.PersonManager.PersonManagerHandlers;
 
-public class EmploymentStatusHandler(PersonManagerDbContext context) : IEmploymentStatusHandler
+public class EmploymentStatusHandler(IDbContextFactory<PersonManagerDbContext> factory) : IEmploymentStatusHandler
 {
-    private readonly PersonManagerDbContext _context = context;
-
     public async Task CreateEmploymentStatusAsync(EmploymentStatusModel employmentStatus)
     {
-        _context.EmploymentStatuses.Add(employmentStatus);
-        await _context.SaveChangesAsync();
+        await using var context = factory.CreateDbContext();
+        context.EmploymentStatuses.Add(employmentStatus);
+        await context.SaveChangesAsync();
     }
 
     public async Task DeleteEmploymentStatusAsync(int employmentStatusId)
     {
-        var employmentStatusToDelete = await _context.EmploymentStatuses.FindAsync(employmentStatusId)
-            ?? throw new ArgumentNullException(nameof(employmentStatusId), "Employment status not found");
+        await using var context = factory.CreateDbContext();
+        var employmentStatusToDelete = await context.EmploymentStatuses.FindAsync(employmentStatusId);
 
-        _context.EmploymentStatuses.Remove(employmentStatusToDelete);
-        await _context.SaveChangesAsync();
+        if (employmentStatusToDelete is null)
+        {
+            return;
+        }
+
+        context.EmploymentStatuses.Remove(employmentStatusToDelete);
+        await context.SaveChangesAsync();
     }
 
-    public async Task<EmploymentStatusModel> GetEmploymentStatusByIdAsync(int employmentStatusId) =>
-        await _context.EmploymentStatuses
+    public async Task<EmploymentStatusModel> GetEmploymentStatusByIdAsync(int employmentStatusId)
+    {
+        await using var context = factory.CreateDbContext();
+        var employmentStatus = await context.EmploymentStatuses
             .Include(e => e.Persons)
             .AsNoTracking()
-            .FirstOrDefaultAsync(e => e.EmploymentStatusId == employmentStatusId)
-            ?? throw new ArgumentNullException(nameof(employmentStatusId), "Employment status not found");
+            .FirstOrDefaultAsync(e => e.EmploymentStatusId == employmentStatusId);
 
-    public async Task<List<EmploymentStatusModel>> GetAllEmploymentStatusesAsync() =>
-        await _context.EmploymentStatuses
+        return employmentStatus ?? new EmploymentStatusModel();
+    }
+        
+
+    public async Task<List<EmploymentStatusModel>> GetAllEmploymentStatusesAsync()
+    {
+        await using var context = factory.CreateDbContext();
+        return await context.EmploymentStatuses
             .Include(e => e.Persons)
             .AsNoTracking()
             .OrderBy(e => e.StatusName)
             .ToListAsync();
+    }
+        
 
     public async Task UpdateEmploymentStatusAsync(EmploymentStatusModel employmentStatus)
     {
-        var employmentStatusToUpdate = await _context.EmploymentStatuses.FindAsync(employmentStatus.EmploymentStatusId)
-            ?? throw new ArgumentNullException(nameof(employmentStatus.EmploymentStatusId), "Employment status not found");
+        await using var context = factory.CreateDbContext();
+        var employmentStatusToUpdate = await context.EmploymentStatuses.FindAsync(employmentStatus.EmploymentStatusId);
+
+        if (employmentStatusToUpdate is null)
+        {
+            return;
+        }
 
         employmentStatusToUpdate.StatusName = employmentStatus.StatusName;
-        await _context.SaveChangesAsync();
+        await context.SaveChangesAsync();
     }
 }

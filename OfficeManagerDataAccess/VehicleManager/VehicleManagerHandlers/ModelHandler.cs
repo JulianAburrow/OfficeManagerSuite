@@ -1,50 +1,66 @@
 ﻿namespace OfficeManagerDataAccess.VehicleManager.VehicleManagerHandlers;
 
-public class ModelHandler(VehicleManagerDbContext context) : IModelHandler
+public class ModelHandler(IDbContextFactory<VehicleManagerDbContext> factory) : IModelHandler
 {
-    private readonly VehicleManagerDbContext _context = context;
-
     public async Task CreateModelAsync(ModelModel model)
     {
-        _context.Models.Add(model);
-        await _context.SaveChangesAsync();
+        await using var context = await factory.CreateDbContextAsync();
+        context.Models.Add(model);
+        await context.SaveChangesAsync();
     }
 
     public async Task DeleteModelAsync(int modelId)
     {
-        var modelToDelete = _context.Models.Find(modelId)
-            ?? throw new ArgumentNullException(nameof(modelId), "Model not found");
+        await using var context = await factory.CreateDbContextAsync();
+        var modelToDelete = await context.Models.FindAsync(modelId);
 
-        _context.Models.Remove(modelToDelete);
-        await _context.SaveChangesAsync();
+        if (modelToDelete is null)
+        {
+            return;
+        }
+
+        context.Models.Remove(modelToDelete);
+        await context.SaveChangesAsync();
     }
 
-    public async Task<ModelModel> GetModelByIdAsync(int modelId) =>
-        await _context.Models
+    public async Task<ModelModel> GetModelByIdAsync(int modelId)
+    {
+        await using var context = await factory.CreateDbContextAsync();
+        var model = await context.Models
             .Include(m => m.Manufacturer)
             .Include(m => m.Vehicles)
             .AsNoTracking()
-            .FirstOrDefaultAsync(m => m.ModelId == modelId)
-            ?? throw new ArgumentNullException(nameof(modelId), "Model not found");
+            .FirstOrDefaultAsync(m => m.ModelId == modelId);
 
+        return model ?? new ModelModel();
+    }
 
-    public async Task<List<ModelModel>> GetAllModelsAsync() =>
-        await _context.Models
+    public async Task<List<ModelModel>> GetAllModelsAsync()
+    {
+        await using var context = await factory.CreateDbContextAsync();
+        return await context.Models
             .Include(m => m.Manufacturer)
             .Include(m => m.Vehicles)
             .AsNoTracking()
             .OrderBy(m => m.ModelName)
             .ToListAsync();
+    }
+        
 
     public async Task UpdateModelAsync(ModelModel model)
     {
-        var modelToUpdate = _context.Models.Find(model.ModelId)
-            ?? throw new ArgumentNullException(nameof(model.ModelId), "Model not found");
+        await using var context = await factory.CreateDbContextAsync();
+        var modelToUpdate = await context.Models.FindAsync(model.ModelId);
+
+        if (modelToUpdate is null)
+        {
+            return;
+        }
 
         modelToUpdate.ModelName = model.ModelName;
         modelToUpdate.ManufacturerId = model.ManufacturerId;
 
-        await _context.SaveChangesAsync();
+        await context.SaveChangesAsync();
 
     }
 }

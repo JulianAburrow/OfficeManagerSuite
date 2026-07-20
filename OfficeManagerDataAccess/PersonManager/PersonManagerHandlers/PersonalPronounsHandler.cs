@@ -1,47 +1,64 @@
 ﻿
 namespace OfficeManagerDataAccess.PersonManager.PersonManagerHandlers;
 
-public class PersonalPronounsHandler(PersonManagerDbContext context) : IPersonalPronounsHandler
+public class PersonalPronounsHandler(IDbContextFactory<PersonManagerDbContext> factory) : IPersonalPronounsHandler
 {
-    private readonly PersonManagerDbContext _context = context;
-
     public async Task CreatePersonalPronounsAsync(PersonalPronounsModel personalPronounsModel)
     {
-        _context.PersonalPronouns.Add(personalPronounsModel);
-        await _context.SaveChangesAsync();
+        await using var context = factory.CreateDbContext();
+        context.PersonalPronouns.Add(personalPronounsModel);
+        await context.SaveChangesAsync();
     }
 
     public async Task DeletePersonalPronounsAsync(int personalPronounsId)
     {
-        var personalPronounsToDelete = await _context.PersonalPronouns.FindAsync(personalPronounsId)
-            ?? throw new ArgumentNullException(nameof(personalPronounsId), "Personal pronouns not found");
+        await using var context = factory.CreateDbContext();
+        var personalPronounsToDelete = await context.PersonalPronouns.FindAsync(personalPronounsId);
+            
+        if (personalPronounsToDelete is null)
+        {
+            return;
+        }
 
-        _context.PersonalPronouns.Remove(personalPronounsToDelete);
-        await _context.SaveChangesAsync();
+        context.PersonalPronouns.Remove(personalPronounsToDelete);
+        await context.SaveChangesAsync();
     }
 
-    public async Task<PersonalPronounsModel> GetPersonalPronounsByIdAsync(int personalPronounsId) =>
-        await _context.PersonalPronouns
+    public async Task<PersonalPronounsModel> GetPersonalPronounsByIdAsync(int personalPronounsId)
+    {
+        await using var context = factory.CreateDbContext();
+        var personalPronouns = await context.PersonalPronouns
             .Include(p => p.Persons)
             .AsNoTracking()
-            .FirstOrDefaultAsync(p => p.PersonalPronounsId == personalPronounsId)
-            ?? throw new ArgumentNullException(nameof(personalPronounsId), "Personal pronouns not found");
+            .FirstOrDefaultAsync(p => p.PersonalPronounsId == personalPronounsId);
 
-    public async Task<List<PersonalPronounsModel>> GetAllPersonalPronounsAsync() =>
-        await _context.PersonalPronouns
+        return personalPronouns ?? new PersonalPronounsModel();
+    }
+        
+
+    public async Task<List<PersonalPronounsModel>> GetAllPersonalPronounsAsync()
+    {
+        await using var context = factory.CreateDbContext();
+        return await context.PersonalPronouns
             .Include(p => p.Persons)
             .AsNoTracking()
             .OrderBy(p => p.PronounNames)
             .ToListAsync();
+    }
+        
 
     public async Task UpdatePersonalPronounsAsync(PersonalPronounsModel personalPronounsModel)
     {
-        var personalPronounsToUpdate = await _context.PersonalPronouns.FindAsync(personalPronounsModel.PersonalPronounsId)
-            ?? throw new ArgumentNullException(nameof(personalPronounsModel.PersonalPronounsId), "Personal pronouns not found");
+        await using var context = factory.CreateDbContext();
+        var personalPronounsToUpdate = await context.PersonalPronouns.FindAsync(personalPronounsModel.PersonalPronounsId);
+
+        if (personalPronounsToUpdate is null)
+        {
+            return;
+        }
 
         personalPronounsToUpdate.PronounNames = personalPronounsModel.PronounNames;
 
-        await _context.SaveChangesAsync();
-
+        await context.SaveChangesAsync();
     }
 }
