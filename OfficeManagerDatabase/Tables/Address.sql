@@ -6,6 +6,8 @@
 	City NVARCHAR(100) NOT NULL,
 	Postcode NVARCHAR(20) NOT NULL,
 	AddressTypeId INT NOT NULL,
+	Latitude DECIMAL (9, 6) NULL,
+	Longitude DECIMAL (9, 6) NULL, 
 	CONSTRAINT PK_Address PRIMARY KEY (AddressId),
 	CONSTRAINT FK_Address_Person FOREIGN KEY (PersonId)
 		REFERENCES Person (PersonId),
