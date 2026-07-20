@@ -8,7 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DbScripts", "DbScripts", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 	ProjectSection(SolutionItems) = preProject
 		DbScripts\OfficeSuiteDbScriptsPerson.sql = DbScripts\OfficeSuiteDbScriptsPerson.sql
-		OfficeSuiteDbScriptsVehicle.sql = OfficeSuiteDbScriptsVehicle.sql
+		DbScripts\OfficeSuiteDbScriptsVehicle.sql = DbScripts\OfficeSuiteDbScriptsVehicle.sql
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfficeManagerUI", "OfficeManagerUI\OfficeManagerUI.csproj", "{C5CD6F6D-839F-4909-9065-29236A433144}"
@@ -17,13 +17,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C12856D0-ADA
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05-4346-4AA6-1389-037BE0695223}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfficeManagerSuiteTests", "Tests\OfficeManagerSuiteTests.csproj", "{73B2167A-5235-4925-8D76-E88C098A6D74}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfficeManagerTests", "Tests\OfficeManagerTests.csproj", "{73B2167A-5235-4925-8D76-E88C098A6D74}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "OfficeManagerDatabasePerson", "OfficeManagerDatabase\OfficeManagerDatabasePerson.sqlproj", "{11C135F6-5A20-4D6C-BD69-E78BE31875B8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DatabaseProjects", "DatabaseProjects", "{C1D42EFC-5276-40C6-8CE7-FF7D298825A4}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "OfficeManagerDatabaseVehicle", "OfficeManagerDatabaseVehicle\OfficeManagerDatabaseVehicle.sqlproj", "{8F5C2E7B-3124-4E86-8624-68618E3C0757}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{D6AB29AB-0CCC-465F-B162-7D9E78D21E0C}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yml = .github\workflows\build.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
