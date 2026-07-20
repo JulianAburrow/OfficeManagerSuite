@@ -28,6 +28,7 @@ public class PersonHandler(IDbContextFactory<PersonManagerDbContext> factory) : 
         await using var context = factory.CreateDbContext();
         return await context.People
             .Include(p => p.Addresses)
+                .ThenInclude(a => a.AddressType)
             .Include(p => p.EmploymentStatus)
             .Include(p => p.PersonalPronouns)
             .AsNoTracking()

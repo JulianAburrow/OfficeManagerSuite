@@ -23,10 +23,12 @@
     map.fitBounds(bounds);
 
     // Open popup AFTER the map has finished moving
-    if (firstMarker) {
+    if (firstMarker && locations.length === 1) {
         firstMarker.openPopup();
     }
 
-    // Optional: force a specific zoom after fitting
-    map.setZoom(14);
+    if (locations.length === 1)
+    {
+        map.setZoom(14);
+    }
 };
