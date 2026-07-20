@@ -4,9 +4,9 @@ public static class ServiceExtensions
 {
     public static void ConfigureSqlConnections(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<PersonManagerDbContext>(options =>
+        services.AddDbContextFactory<PersonManagerDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("PersonManagerConnection")));
-        services.AddDbContext<VehicleManagerDbContext>(options =>
+        services.AddDbContextFactory<VehicleManagerDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("VehicleManagerConnection")));
     }
 
@@ -20,8 +20,9 @@ public static class ServiceExtensions
         services.AddHttpClient<LocationIQGeocodingService>();
         services.AddHttpClient<OpenCageGeocodingService>();
         services.AddHttpClient<OSPlacesGeocodingService>();
-        var provider = Enum.Parse<GeocodingProvider>(
-            configuration["Geocoding:Provider"], ignoreCase: true);
+        var value = configuration.GetValue<string>("Geocoding:Provider");
+        if (!Enum.TryParse<GeocodingProvider>(value, ignoreCase: true, out var provider))
+            throw new InvalidOperationException($"Invalid geocoding provider: {value}");
         switch (provider)
         {
             case GeocodingProvider.LocationIQ:

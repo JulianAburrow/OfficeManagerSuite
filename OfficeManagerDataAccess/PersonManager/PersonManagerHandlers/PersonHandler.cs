@@ -1,26 +1,32 @@
 ﻿namespace OfficeManagerDataAccess.PersonManager.PersonManagerHandlers;
 
-public class PersonHandler(PersonManagerDbContext context) : IPersonHandler
+public class PersonHandler(IDbContextFactory<PersonManagerDbContext> factory) : IPersonHandler
 {
-    private readonly PersonManagerDbContext _context = context;
-
     public async Task CreatePersonAsync(PersonModel personModel)
     {
-        _context.People.Add(personModel);
-        await _context.SaveChangesAsync();
+        await using var context = factory.CreateDbContext();
+        context.People.Add(personModel);
+        await context.SaveChangesAsync();
     }
 
     public async Task DeletePersonAsync(int personId)
     {
-        var personToDelete = await _context.People.FindAsync(personId)
-            ?? throw new ArgumentException(nameof(personId), "Person not found");
+        await using var context = factory.CreateDbContext();
+        var personToDelete = await context.People.FindAsync(personId);
 
-        _context.People.Remove(personToDelete);
-        await _context.SaveChangesAsync();
+        if (personToDelete is null)
+        {
+            return;
+        }
+
+        context.People.Remove(personToDelete);
+        await context.SaveChangesAsync();
     }
 
-    public async Task<List<PersonModel>> GetAllPeopleAsync() =>
-        await _context.People
+    public async Task<List<PersonModel>> GetAllPeopleAsync()
+    {
+        await using var context = factory.CreateDbContext();
+        return await context.People
             .Include(p => p.Addresses)
             .Include(p => p.EmploymentStatus)
             .Include(p => p.PersonalPronouns)
@@ -29,15 +35,22 @@ public class PersonHandler(PersonManagerDbContext context) : IPersonHandler
             .OrderBy(p => p.LastName)
             .ThenBy(p => p.FirstName)
             .ToListAsync();
+    }       
 
-    public async Task<List<PersonModel>> GetAllPeopleForEmergencyContactAsync() =>
-        await _context.People
+    public async Task<List<PersonModel>> GetAllPeopleForEmergencyContactAsync()
+    {
+        await using var context = factory.CreateDbContext();
+        return await context.People
             .AsNoTracking()
             .OrderBy(p => p.LastName)
             .ToListAsync();
+    }
+        
 
-    public async Task<PersonModel> GetPersonByIdAsync(int personId) =>
-        await _context.People
+    public async Task<PersonModel> GetPersonByIdAsync(int personId)
+    {
+        await using var context = factory.CreateDbContext();
+        var person = await context.People
             .Include(p => p.Addresses)
                 .ThenInclude(a => a.AddressType)
             .Include(p => p.EmergencyContacts)
@@ -46,13 +59,20 @@ public class PersonHandler(PersonManagerDbContext context) : IPersonHandler
             .Include(p => p.PersonalPronouns)
             .Include(p => p.Gender)
             .AsNoTracking()
-            .FirstOrDefaultAsync(p => p.PersonId == personId)
-            ?? throw new ArgumentException(nameof(personId), "Person not found");
+            .FirstOrDefaultAsync(p => p.PersonId == personId);
 
+        return person ?? new PersonModel();
+    }
+    
     public async Task UpdatePersonAsync(PersonModel personModel)
     {
-        var personToUpdate = _context.People.Find(personModel.PersonId)
-            ?? throw new ArgumentException(nameof(personModel), "Person not found");
+        await using var context = factory.CreateDbContext();
+        var personToUpdate = await context.People.FindAsync(personModel.PersonId);
+
+        if (personToUpdate is null)
+        {
+            return;
+        }
 
         personToUpdate.FirstName = personModel.FirstName;
         personToUpdate.MiddleNames = personModel.MiddleNames;
@@ -65,6 +85,6 @@ public class PersonHandler(PersonManagerDbContext context) : IPersonHandler
         personToUpdate.Photo = personModel.Photo;
         personToUpdate.Pronunciation = personModel.Pronunciation;
 
-        await _context.SaveChangesAsync();
+        await context.SaveChangesAsync();
     }
 }

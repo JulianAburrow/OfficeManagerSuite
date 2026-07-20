@@ -1,7 +1,5 @@
-﻿
+﻿namespace OfficeManagerDataAccess.VehicleManager.VehicleManagerHandlers;
 
-namespace OfficeManagerDataAccess.VehicleManager.VehicleManagerHandlers;
-
-public class VehicleHandler : IVehicleHandler
+public class VehicleHandler(IDbContextFactory<VehicleManagerDbContext> factory) : IVehicleHandler
 {
 }

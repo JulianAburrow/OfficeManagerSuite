@@ -1,45 +1,63 @@
 ﻿namespace OfficeManagerDataAccess.PersonManager.PersonManagerHandlers;
 
-public class AddressTypeHandler(PersonManagerDbContext context) : IAddressTypeHandler
+public class AddressTypeHandler(IDbContextFactory<PersonManagerDbContext> factory) : IAddressTypeHandler
 {
-    private readonly PersonManagerDbContext _context = context;
-
     public async Task CreateAddressTypeAsync(AddressTypeModel addressType)
     {
-        _context.AddressTypes.Add(addressType);
-        await _context.SaveChangesAsync();
+        await using var context = factory.CreateDbContext();
+        context.AddressTypes.Add(addressType);
+        await context.SaveChangesAsync();
     }
 
     public async Task DeleteAddressTypeAsync(int addressTypeId)
     {
-        var addressTypeToDelete = await _context.AddressTypes.FindAsync(addressTypeId)
-            ?? throw new ArgumentNullException(nameof(addressTypeId), "Address type not found");
+        await using var context = factory.CreateDbContext();
+        var addressTypeToDelete = await context.AddressTypes.FindAsync(addressTypeId);
+
+        if (addressTypeToDelete is null)
+        {
+            return;
+        }
         
-        _context.AddressTypes.Remove(addressTypeToDelete);
-        await _context.SaveChangesAsync();
+        context.AddressTypes.Remove(addressTypeToDelete);
+        await context.SaveChangesAsync();
     }
 
-    public async Task<AddressTypeModel> GetAddressTypeByIdAsync(int addressTypeId) =>
-        await _context.AddressTypes
+    public async Task<AddressTypeModel> GetAddressTypeByIdAsync(int addressTypeId)
+    {
+        await using var context = factory.CreateDbContext();
+        var addressType = await context.AddressTypes
             .Include(a => a.Addresses)
             .AsNoTracking()
-            .FirstOrDefaultAsync(a => a.AddressTypeId == addressTypeId)
-            ?? throw new ArgumentNullException(nameof(addressTypeId), "Address type not found");
+            .FirstOrDefaultAsync(a => a.AddressTypeId == addressTypeId);
 
-    public async Task<List<AddressTypeModel>> GetAllAddressTypesAsync() =>
-        await _context.AddressTypes
+        return addressType ?? new AddressTypeModel();
+    }
+        
+
+    public async Task<List<AddressTypeModel>> GetAllAddressTypesAsync()
+    {
+        await using var context = factory.CreateDbContext();
+        return await context.AddressTypes
                 .Include(a => a.Addresses)
                 .AsNoTracking()
                 .OrderBy(a => a.TypeName)
                 .ToListAsync();
+    }
+        
 
     public async Task UpdateAddressTypeAsync(AddressTypeModel addressType)
     {
-        var addressTypeToUpdate = await _context.AddressTypes.FindAsync(addressType.AddressTypeId)
-            ?? throw new ArgumentNullException(nameof(addressType.AddressTypeId), "Address type not found");
+        await using var context = factory.CreateDbContext();
+        var addressTypeToUpdate = await context.AddressTypes.FindAsync(addressType.AddressTypeId);
+
+        if (addressTypeToUpdate is null)
+        {
+            return;
+        }
 
         addressTypeToUpdate.TypeName = addressType.TypeName;
 
-        await _context.SaveChangesAsync();
+        await context.SaveChangesAsync();
     }
 }

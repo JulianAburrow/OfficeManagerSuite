@@ -1,43 +1,61 @@
 ﻿    namespace OfficeManagerDataAccess.VehicleManager.VehicleManagerHandlers;
 
-public class ColourHandler(VehicleManagerDbContext context) : IColourHandler
+public class ColourHandler(IDbContextFactory<VehicleManagerDbContext> factory) : IColourHandler
 {
-    private readonly VehicleManagerDbContext _context = context;
-
     public async Task CreateColourAsync(ColourModel colour)
     {
-        _context.Colours.Add(colour);
-        await _context.SaveChangesAsync();
+        await using var context = await factory.CreateDbContextAsync();
+        context.Colours.Add(colour);
+        await context.SaveChangesAsync();
     }
 
     public async Task DeleteColourAsync(int colourId)
     {
-        var colourToDelete = _context.Colours.Find(colourId)
-            ?? throw new ArgumentNullException(nameof(colourId), "Colour not found");
+        await using var context = await factory.CreateDbContextAsync();
+        var colourToDelete = await context.Colours.FindAsync(colourId);
 
-        _context.Colours.Remove(colourToDelete);
-        await _context.SaveChangesAsync();
+        if (colourToDelete is null)
+        {
+            return;
+        }
+
+        context.Colours.Remove(colourToDelete);
+        await context.SaveChangesAsync();
     }
 
-    public async Task<ColourModel> GetColourByIdAsync(int colourId) =>
-        await _context.Colours
+    public async Task<ColourModel> GetColourByIdAsync(int colourId)
+    {
+        await using var context = await factory.CreateDbContextAsync();
+        var colour = await context.Colours
             .Include(c => c.Vehicles)
-            .FirstOrDefaultAsync(c => c.ColourId == colourId) 
-            ?? throw new ArgumentNullException(nameof(colourId), "Colour not found");
+            .FirstOrDefaultAsync(c => c.ColourId == colourId);
 
-    public Task<List<ColourModel>> GetAllColoursAsync() =>
-        _context.Colours
+        return colour ?? new ColourModel();
+    }
+        
+
+    public async Task<List<ColourModel>> GetAllColoursAsync()
+    {
+        await using var context = await factory.CreateDbContextAsync();
+        return await context.Colours
             .Include(c => c.Vehicles)
             .OrderBy(c => c.ColourName)
             .ToListAsync();
+    }
+        
 
     public async Task UpdateColourAsync(ColourModel colour)
     {
-        var colourToUpdate = _context.Colours.Find(colour.ColourId)
-            ?? throw new ArgumentNullException(nameof(colour.ColourId), "Colour not found");
+        await using var context = await factory.CreateDbContextAsync();
+        var colourToUpdate = await context.Colours.FindAsync(colour.ColourId);
+
+        if (colourToUpdate is null)
+        {
+            return;
+        }
 
         colourToUpdate.ColourName = colour.ColourName;
 
-        await _context.SaveChangesAsync();
+        await context.SaveChangesAsync();
     }
 }

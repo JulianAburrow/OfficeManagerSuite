@@ -1,45 +1,63 @@
 ﻿
 namespace OfficeManagerDataAccess.PersonManager.PersonManagerHandlers;
 
-public class GenderHandler(PersonManagerDbContext context) : IGenderHandler
+public class GenderHandler(IDbContextFactory<PersonManagerDbContext> factory) : IGenderHandler
 {
-    private readonly PersonManagerDbContext _context = context;
-
     public async Task CreateGenderAsync(GenderModel genderModel)
     {
-        _context.Genders.Add(genderModel);
-        await _context.SaveChangesAsync();
+        await using var context = factory.CreateDbContext();
+        context.Genders.Add(genderModel);
+        await context.SaveChangesAsync();
     }
 
     public async Task DeleteGenderAsync(int genderId)
     {
-        var genderToDelete = await _context.Genders.FindAsync(genderId)
-            ?? throw new ArgumentException(nameof(genderId), "Gender not found");
+        await using var context = factory.CreateDbContext();
+        var genderToDelete = await context.Genders.FindAsync(genderId);
 
-        _context.Genders.Remove(genderToDelete);
-        await _context.SaveChangesAsync();
+        if (genderToDelete is null)
+        {
+            return;
+        }
+
+        context.Genders.Remove(genderToDelete);
+        await context.SaveChangesAsync();
     }
 
-    public async Task<GenderModel> GetGenderByIdAsync(int genderId) =>
-        await _context.Genders
+    public async Task<GenderModel> GetGenderByIdAsync(int genderId)
+    {
+        await using var context = factory.CreateDbContext();
+        var gender = await context.Genders
             .Include(g => g.Persons)
             .AsNoTracking()
-            .FirstOrDefaultAsync(g => g.GenderId == genderId)
-            ?? throw new ArgumentNullException(nameof(genderId), "Gender not found");
+            .FirstOrDefaultAsync(g => g.GenderId == genderId);
 
-    public async Task<List<GenderModel>> GetAllGendersAsync() =>
-        await _context.Genders
+        return gender ?? new GenderModel();
+    }
+        
+
+    public async Task<List<GenderModel>> GetAllGendersAsync()
+    {
+        await using var context = factory.CreateDbContext();
+        return await context.Genders
             .Include(g => g.Persons)
             .AsNoTracking()
             .OrderBy(g => g.GenderName)
             .ToListAsync();
+    }
+        
 
     public async Task UpdateGenderAsync(GenderModel genderModel)
     {
-        var genderToUpdate = await _context.Genders.FindAsync(genderModel.GenderId)
-            ?? throw new ArgumentNullException(nameof(genderModel.GenderId), "Gender not found");
+        await using var context = factory.CreateDbContext();
+        var genderToUpdate = await context.Genders.FindAsync(genderModel.GenderId);
+
+        if (genderToUpdate is null)
+        {
+            return;
+        }
 
         genderToUpdate.GenderName = genderModel.GenderName;
-        await _context.SaveChangesAsync();
+        await context.SaveChangesAsync();
     }
 }

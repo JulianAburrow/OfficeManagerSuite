@@ -1,47 +1,65 @@
 ﻿namespace OfficeManagerDataAccess.VehicleManager.VehicleManagerHandlers;
 
-public class ManufacturerHandler(VehicleManagerDbContext context) : IManufacturerHandler
+public class ManufacturerHandler(IDbContextFactory<VehicleManagerDbContext> factory) : IManufacturerHandler
 {
-    private readonly VehicleManagerDbContext _context = context;
-
     public async Task CreateManufacturerAsync(ManufacturerModel manufacturer)
     {
-        _context.Manufacturers.Add(manufacturer);
-        await _context.SaveChangesAsync();
+        await using var context = await factory.CreateDbContextAsync();
+        context.Manufacturers.Add(manufacturer);
+        await context.SaveChangesAsync();
     }
 
     public async Task DeleteManufacturerAsync(int manufacturerId)
     {
-        var manufacturerToDelete = _context.Manufacturers.Find(manufacturerId)
-            ?? throw new ArgumentNullException(nameof(manufacturerId), "Manufacturer not found");
+        await using var context = await factory.CreateDbContextAsync();
+        var manufacturerToDelete = await context.Manufacturers.FindAsync(manufacturerId);
+
+        if (manufacturerToDelete is null)
+        {
+            return;
+        }
         
-        _context.Manufacturers.Remove(manufacturerToDelete);
-        await _context.SaveChangesAsync();
+        context.Manufacturers.Remove(manufacturerToDelete);
+        await context.SaveChangesAsync();
     }
 
-    public async Task<ManufacturerModel> GetManufacturerByIdAsync(int manufacturerId) =>
-        await _context.Manufacturers
+    public async Task<ManufacturerModel> GetManufacturerByIdAsync(int manufacturerId)
+    {
+        await using var context = await factory.CreateDbContextAsync();
+
+        var manufacturer = await context.Manufacturers
             .Include(m => m.Vehicles)
             .Include(m => m.Models)
             .AsNoTracking()
-            .FirstOrDefaultAsync(m => m.ManufacturerId == manufacturerId)
-            ?? throw new ArgumentNullException(nameof(manufacturerId), "Manufacturer not found");
+            .FirstOrDefaultAsync(m => m.ManufacturerId == manufacturerId);
 
-    public async Task<List<ManufacturerModel>> GetAllManufacturersAsync() =>
-        await _context.Manufacturers
+        return manufacturer ?? new ManufacturerModel();
+    }        
+
+    public async Task<List<ManufacturerModel>> GetAllManufacturersAsync()
+    {
+        await using var context = await factory.CreateDbContextAsync();
+        return await context.Manufacturers
             .Include(m => m.Vehicles)
             .Include(m => m.Models)
             .AsNoTracking()
             .OrderBy(m => m.ManufacturerName)
             .ToListAsync();
+    }
+        
 
     public async Task UpdateManufacturerAsync(ManufacturerModel manufacturer)
     {
-        var manufacturerToUpdate = _context.Manufacturers.Find(manufacturer.ManufacturerId)
-            ?? throw new ArgumentNullException(nameof(manufacturer.ManufacturerId), "Manufacturer not found");
+        await using var context = await factory.CreateDbContextAsync();
+        var manufacturerToUpdate = await context.Manufacturers.FindAsync(manufacturer.ManufacturerId);
+
+        if (manufacturerToUpdate is null)
+        {
+            return;
+        }
 
         manufacturerToUpdate.ManufacturerName = manufacturer.ManufacturerName;
 
-        await _context.SaveChangesAsync();
+        await context.SaveChangesAsync();
     }
 }

@@ -1,46 +1,60 @@
 ﻿namespace OfficeManagerDataAccess.PersonManager.PersonManagerHandlers;
 
-public class AddressHandler(PersonManagerDbContext context) : IAddressHandler
+public class AddressHandler(IDbContextFactory<PersonManagerDbContext> factory) : IAddressHandler
 {
-    private readonly PersonManagerDbContext _context = context;
-
     public async Task CreateAddressAsync(AddressModel address)
     {
-        _context.Addresses.Add(address);
-        await _context.SaveChangesAsync();
+        await using var context = factory.CreateDbContext();
+        context.Addresses.Add(address);
+        await context.SaveChangesAsync();
     }
 
     public async Task DeleteAddressAsync(int addressId)
     {
-        var addressToDelete = await _context.Addresses.FindAsync(addressId)
-            ?? throw new ArgumentNullException(nameof(addressId), "Address not found");
+        await using var context = factory.CreateDbContext();
+        var addressToDelete = await context.Addresses.FindAsync(addressId);
+            
+        if (addressToDelete is null)
+        {
+            return;
+        }
 
-        _context.Addresses.Remove(addressToDelete);
-        await _context.SaveChangesAsync();
+        context.Addresses.Remove(addressToDelete);
+        await context.SaveChangesAsync();
     }
 
-    public async Task<AddressModel> GetAddressByIdAsync(int addressId) =>
-        await _context.Addresses
+    public async Task<AddressModel> GetAddressByIdAsync(int addressId)
+    {
+        await using var context = factory.CreateDbContext();
+        var address = await context.Addresses
             .Include(a => a.Person)
             .Include(a => a.AddressType)
             .AsNoTracking()
-            .FirstOrDefaultAsync(a => a.AddressId == addressId)
-            ?? throw new ArgumentNullException(nameof(addressId), "Address not found");
+            .FirstOrDefaultAsync(a => a.AddressId == addressId);
 
-    public async Task<List<AddressModel>> GetAllAddressesAsync(int personId) =>
-        await _context.Addresses
+        return address ?? new AddressModel();
+    }
+        
+
+    public async Task<List<AddressModel>> GetAllAddressesAsync(int personId)
+    {
+        await using var context = factory.CreateDbContext();
+        return await context.Addresses
             .Include(a => a.Person)
             .Include(a => a.AddressType)
             .AsNoTracking() 
             .Where(a => a.PersonId == personId)
             .ToListAsync();
+    }
+        
 
     public async Task UpdateAddressAsync(AddressModel address)
     {
-        var addressToUpdate = _context.Addresses.Find(address.AddressId);
+        await using var context = factory.CreateDbContext();
+        var addressToUpdate = await context.Addresses.FindAsync(address.AddressId);
         if (addressToUpdate is null)
         {
-            throw new ArgumentNullException(nameof(addressToUpdate), "Address not found");
+            return;
         }
 
         addressToUpdate.AddressLine1 = address.AddressLine1;
@@ -51,6 +65,6 @@ public class AddressHandler(PersonManagerDbContext context) : IAddressHandler
         addressToUpdate.Latitude = address.Latitude;
         addressToUpdate.Longitude = address.Longitude;
 
-        await _context.SaveChangesAsync();
+        await context.SaveChangesAsync();
     }
 }
