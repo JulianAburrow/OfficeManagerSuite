@@ -28,7 +28,7 @@ jobs:
         run: |
           dotnet build OfficeManagerUI/OfficeManagerUI.csproj --no-restore --configuration Release
           dotnet build OfficeManagerDataAccess/OfficeManagerDataAccess.csproj --no-restore --configuration Release
-          dotnet build Tests/OfficeManagerTests/OfficeManagerTests.csproj --no-restore --configuration Release
+          dotnet build Tests/OfficeManagerTests.csproj --no-restore --configuration Release
 
       - name: Run tests
         run: dotnet test Tests/OfficeManagerTests.csproj --no-build --configuration Release --verbosity normal
