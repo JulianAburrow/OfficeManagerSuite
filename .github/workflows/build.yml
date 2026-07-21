@@ -1,0 +1,34 @@
+name: Build and Test OfficeManager
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build UI, DataAccess and Test projects
+        run: |
+          dotnet build OfficeManagerUI/OfficeManagerUI.csproj --no-restore --configuration Release
+          dotnet build OfficeManagerDataAccess/OfficeManagerDataAccess.csproj --no-restore --configuration Release
+          dotnet build Tests/OfficeManagerTests.csproj --no-restore --configuration Release
+
+      - name: Run tests
+        run: dotnet test Tests/OfficeManagerTests.csproj --no-build --configuration Release --verbosity normal
