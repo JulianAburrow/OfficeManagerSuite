@@ -69,7 +69,7 @@
     <Build Include="Tables\AddressType.sql" />
     <Build Include="Tables\EmergencyContact.sql" />
     <Build Include="Tables\EmploymentStatus.sql" />
-    <None Include="OfficeManagerDatabaseSuite.publish.xml" />
+    <None Include="OfficeManagerDatabasePerson.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PostDeployment.sql" />
