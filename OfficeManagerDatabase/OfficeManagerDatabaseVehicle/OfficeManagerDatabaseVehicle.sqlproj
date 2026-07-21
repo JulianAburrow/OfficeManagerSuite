@@ -56,5 +56,19 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="SeedData" />
+    <Folder Include="Tables" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\Colour.sql" />
+    <Build Include="Tables\Model.sql" />
+    <Build Include="Tables\Manufacturer.sql" />
+    <Build Include="Tables\Vehicle.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SeedData\SeedColour.sql" />
+    <None Include="SeedData\SeedManufacturer.sql" />
+    <None Include="PostDeployment.sql" />
+    <None Include="OfficeManagerDatabaseVehicle.publish.xml" />
   </ItemGroup>
 </Project>
