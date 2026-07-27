@@ -1,0 +1,17 @@
+﻿@page "/vehiclemanager/manufacturers/index"
+@inherits ManufacturerBasePageClass
+
+<PageTitle>Manufacturers</PageTitle>
+
+<a href="/vehiclemanager/manufacturer/create" class="btn btn-primary">Create Manufacturer</a>
+
+<br />
+<br />
+
+@if (Manufacturers is null || !Manufacturers.Any())
+{
+    <LoadingOrNotFoundComponent ValueToShow="@ManufacturerPlural" />
+    return;
+}
+
+<ManufacturerGridViewComponent Manufacturers="@Manufacturers" />

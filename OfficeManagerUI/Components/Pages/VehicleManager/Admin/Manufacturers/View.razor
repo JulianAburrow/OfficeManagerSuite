@@ -1,0 +1,30 @@
+﻿@page "/vehiclemanager/manufacturer/view/{ManufacturerId:int}"
+@inherits ManufacturerBasePageClass
+
+<PageTitle>View Manufacturer</PageTitle>
+
+@if (ManufacturerModel is null)
+{
+    <LoadingOrNotFoundComponent />
+    return;
+}
+
+<MudGrid>
+    <MudItem sm="7">
+        <MudCard>
+            <MudCardContent>
+                <ManufacturerViewDeleteComponent Manufacturer="@ManufacturerModel" />
+            </MudCardContent>
+            <MudCardActions>
+                @if (OkToEditOrDelete)
+                {
+                    <a class="btn btn-primary" href="/vehiclemanager/manufacturer/edit/@ManufacturerModel.ManufacturerId">Edit</a>
+                    @:&nbsp;
+                    <a class="btn btn-danger" href="/vehiclemanager/manufacturer/delete/@ManufacturerModel.ManufacturerId">Delete</a>
+                    @:&nbsp;
+                }
+                <a class="btn btn-primary" href="/vehiclemanager/manufacturers/index">Cancel</a>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+</MudGrid>

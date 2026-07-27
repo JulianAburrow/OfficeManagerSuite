@@ -66,8 +66,12 @@
     <Build Include="Tables\Vehicle.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="SeedData\SeedColour.sql" />
-    <None Include="SeedData\SeedManufacturer.sql" />
+    <None Include="SeedData\SeedColour.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="SeedData\SeedManufacturer.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="PostDeployment.sql" />
     <None Include="OfficeManagerDatabaseVehicle.publish.xml" />
   </ItemGroup>

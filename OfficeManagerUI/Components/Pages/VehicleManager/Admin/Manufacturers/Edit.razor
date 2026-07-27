@@ -1,0 +1,29 @@
+﻿@page "/vehiclemanager/manufacturer/edit/{ManufacturerId:int}"
+@inherits ManufacturerBasePageClass
+<PageTitle>Edit Manufacturer</PageTitle>
+
+@if (ManufacturerModel is null || ManufacturerModel.Models is null || ManufacturerModel.Vehicles is null)
+{
+    <LoadingOrNotFoundComponent />
+    return;
+}
+
+<EditForm Model="ManufacturerDisplayModel" OnValidSubmit="UpdateManufacturer">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <MudGrid>
+        <MudItem sm="7">
+            <MudCard>
+                <MudCardContent>
+                    <ManufacturerCreateUpdateComponent ManufacturerDisplayModel="@ManufacturerDisplayModel" />
+                </MudCardContent>
+                <MudCardActions>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    &nbsp;
+                    <a class="btn btn-primary" href="/vehiclemanager/manufacturers/index">Cancel</a>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>

@@ -1,0 +1,17 @@
+﻿@page "/vehiclemanager/models/index"
+@inherits ModelBasePageClass
+
+<PageTitle>Models</PageTitle>
+
+<a href="vehiclemanager/model/create" class="btn btn-primary">Create Model</a>
+
+<br />
+<br />
+
+@if (Models is null || !Models.Any())
+{
+    <LoadingOrNotFoundComponent ValueToShow="@ModelPlural" />
+    return;
+}
+
+<ModelGridViewComponent Models="@Models" />

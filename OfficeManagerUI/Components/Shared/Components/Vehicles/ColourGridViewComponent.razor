@@ -2,7 +2,7 @@
           Hover
           FixedHeader="true">
     <HeaderContent>
-        <MudTh title="Sort by Address Type">
+        <MudTh title="Sort by Colour Name">
             <MudTableSortLabel SortBy="new Func<ColourModel, object>(x => x.ColourName)">
                 Colour Name
             </MudTableSortLabel>
@@ -12,13 +12,13 @@
     <RowTemplate>
         <MudTd>@context.ColourName</MudTd>
         <MudTd>
-            <a href="/colour/view/@context.ColourId" class="btn btn-primary">View</a>
+            <a href="/vehiclemanager/colour/view/@context.ColourId" class="btn btn-primary">View</a>
             &nbsp;
-            <a href="/colour/edit/@context.ColourId" class="btn btn-primary">Edit</a>
+            <a href="/vehiclemanager/colour/edit/@context.ColourId" class="btn btn-primary">Edit</a>
             @if (!context.Vehicles.Any())
             {
                 @:&nbsp;
-                <a href="/colour/delete/@context.ColourId" class="btn btn-danger">Delete</a>
+                <a href="/vehiclemanager/colour/delete/@context.ColourId" class="btn btn-danger">Delete</a>
             }
         </MudTd>
     </RowTemplate>

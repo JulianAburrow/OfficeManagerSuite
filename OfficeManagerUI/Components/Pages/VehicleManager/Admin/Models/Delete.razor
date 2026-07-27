@@ -1,0 +1,38 @@
+﻿@page "/vehiclemanager/model/delete/{ModelId:int}"
+@inherits ModelBasePageClass
+
+<PageTitle>Delete Model</PageTitle>
+
+@if (ModelModel is null || ModelModel.Manufacturer is null || ModelModel.Vehicles is null)
+{
+    <LoadingOrNotFoundComponent />
+    return;
+}
+
+@if (!OkToEditOrDelete)
+{
+    <CannotEditOrDeleteComponent
+        WhichManager="@ManagerEnum.vehicle.ToString()"
+        ObjectType="@ModelPlural"
+        ObjectName="@ModelModel.ModelName"
+        ObjectCount="@ModelModel.Vehicles.Count" />
+    return;
+}
+
+<ConfirmDeleteComponent ObjectType="@ModelSingular" ObjectName="@ModelModel.ModelName" />
+
+<br />
+<br />
+
+<ModelViewDeleteComponent Model="@ModelModel" />
+
+<br />
+<br />
+
+<button class="btn btn-danger" @onclick="DeleteModel">Delete</button>
+@if (OkToEditOrDelete)
+{
+    @:&nbsp;
+    <a class="btn btn-primary" href="/vehiclemanager/models/index">Cancel</a>
+}
+
