@@ -1,4 +1,5 @@
 ﻿global using Microsoft.AspNetCore.Components;
+global using Microsoft.AspNetCore.Components.Forms;
 global using Microsoft.EntityFrameworkCore;
 global using MudBlazor;
 global using MudBlazor.Services;
@@ -8,3 +9,4 @@ global using OfficeManagerUI.Extensions;
 global using OfficeManagerUI.GlobalValues.Enums;
 global using OfficeManagerUI.Interfaces;
 global using OfficeManagerUI.Services;
+global using OfficeManagerUI.Components.Shared.BasePageClasses.Vehicles;

@@ -1,5 +1,4 @@
-﻿
-namespace OfficeManagerDataAccess.VehicleManager.VehicleManagerConfiguration;
+﻿namespace OfficeManagerDataAccess.VehicleManager.VehicleManagerConfiguration;
 
 public class ManufacturerConfiguration : IEntityTypeConfiguration<ManufacturerModel>
 {

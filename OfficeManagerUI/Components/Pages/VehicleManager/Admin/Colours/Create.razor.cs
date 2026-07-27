@@ -13,7 +13,7 @@ public partial class Create
         ]);
     }
 
-    private async void CreateColour()
+    private async Task CreateColour()
     {
         try
         {

@@ -1,0 +1,30 @@
+﻿@page "/vehiclemanager/model/view/{ModelId:int}"
+@inherits ModelBasePageClass
+
+<PageTitle>View Model</PageTitle>
+
+@if (ModelModel is null || ModelModel.Manufacturer is null)
+{
+    <LoadingOrNotFoundComponent />
+    return;
+}
+
+<MudGrid>
+    <MudItem sm="7">
+        <MudCard>
+            <MudCardContent>
+                <ModelViewDeleteComponent Model="@ModelModel" />
+            </MudCardContent>
+            <MudCardActions>
+                @if (OkToEditOrDelete)
+                {
+                    <a class="btn btn-primary" href="/vehiclemanager/model/edit/@ModelModel.ModelId">Edit</a>
+                    @:&nbsp;
+                    <a class="btn btn-danger" href="/vehiclemanager/model/delete/@ModelModel.ModelId">Delete</a>
+                    @:&nbsp;
+                }
+                <a class="btn btn-primary" href="/vehiclemanager/models/index">Cancel</a>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+</MudGrid>

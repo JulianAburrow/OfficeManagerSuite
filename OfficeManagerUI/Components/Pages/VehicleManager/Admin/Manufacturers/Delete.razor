@@ -1,0 +1,37 @@
+﻿@page "/vehiclemanager/manufacturer/delete/{ManufacturerId:int}"
+@inherits ManufacturerBasePageClass
+
+<PageTitle>Delete Manufacturer</PageTitle>
+
+@if (ManufacturerModel is null || ManufacturerModel.Models is null || ManufacturerModel.Vehicles is null)
+{
+    <LoadingOrNotFoundComponent />
+    return;
+}
+
+@if (!OkToEditOrDelete)
+{
+    <CannotEditOrDeleteComponent
+        WhichManager="@ManagerEnum.vehicle.ToString()"
+        ObjectType="@ManufacturerPlural"
+        ObjectName="@ManufacturerModel.ManufacturerName"
+        ObjectCount="@(ManufacturerModel.Vehicles.Count + ManufacturerModel.Models.Count)" />
+    return;
+}
+
+<ConfirmDeleteComponent ObjectType="@ManufacturerSingular" ObjectName="@ManufacturerModel.ManufacturerName" />
+
+<br />
+<br />
+
+<ManufacturerViewDeleteComponent Manufacturer="@ManufacturerModel" />
+
+<br />
+<br />
+
+<button class="btn btn-danger" @onclick="DeleteManufacturer">Delete</button>
+@if (OkToEditOrDelete)
+{
+    @:&nbsp;
+    <a class="btn btn-primary" href="/vehiclemanager/manufacturers/index">Cancel</a>
+}

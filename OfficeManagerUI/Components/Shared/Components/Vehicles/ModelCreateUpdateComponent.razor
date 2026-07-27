@@ -1,0 +1,7 @@
+﻿<MudTextField Label="Model Name" @bind-Value="ModelDisplayModel.ModelName" AutoFocus OnlyValidateIfDirty="true" />
+<MudSelect T="int" @bind-Value="@ModelDisplayModel.ManufacturerId">
+    @foreach (var manufacturer in Manufacturers)
+    {
+        <MudSelectItem T="int" Value="manufacturer.ManufacturerId">@manufacturer.ManufacturerName</MudSelectItem>
+    }
+</MudSelect>

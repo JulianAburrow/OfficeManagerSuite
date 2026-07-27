@@ -1,0 +1,34 @@
+﻿<MudTable Items="Models"
+          Hover
+          FixedHeader="true">
+    <HeaderContent>
+        <MudTh title="Sort by Model Name">
+            <MudTableSortLabel SortBy="new Func<ModelModel, object>(x => x.ModelName)">
+                Model Name
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh title="Sort by Manufacturer Name">
+            <MudTableSortLabel SortBy="new Func<ModelModel, object>(x => x.Manufacturer.ManufacturerName)">
+                Manufacturer Name
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh></MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd>@context.ModelName</MudTd>
+        <MudTd>@context.Manufacturer.ManufacturerName</MudTd>
+        <MudTd>
+            <a href="/vehiclemanager/model/view/@context.ModelId" class="btn btn-primary">View</a>
+            &nbsp;
+            <a href="/vehiclemanager/model/edit/@context.ModelId" class="btn btn-primary">Edit</a>
+            @if (!context.Vehicles.Any())
+            {
+                @:&nbsp;
+                <a href="/vehiclemanager/model/delete/@context.ModelId" class="btn btn-danger">Delete</a>
+            }            
+        </MudTd>
+    </RowTemplate>
+    <PagerContent>
+        <MudTablePager PageSizeOptions="new int[] { 5, 10, 15, int.MaxValue }" />
+    </PagerContent>
+</MudTable>

@@ -1,0 +1,32 @@
+﻿@page "/vehiclemanager/model/create"
+@inherits ModelBasePageClass
+
+@if (Manufacturers is null)
+{
+    <LoadingOrNotFoundComponent />
+    return;
+}
+
+<PageTitle>Create Model</PageTitle>
+
+<EditForm Model="ModelDisplayModel" OnValidSubmit="CreateModel">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <MudGrid>
+        <MudItem sm="7">
+            <MudCard>
+                <MudCardContent>
+                    <ModelCreateUpdateComponent
+                        ModelDisplayModel="@ModelDisplayModel"
+                        Manufacturers="@Manufacturers" />
+                </MudCardContent>
+                <MudCardActions>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    &nbsp;
+                    <a class="btn btn-primary" href="/vehiclemanager/models/index">Cancel</a>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>

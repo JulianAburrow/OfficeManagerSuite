@@ -16,7 +16,7 @@ public class ColourBasePageClass : BasePageClass
 
     protected BreadcrumbItem GetColourHomeBreadcrumbItem(bool isDisabled = false)
     {
-        return new(ColourPlural, "/colours/index", isDisabled);
+        return new(ColourPlural, "/vehiclemanager/colours/index", isDisabled);
     }
 
     protected void CopyDisplayModelToModel()

@@ -1,0 +1,32 @@
+﻿@page "/vehiclemanager/model/edit/{ModelId:int}"
+@inherits ModelBasePageClass
+
+<PageTitle>Edit Model</PageTitle>
+
+@if (ModelModel is null || Manufacturers is null)
+{
+    <LoadingOrNotFoundComponent />
+    return;
+}
+
+<EditForm Model="ModelDisplayModel" OnValidSubmit="UpdateModel">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <MudGrid>
+        <MudItem sm="7">
+            <MudCard>
+                <MudCardContent>
+                    <ModelCreateUpdateComponent
+                        ModelDisplayModel="@ModelDisplayModel"
+                        Manufacturers="@Manufacturers" />
+                </MudCardContent>
+                <MudCardActions>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    &nbsp;
+                    <a class="btn btn-primary" href="/vehiclemanager/models/index">Cancel</a>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>

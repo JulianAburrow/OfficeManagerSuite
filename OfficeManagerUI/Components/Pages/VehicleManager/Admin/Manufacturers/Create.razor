@@ -1,0 +1,25 @@
+﻿@page "/vehiclemanager/manufacturer/create"
+@inherits ManufacturerBasePageClass
+
+<PageTitle>Create Manufacturer</PageTitle>
+
+<EditForm Model="ManufacturerDisplayModel" OnValidSubmit="CreateManufacturer">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <MudGrid>
+        <MudItem sm="7">
+            <MudCard>
+                <MudCardContent>
+                    <ManufacturerCreateUpdateComponent ManufacturerDisplayModel="@ManufacturerDisplayModel" />
+                </MudCardContent>
+                <MudCardActions>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    &nbsp;
+                    <a class="btn btn-primary" href="/vehiclemanager/manufacturers/index">Cancel</a>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>
+
