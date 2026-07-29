@@ -84,7 +84,9 @@ public class PersonHandler(IDbContextFactory<PersonManagerDbContext> factory) : 
         personToUpdate.GenderId = personModel.GenderId;
         personToUpdate.EmploymentStatusId = personModel.EmploymentStatusId;
         personToUpdate.Photo = personModel.Photo;
+        personToUpdate.PhotoMimeType = personModel.PhotoMimeType;
         personToUpdate.Pronunciation = personModel.Pronunciation;
+        personToUpdate.PronunciationMimeType = personModel.PronunciationMimeType;
 
         await context.SaveChangesAsync();
     }

@@ -18,3 +18,11 @@
     <a href="/personmanager/emergencycontact/create/@Person.PersonId" class="btn btn-primary">Create Emergency Contact</a>
     <a href="/personmanager/emergencycontacts/index/@Person.PersonId" class="btn btn-primary">View Emergency Contacts In Page</a>
 </MudField>
+<br /><br />
+<ViewImageComponent ImageData="Person.Photo"
+                    ImageTitle="@($"{Person.FirstName} {Person.LastName}")"
+                    ImageMimeType="@Person.PhotoMimeType" />
+<br /><br />
+<HearPronunciationComponent PronunciationData="Person.Pronunciation"
+                    PronunciationTitle="@($"{Person.FirstName} {Person.LastName}")"
+                    PronunciationMimeType="PersonModel.PronunciationMimeType" />

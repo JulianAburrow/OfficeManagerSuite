@@ -9,7 +9,9 @@
 	GenderId INT NULL,
 	EmploymentStatusId INT NOT NULL,
 	Photo VARBINARY(MAX) NULL,
+	PhotoMimeType NVARCHAR(25) NULL,
 	Pronunciation VARBINARY(MAX) NULL,
+	PronunciationMimeType NVARCHAR(25) NULL,
 	CONSTRAINT PK_Person PRIMARY KEY (PersonId),
 	CONSTRAINT FK_Person_EmploymentStatus FOREIGN KEY (EmploymentStatusId)
 		REFERENCES EmploymentStatus (EmploymentStatusId),

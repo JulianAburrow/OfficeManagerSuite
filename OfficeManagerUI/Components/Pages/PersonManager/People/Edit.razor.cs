@@ -2,7 +2,6 @@
 
 public partial class Edit
 {
-
     protected override async Task OnInitializedAsync()
     {
         PersonModel = await PersonHandler.GetPersonByIdAsync(PersonId);

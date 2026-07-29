@@ -28,7 +28,6 @@ public class PersonDisplayModel
     [Display(Name = "Personal Pronouns")]
     public int? PersonalPronounsId { get; set; }
 
-
     [Required(ErrorMessage = "{0} is required but 'Not Stated' can be selected.")]
     [Display(Name = "Gender")]
     public int? GenderId { get; set; }
@@ -39,5 +38,9 @@ public class PersonDisplayModel
 
     public byte[]? Photo { get; set; } = null!;
 
+    public string? PhotoMimeType { get; set; } = null!;
+
     public byte[]? Pronunciation { get; set; } = null!;
+
+    public string? PronunciationMimeType { get; set; } = null!;
 }

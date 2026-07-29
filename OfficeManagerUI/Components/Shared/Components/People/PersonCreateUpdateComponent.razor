@@ -1,4 +1,6 @@
-﻿<MudTextField Label="First Name" @bind-Value="PersonDisplayModel.FirstName" AutoFocus OnlyValidateIfDirty="true" />
+﻿@inherits PersonBasePageClass
+
+<MudTextField Label="First Name" @bind-Value="PersonDisplayModel.FirstName" AutoFocus OnlyValidateIfDirty="true" />
 <MudTextField Label="Middle Names" @bind-Value="PersonDisplayModel.MiddleNames" />
 <MudTextField Label="Last Name" @bind-Value="PersonDisplayModel.LastName" />
 <MudTextField Label="Email Address" @bind-Value="PersonDisplayModel.EmailAddress" />
@@ -21,3 +23,81 @@
         <MudSelectItem T="int" Value="@employmentStatus.EmploymentStatusId">@employmentStatus.StatusName</MudSelectItem>
     }
 </MudSelect>
+
+<div class="my-4"></div>
+
+<MudFileUpload T="IBrowserFile"
+    FilesChanged="LocalUploadImage"
+    Accept="image/*">
+    <ActivatorContent>
+        <MudButton HtmlTag="label"
+                    Variant="Variant.Filled"
+                    Color="Color.Primary"
+                    StartIcon="@Icons.Material.Filled.FileUpload">
+            Upload Image
+        </MudButton>
+    </ActivatorContent>
+</MudFileUpload>
+
+<br />
+<br />
+
+@if (PersonDisplayModel.Photo is not null)
+{
+    <p>@ImageName</p>
+
+    <span>
+        <MudButton Variant="Variant.Filled"
+              Color="Color.Error"
+              OnClick="LocalRemoveImage">
+            Remove Image
+        </MudButton>
+    </span>
+
+    <br />
+    <br />
+}
+
+<ViewImageComponent ImageData="PersonDisplayModel.Photo"
+                    ImageTitle="@($"{PersonDisplayModel.FirstName} {PersonDisplayModel.LastName}")"
+                    ImageMimeType="@PersonDisplayModel.PhotoMimeType"/>
+
+<br />
+<br />
+
+<div class="my-4"></div>
+
+<MudFileUpload T="IBrowserFile"
+    FilesChanged="LocalUploadPronunciation"
+    Accept="audio/*">
+    <ActivatorContent>
+        <MudButton HtmlTag="label"
+                    Variant="Variant.Filled"
+                    Color="Color.Primary"
+                    StartIcon="@Icons.Material.Filled.FileUpload">
+            Upload Pronunciation
+        </MudButton>
+    </ActivatorContent>
+</MudFileUpload>
+
+<br />
+<br />
+
+@if (PersonDisplayModel.Pronunciation is not null)
+{
+    <p>@PronunciationName</p>
+
+    <span>
+        <MudButton Variant="Variant.Filled"
+              Color="Color.Error"
+              OnClick="LocalRemovePronunciation">
+            Remove Pronunciation
+        </MudButton>
+    </span>
+
+    <br />
+    <br />
+}
+
+<HearPronunciationComponent PronunciationData="PersonDisplayModel.Pronunciation"
+                    PronunciationTitle="@($"{PersonDisplayModel.FirstName} {PersonDisplayModel.LastName}")" />

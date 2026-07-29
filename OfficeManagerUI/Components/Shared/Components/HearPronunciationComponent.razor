@@ -1,0 +1,20 @@
+﻿<MudStack Justify="Justify.Center" AlignItems="AlignItems.Center">
+    @if (PronunciationData is not null)
+    {
+        <span>@PronunciationTitle pronunciation</span>
+        <audio controls src="@FileHelper.ToDataUri(PronunciationData, PronunciationMimeType)">
+            Your browser does not support the audio element.
+        </audio>
+
+    }
+    else
+    {
+        <div class="d-flex flex-column align-center justify-center pa-4 gap-1"
+             style="min-width: 120px; min-height: 120px; border: 1px dashed var(--mud-palette-divider); border-radius: 8px;">
+            <MudIcon Icon="@Icons.Material.Outlined.BrokenImage"
+                     Color="Color.Default"
+                     Size="Size.Large" />
+            <MudText Typo="Typo.caption" Color="Color.Secondary">No pronunciation</MudText>
+        </div>
+    }
+</MudStack>
