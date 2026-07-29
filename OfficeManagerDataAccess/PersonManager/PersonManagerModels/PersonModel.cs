@@ -22,7 +22,11 @@ public class PersonModel
 
     public byte[]? Photo { get; set; } = null!;
 
+    public string? PhotoMimeType { get; set; } = null!;
+
     public byte[]? Pronunciation { get; set; } = null!;
+
+    public string? PronunciationMimeType { get; set; } = null!;
 
     public PersonalPronounsModel? PersonalPronouns { get; set; } = null!;
 

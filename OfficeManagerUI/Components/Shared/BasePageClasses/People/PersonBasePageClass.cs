@@ -1,4 +1,6 @@
-﻿namespace OfficeManagerUI.Components.Shared.BasePageClasses.People;
+﻿using Microsoft.AspNetCore.Mvc.TagHelpers;
+
+namespace OfficeManagerUI.Components.Shared.BasePageClasses.People;
 
 public class PersonBasePageClass : BasePageClass
 {
@@ -46,7 +48,9 @@ public class PersonBasePageClass : BasePageClass
             : PersonDisplayModel.GenderId;
         PersonModel.EmploymentStatusId = PersonDisplayModel.EmploymentStatusId;
         PersonModel.Photo = PersonDisplayModel.Photo;
+        PersonModel.PhotoMimeType = PersonDisplayModel.PhotoMimeType;
         PersonModel.Pronunciation = PersonDisplayModel.Pronunciation;
+        PersonModel.PronunciationMimeType = PersonDisplayModel.PronunciationMimeType;
     }
 
     protected void CopyModelToDisplayModel()
@@ -64,7 +68,9 @@ public class PersonBasePageClass : BasePageClass
             : PersonModel.GenderId;
         PersonDisplayModel.EmploymentStatusId = PersonModel.EmploymentStatusId;
         PersonDisplayModel.Photo = PersonModel.Photo;
+        PersonDisplayModel.PhotoMimeType = PersonModel.PhotoMimeType;
         PersonDisplayModel.Pronunciation = PersonModel.Pronunciation;
+        PersonDisplayModel.PronunciationMimeType = PersonModel.PronunciationMimeType;
     }
 
     protected override async Task OnInitializedAsync()
